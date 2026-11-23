@@ -1,0 +1,29 @@
+{
+  "new_cohort_scope": "Protocol frozen before new localization scores, same official test pool. Earlier full-test classification and past exploratory outcomes were known. Not external preregistration or an untouched dataset.",
+  "query_sampling_difference": "Old audit sampled5 attributes across distinct parts/image then retained40; new cohort uses all eligible pairs of the same40. Same macro-attribute estimand conditional on eligibility, not an exact resample of old query sampling.",
+  "new_images": 800,
+  "new_pairs": 8323,
+  "random_heads": {
+    "FB": 3,
+    "old_CUB": 5,
+    "new_CUB": 5
+  },
+  "zero_maps": "Primary retains published cached fallback/tie-breaking; no query removed.",
+  "adapter_sensitivity_scope": "Exploratory eight-adapter sensitivity after frozen primary outcomes were known; no training, cohort enlargement, new reference heads, donor changes or adapter selection.",
+  "adapter_settings": [
+    "own_box__bilinear__row_major",
+    "own_box__bilinear__center",
+    "own_box__bicubic__row_major",
+    "own_box__bicubic__center",
+    "full_image__bilinear__row_major",
+    "full_image__bilinear__center",
+    "full_image__bicubic__row_major",
+    "full_image__bicubic__center"
+  ],
+  "adapter_chance": {
+    "own_box": 0.14451473334584247,
+    "full_image": 0.16613401130961597
+  },
+  "native_frozen_label_followup": "See concept_eligibility; 32 same-part assignments on the native model.",
+  "native_frozen_identity_tested_in_core": false
+}

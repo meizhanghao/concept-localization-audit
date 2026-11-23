@@ -1,0 +1,11 @@
+# Generated audit outputs and local Python environments.
+/results/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

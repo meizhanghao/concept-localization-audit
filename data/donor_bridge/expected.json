@@ -1,0 +1,13 @@
+{
+  "recipients_and_pairs_unchanged": true,
+  "asymmetric_I": -0.022478228490025506,
+  "symmetric_I": 0.0032497229168705,
+  "donor_rule_difference": 0.025727951406896016,
+  "paired_image_ci95": [
+    0.02363788493129574,
+    0.02776533399932188
+  ],
+  "asymmetric_G_correct": 0.10146500839503299,
+  "asymmetric_G_wrong": 0.12394323688505836,
+  "scope": "Post-outcome exploratory donor-only bridge; same133 pairs/7081 co-present recipients and macro weights."
+}

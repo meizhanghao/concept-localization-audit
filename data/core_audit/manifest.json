@@ -1,0 +1,285 @@
+{
+  "scope": "Frozen crossed-control scores on FunnyBirds and original/disjoint CUB cohorts; 12 adapted-model identity contrasts and eight exploratory frozen native adapters. Concept-label eligibility analyses are in the separate concept audit.",
+  "coordinate_convention": "FB peaks(y,x), CUB peaks(x,y); masks and h45 keypoint unions include original clipping/tie rules.",
+  "aggregation": "Equal macro-part(FB) or macro-attribute(CUB), mean within group; paired image bootstrap; global per-draw random-head resampling where declared.",
+  "cases": [
+    {
+      "name": "FB_mask_cam",
+      "shared": "data/FB_mask_context.npz",
+      "file": "data/FB_mask_cam.npz",
+      "joint": true
+    },
+    {
+      "name": "FB_mask_gradient",
+      "shared": "data/FB_mask_context.npz",
+      "file": "data/FB_mask_gradient.npz",
+      "joint": true
+    },
+    {
+      "name": "FB_mask_layout",
+      "shared": "data/FB_mask_context.npz",
+      "file": "data/FB_mask_layout.npz",
+      "joint": false
+    },
+    {
+      "name": "FB_mask_annotation",
+      "shared": "data/FB_mask_context.npz",
+      "file": "data/FB_mask_annotation.npz",
+      "joint": false
+    },
+    {
+      "name": "FB_mask_random_gradient_map_ensemble",
+      "shared": "data/FB_mask_context.npz",
+      "file": "data/FB_mask_random_gradient_map_ensemble.npz",
+      "joint": false
+    },
+    {
+      "name": "FB_point_cam",
+      "shared": "data/FB_point_context.npz",
+      "file": "data/FB_point_cam.npz",
+      "joint": false
+    },
+    {
+      "name": "FB_point_gradient",
+      "shared": "data/FB_point_context.npz",
+      "file": "data/FB_point_gradient.npz",
+      "joint": false
+    },
+    {
+      "name": "FB_point_layout",
+      "shared": "data/FB_point_context.npz",
+      "file": "data/FB_point_layout.npz",
+      "joint": false
+    },
+    {
+      "name": "FB_point_annotation",
+      "shared": "data/FB_point_context.npz",
+      "file": "data/FB_point_annotation.npz",
+      "joint": false
+    },
+    {
+      "name": "FB_point_random_gradient_map_ensemble",
+      "shared": "data/FB_point_context.npz",
+      "file": "data/FB_point_random_gradient_map_ensemble.npz",
+      "joint": false
+    },
+    {
+      "name": "old_CUB_cam",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/old_CUB_cam.npz",
+      "joint": true
+    },
+    {
+      "name": "old_CUB_gradient",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/old_CUB_gradient.npz",
+      "joint": true
+    },
+    {
+      "name": "old_CUB_LocCBM",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/old_CUB_LocCBM.npz",
+      "joint": true
+    },
+    {
+      "name": "C1_within_part0_cam",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/C1_within_part0_cam.npz",
+      "joint": false
+    },
+    {
+      "name": "C1_within_part0_gradient",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/C1_within_part0_gradient.npz",
+      "joint": false
+    },
+    {
+      "name": "C1_global0_cam",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/C1_global0_cam.npz",
+      "joint": false
+    },
+    {
+      "name": "C1_global0_gradient",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/C1_global0_gradient.npz",
+      "joint": false
+    },
+    {
+      "name": "C1_global1_cam",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/C1_global1_cam.npz",
+      "joint": false
+    },
+    {
+      "name": "C1_global1_gradient",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/C1_global1_gradient.npz",
+      "joint": false
+    },
+    {
+      "name": "C1_global2_cam",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/C1_global2_cam.npz",
+      "joint": false
+    },
+    {
+      "name": "C1_global2_gradient",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/C1_global2_gradient.npz",
+      "joint": false
+    },
+    {
+      "name": "C1_global3_cam",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/C1_global3_cam.npz",
+      "joint": false
+    },
+    {
+      "name": "C1_global3_gradient",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/C1_global3_gradient.npz",
+      "joint": false
+    },
+    {
+      "name": "C1_global4_cam",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/C1_global4_cam.npz",
+      "joint": false
+    },
+    {
+      "name": "C1_global4_gradient",
+      "shared": "data/old_CUB_context.npz",
+      "file": "data/C1_global4_gradient.npz",
+      "joint": false
+    },
+    {
+      "name": "new_CUB_adapted_cam",
+      "shared": "data/new_CUB_context.npz",
+      "file": "data/new_CUB_adapted_cam.npz",
+      "joint": true
+    },
+    {
+      "name": "new_CUB_adapted_gradient",
+      "shared": "data/new_CUB_context.npz",
+      "file": "data/new_CUB_adapted_gradient.npz",
+      "joint": true
+    },
+    {
+      "name": "new_CUB_native_LocCBM",
+      "shared": "data/new_CUB_context.npz",
+      "file": "data/new_CUB_native_LocCBM.npz",
+      "joint": true
+    },
+    {
+      "name": "frozen_LocCBM_own_box__bilinear__row_major",
+      "shared": "data/new_CUB_context.npz",
+      "file": "data/frozen_LocCBM_own_box__bilinear__row_major.npz",
+      "joint": true
+    },
+    {
+      "name": "frozen_LocCBM_own_box__bilinear__center",
+      "shared": "data/new_CUB_context.npz",
+      "file": "data/frozen_LocCBM_own_box__bilinear__center.npz",
+      "joint": true
+    },
+    {
+      "name": "frozen_LocCBM_own_box__bicubic__row_major",
+      "shared": "data/new_CUB_context.npz",
+      "file": "data/frozen_LocCBM_own_box__bicubic__row_major.npz",
+      "joint": true
+    },
+    {
+      "name": "frozen_LocCBM_own_box__bicubic__center",
+      "shared": "data/new_CUB_context.npz",
+      "file": "data/frozen_LocCBM_own_box__bicubic__center.npz",
+      "joint": true
+    },
+    {
+      "name": "frozen_LocCBM_full_image__bilinear__row_major",
+      "shared": "data/new_CUB_full_image_context.npz",
+      "file": "data/frozen_LocCBM_full_image__bilinear__row_major.npz",
+      "joint": true
+    },
+    {
+      "name": "frozen_LocCBM_full_image__bilinear__center",
+      "shared": "data/new_CUB_full_image_context.npz",
+      "file": "data/frozen_LocCBM_full_image__bilinear__center.npz",
+      "joint": true
+    },
+    {
+      "name": "frozen_LocCBM_full_image__bicubic__row_major",
+      "shared": "data/new_CUB_full_image_context.npz",
+      "file": "data/frozen_LocCBM_full_image__bicubic__row_major.npz",
+      "joint": true
+    },
+    {
+      "name": "frozen_LocCBM_full_image__bicubic__center",
+      "shared": "data/new_CUB_full_image_context.npz",
+      "file": "data/frozen_LocCBM_full_image__bicubic__center.npz",
+      "joint": true
+    }
+  ],
+  "paired_comparisons": [
+    {
+      "name": "C1_within_part0_cam_identity_effect",
+      "first": "old_CUB_cam",
+      "second": "C1_within_part0_cam"
+    },
+    {
+      "name": "C1_within_part0_gradient_identity_effect",
+      "first": "old_CUB_gradient",
+      "second": "C1_within_part0_gradient"
+    },
+    {
+      "name": "C1_global0_cam_identity_effect",
+      "first": "old_CUB_cam",
+      "second": "C1_global0_cam"
+    },
+    {
+      "name": "C1_global0_gradient_identity_effect",
+      "first": "old_CUB_gradient",
+      "second": "C1_global0_gradient"
+    },
+    {
+      "name": "C1_global1_cam_identity_effect",
+      "first": "old_CUB_cam",
+      "second": "C1_global1_cam"
+    },
+    {
+      "name": "C1_global1_gradient_identity_effect",
+      "first": "old_CUB_gradient",
+      "second": "C1_global1_gradient"
+    },
+    {
+      "name": "C1_global2_cam_identity_effect",
+      "first": "old_CUB_cam",
+      "second": "C1_global2_cam"
+    },
+    {
+      "name": "C1_global2_gradient_identity_effect",
+      "first": "old_CUB_gradient",
+      "second": "C1_global2_gradient"
+    },
+    {
+      "name": "C1_global3_cam_identity_effect",
+      "first": "old_CUB_cam",
+      "second": "C1_global3_cam"
+    },
+    {
+      "name": "C1_global3_gradient_identity_effect",
+      "first": "old_CUB_gradient",
+      "second": "C1_global3_gradient"
+    },
+    {
+      "name": "C1_global4_cam_identity_effect",
+      "first": "old_CUB_cam",
+      "second": "C1_global4_cam"
+    },
+    {
+      "name": "C1_global4_gradient_identity_effect",
+      "first": "old_CUB_gradient",
+      "second": "C1_global4_gradient"
+    }
+  ]
+}

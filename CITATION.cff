@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this code or numerical audit materials, please cite this repository."
+type: software
+title: "Auditing Concept Localization: Crossed Controls and Concept Eligibility"
+version: 0.1.0
+authors:
+  - family-names: Mei
+    given-names: Zhanghao
+    orcid: "https://orcid.org/0009-0006-0270-6850"
+    affiliation: "College of Computer, Electronics and Information, Guangxi University"
+  - family-names: Meng
+    given-names: Zuqiang
+    orcid: "https://orcid.org/0000-0002-4911-6958"
+    affiliation: "College of Computer, Electronics and Information, Guangxi University"
+  - family-names: Tang
+    given-names: Xuwei
+    orcid: "https://orcid.org/0009-0006-3912-5347"
+    affiliation: "College of Computer, Electronics and Information, Guangxi University"
+abstract: >-
+  CPU/NumPy implementation and frozen numerical inputs for auditing
+  concept-localization scores through crossed image/head controls,
+  concept-presence eligibility and a fixed-recipient donor-rule comparison.
+keywords:
+  - explainable AI
+  - concept localization
+  - concept bottleneck models
+  - explanation evaluation
+  - reproducibility
