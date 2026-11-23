@@ -1,4 +1,4 @@
-"""Command-line entry point for the three numerical audits."""
+"""Command-line entry point for the frozen numerical audits."""
 import argparse
 import csv
 import os
@@ -14,10 +14,10 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 def parser():
     command = argparse.ArgumentParser(description='Reproduce concept-localization audit scores from frozen numerical inputs.')
-    command.add_argument('--audit', choices=('all', 'core', 'concepts', 'bridge'), default='all',
+    command.add_argument('--audit', choices=('all', 'core', 'concepts', 'bridge', 'extensions'), default='all',
                          help='Analysis to run (default: all).')
     command.add_argument('--data-dir', type=Path, default=PROJECT_ROOT / 'data',
-                         help='Directory containing checksums.json and the three input folders.')
+                         help='Directory containing checksums.json and the audit input folders.')
     command.add_argument('--output-dir', type=Path, default=PROJECT_ROOT / 'results',
                          help='Result directory (default: results/ in the project).')
     command.add_argument('--verify-only', action='store_true', help='Verify input fingerprints without running scores.')
@@ -45,7 +45,7 @@ def main(argv=None):
     for key in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS'):
         os.environ[key] = str(arguments.threads)
     import numpy as np
-    from . import bridge, concepts, core
+    from . import bridge, concepts, core, extensions
     from .io import verify_inputs, write_json
 
     started = time.perf_counter()
@@ -59,7 +59,7 @@ def main(argv=None):
         if output == data_root or data_root in output.parents:
             raise ValueError('Choose an output directory outside data/ to preserve frozen inputs')
         output.mkdir(parents=True, exist_ok=True)
-        functions = {'core': core.run, 'concepts': concepts.run, 'bridge': bridge.run}
+        functions = {'core': core.run, 'concepts': concepts.run, 'bridge': bridge.run, 'extensions': extensions.run}
         selected = tuple(functions) if arguments.audit == 'all' else (arguments.audit,)
         summary = {'status': 'passed', 'version': __version__, 'python': platform.python_version(),
                    'numpy': np.__version__, 'input_files_verified': count, 'checks': {}}

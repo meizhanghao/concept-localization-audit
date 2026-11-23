@@ -58,13 +58,16 @@ recomputes hits for both donor rules, rather than substituting expected scores.
 
 ## Integrity and provenance
 
-`checksums.json` covers all 51 input files. The runner verifies every SHA-256
+`checksums.json` covers all 54 input files. The runner verifies every SHA-256
 fingerprint before analysis. Expected-result files are checked inputs, but
 their values are read only for comparison after scoring.
 
-The input arrays were copied byte-for-byte from the verified research caches.
-The standalone project reorganizes code and metadata without altering those
-arrays, donor schedules, pair eligibility or saved bootstrap draws.
+The original 51 inputs remain byte-identical to the preceding release.
+Three extension files add five shared channel-permutation peak banks, saved
+head draws, permutation indices, 800 species labels and regression targets;
+they reuse original core geometry and resampling arrays. See
+[extension protocols](extensions.md). New-input demos under `examples/` are
+separate from these 54 frozen regression inputs.
 
 Source projects:
 

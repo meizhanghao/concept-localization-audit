@@ -1,0 +1,90 @@
+{
+  "cases": [
+    {
+      "dataset": "CUB",
+      "recipient_image_id": 3,
+      "donor_image_id": 1743,
+      "attribute_id_0based": 54,
+      "concept": "has_breast_pattern::solid",
+      "reference_seed": 2026111921,
+      "peaks_xy": [
+        [
+          191,
+          34
+        ],
+        [
+          156,
+          70
+        ],
+        [
+          142,
+          142
+        ],
+        [
+          126,
+          101
+        ]
+      ],
+      "hits": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "zero_maps": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "source_paths": [
+        "001.Black_footed_Albatross/Black_Footed_Albatross_0002_55.jpg",
+        "031.Black_billed_Cuckoo/Black_Billed_Cuckoo_0083_795315.jpg"
+      ],
+      "cached_peaks_match": true
+    },
+    {
+      "dataset": "FunnyBirds",
+      "recipient_test_index": 0,
+      "donor_test_index": 493,
+      "part": "beak",
+      "query": 4,
+      "alternative": 1,
+      "reference_generator_seed": 821,
+      "reference_head": 0,
+      "peaks_xy": [
+        [
+          47,
+          48
+        ],
+        [
+          79,
+          48
+        ],
+        [
+          111,
+          79
+        ],
+        [
+          111,
+          47
+        ]
+      ],
+      "hits": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "cached_peaks_match": true,
+      "source_paths": [
+        "FunnyBirds/test/0/000000.png",
+        "FunnyBirds/test/49/000493.png"
+      ]
+    }
+  ],
+  "all_eight_peak_checks_passed": true,
+  "display_only_individual_reference": true,
+  "selection_rule": "CUB first stored eligible query; FB first audit image and first nonempty part in declared part order. Use donor schedule0 and original Gaussian reference head0.",
+  "source_sha256": "314d7fcd782e63d7149de990b46bfe939f159c1663f80dda2649caa2d2dba9bc"
+}

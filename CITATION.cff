@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this code or numerical audit materials, please cite this repository."
 type: software
 title: "Auditing Concept Localization: Crossed Controls and Concept Eligibility"
-version: 0.1.0
+version: 0.2.0
 repository-code: "https://github.com/meizhanghao/concept-localization-audit"
 authors:
   - family-names: Mei

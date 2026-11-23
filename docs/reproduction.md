@@ -27,6 +27,7 @@ Run one analysis:
 python run_audit.py --audit core
 python run_audit.py --audit concepts
 python run_audit.py --audit bridge
+python run_audit.py --audit extensions
 ```
 
 Check the input files without computing scores:
@@ -56,13 +57,14 @@ it can also be invoked by absolute path from another working directory.
 | `results/core_scores.csv` | A convenient tabular view of the core numerical report. |
 | `results/concepts.json` | Primary and both-present label contrasts, adjusted contrasts and paired intervals. |
 | `results/bridge.json` | Target-only versus both-present donor contrasts and their paired difference; fixed pair/recipient counts. |
+| `results/extensions.json` | Reference-family and fixed-support donor-species comparisons. |
 | `results/verification.json` | Checks performed in this invocation, maximum errors, Python/NumPy versions and elapsed time. |
 
 An individual audit replaces its own JSON and the invocation's verification
 report; other result files in the same output directory are retained. Use a
 fresh `--output-dir` to keep separate runs.
 
-Every run first checks all 51 scientific input files against SHA-256
+Every run first checks all 54 scientific input files against SHA-256
 fingerprints. Each analysis then compares computed numbers with the expected
 reference fields at absolute tolerance 1e-12. The expected files are regression
 targets, not inputs used to set the estimates. Corrupt inputs, missing files,
@@ -82,3 +84,9 @@ These checks cover a fixed prior's zero image-swap gain, an image-paired
 positive control, inclusive/clipped CUB geometry, invalid keypoints and input
 integrity failures. The full audit command is the numerical regression check
 against the released experimental records.
+
+Seven additional checks exercise the independent [new-input interface](new_inputs.md),
+including a hand-computed positive control, mask/keypoint equivalence,
+multiple concepts per macro group and rejection of invalid donor/bootstrap
+designs. Twelve unit tests run in total. The optional
+[raw-image example](regeneration.md) needs separate PyTorch/image dependencies.

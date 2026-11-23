@@ -1,0 +1,169 @@
+{
+  "selection": "First eight eligible query records, in the existing frozen array order, for attribute54. No selection on maps, hits or effects.",
+  "attribute_id_0based": 54,
+  "checkpoint_sha256": "69cf5a3d0b14d4d589099c641e99596c58940692ab856cd1c027e46c62e9e22a",
+  "release": "https://github.com/VIPL-VSU/Loc-CBM/releases/tag/v1-download",
+  "source": "https://github.com/VIPL-VSU/Loc-CBM/tree/v1",
+  "records": [
+    {
+      "image_id": 3,
+      "image_path": "001.Black_footed_Albatross/Black_Footed_Albatross_0002_55.jpg",
+      "box_xyxy": [
+        14,
+        112,
+        402,
+        298
+      ],
+      "points_xy": [
+        [
+          179,
+          157
+        ],
+        [
+          -1,
+          -1
+        ]
+      ]
+    },
+    {
+      "image_id": 45,
+      "image_path": "001.Black_footed_Albatross/Black_Footed_Albatross_0082_796121.jpg",
+      "box_xyxy": [
+        58,
+        51,
+        446,
+        262
+      ],
+      "points_xy": [
+        [
+          95,
+          122
+        ],
+        [
+          -1,
+          -1
+        ]
+      ]
+    },
+    {
+      "image_id": 63,
+      "image_path": "002.Laysan_Albatross/Laysan_Albatross_0082_524.jpg",
+      "box_xyxy": [
+        72,
+        68,
+        455,
+        293
+      ],
+      "points_xy": [
+        [
+          35,
+          159
+        ],
+        [
+          -1,
+          -1
+        ]
+      ]
+    },
+    {
+      "image_id": 68,
+      "image_path": "002.Laysan_Albatross/Laysan_Albatross_0053_543.jpg",
+      "box_xyxy": [
+        108,
+        123,
+        338,
+        272
+      ],
+      "points_xy": [
+        [
+          150,
+          117
+        ],
+        [
+          -1,
+          -1
+        ]
+      ]
+    },
+    {
+      "image_id": 100,
+      "image_path": "002.Laysan_Albatross/Laysan_Albatross_0049_918.jpg",
+      "box_xyxy": [
+        13,
+        58,
+        486,
+        301
+      ],
+      "points_xy": [
+        [
+          94,
+          103
+        ],
+        [
+          -1,
+          -1
+        ]
+      ]
+    },
+    {
+      "image_id": 146,
+      "image_path": "003.Sooty_Albatross/Sooty_Albatross_0042_1210.jpg",
+      "box_xyxy": [
+        0,
+        67,
+        212,
+        230
+      ],
+      "points_xy": [
+        [
+          197,
+          107
+        ],
+        [
+          -1,
+          -1
+        ]
+      ]
+    },
+    {
+      "image_id": 150,
+      "image_path": "003.Sooty_Albatross/Sooty_Albatross_0050_796351.jpg",
+      "box_xyxy": [
+        12,
+        9,
+        478,
+        316
+      ],
+      "points_xy": [
+        [
+          145,
+          93
+        ],
+        [
+          -1,
+          -1
+        ]
+      ]
+    },
+    {
+      "image_id": 183,
+      "image_path": "004.Groove_billed_Ani/Groove_Billed_Ani_0080_1549.jpg",
+      "box_xyxy": [
+        113,
+        88,
+        329,
+        356
+      ],
+      "points_xy": [
+        [
+          160,
+          90
+        ],
+        [
+          -1,
+          -1
+        ]
+      ]
+    }
+  ]
+}

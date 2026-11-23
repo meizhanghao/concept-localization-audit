@@ -23,3 +23,5 @@ jobs:
         run: python -B -m unittest discover -s tests -v
       - name: Reproduce all numerical audits
         run: python -B run_audit.py
+      - name: Audit new inputs without expected results
+        run: python -B audit_peaks.py --input examples/minimal/peaks.npz --config examples/minimal/config.json --output-dir results/minimal

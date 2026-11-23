@@ -47,10 +47,11 @@ python run_audit.py
 Expected terminal output:
 
 ```text
-Inputs verified: 51 files
+Inputs verified: 54 files
 core: passed (maximum error ...)
 concepts: passed (maximum error ...)
 bridge: passed (maximum error ...)
+extensions: passed (maximum error ...)
 Results saved to .../results
 ```
 
@@ -67,6 +68,7 @@ for individual audits and output fields.
 | `core` | 36 localization score cases and 12 paired identity contrasts on FunnyBirds and CUB, including original/disjoint cohorts and eight frozen Loc-CBM adapter settings. |
 | `concepts` | Primary same-part label contrast and a both-present conditional analysis, with paired intervals and random-head-adjusted contrasts. |
 | `bridge` | CUB donor-rule comparison holding 133 ordered pairs, 7,081 recipient records, maps and macro weights fixed. Own/donor hits are recomputed from native peaks and keypoints. |
+| `extensions` | Shared channel-permutation references and fixed-common-support same-species donors on native CUB maps. |
 
 Selected reference results:
 
@@ -96,6 +98,8 @@ determine above-reference evidence.*
 ```text
 .
 ├── run_audit.py                 # Command-line entry point
+├── audit_peaks.py               # New inputs; no expected-results dependency
+├── regenerate_loccbm.py         # Small raw-image example with external data/weights
 ├── audit/                      # Scoring, aggregation and paired uncertainty
 │   ├── core.py
 │   ├── concepts.py
@@ -106,6 +110,7 @@ determine above-reference evidence.*
 │   ├── core_audit/
 │   ├── concept_eligibility/
 │   ├── donor_bridge/
+│   ├── extensions/
 │   └── checksums.json
 ├── assets/                     # Figures from the manuscript
 ├── docs/                       # Protocol, data schema and reproduction guide
@@ -118,10 +123,31 @@ determine above-reference evidence.*
 This repository reproduces cached numerical audits. Core own/donor scores and
 the donor bridge are recomputed from peaks and target geometry; concept-label
 intervals use frozen per-query scores and resampling draws. Source-model
-training, raw heatmap extraction, classification-quality experiments and
-upper-envelope optimization are outside this package. Dataset images and
-model checkpoints are obtained from their original releases when required
-for those separate stages.
+training, classification-quality experiments and upper-envelope optimization
+are outside this package. An optional [eight-image Loc-CBM example](docs/regeneration.md)
+regenerates native maps and peaks from user-provided original images and the
+released checkpoint; it does not regenerate the entire experiment.
+
+## Apply the audit to new maps
+
+```bash
+python audit_peaks.py --input examples/minimal/peaks.npz --config examples/minimal/config.json --output-dir results/minimal
+```
+
+The new-input API accepts peaks, recipient windows, eligibility IDs and donor
+schedules, then writes JSON and Markdown audit cards. It supports keypoints or
+binary masks, paired image/head intervals and exact chance without loading
+expected results. See the [input schema](docs/new_inputs.md).
+
+![Fixed-order real-image audit examples](assets/four_cell_examples.png)
+
+*CUB and FunnyBirds recipient/donor sources and trained/random × own/donor cells.
+Cyan boundaries mark recipient acceptance regions; white crosses mark scored
+peaks. Cases use fixed array order, without score-based selection. Each shows
+one donor and one reference head, not population-average G.*
+
+The [sensitivity report](docs/extensions.md) explains reference-family dependence
+and what the same-species donor comparison does and does not establish.
 
 The [data description](docs/data.md) documents coordinates, arrays and source
 projects. [Protocol details](docs/protocol.md) distinguish conditional intervals,

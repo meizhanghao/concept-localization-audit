@@ -1,0 +1,11 @@
+{
+  "geometry": {
+    "type": "keypoints",
+    "side": 10,
+    "half_width": 0
+  },
+  "draws": 1000,
+  "seed": 1,
+  "s_adequacy_threshold": null,
+  "eligibility": "Two synthetic queries for hand checking; not a statistical benchmark."
+}

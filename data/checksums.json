@@ -51,6 +51,9 @@
     "core_audit/manifest.json": "62a2c267f8910f0c5cd4419291bd06bf9d44c87cf2f1f2c4e798da6e5e4c20c9",
     "core_audit/protocol_summary.json": "87bac09bd84a4a2eefc4fc3a8988afdd4b76d9f0e6a79ac0747ce645a77f6c35",
     "donor_bridge/expected.json": "8ec1e084c6138680a5253ab7aebbae8262e5864b1817b407351134d1592628fd",
-    "donor_bridge/pairs.json": "4b1d9ebd020f4dd69836908a735717a96b8ed7cf8bdbaee30e7418cfd561a384"
+    "donor_bridge/pairs.json": "4b1d9ebd020f4dd69836908a735717a96b8ed7cf8bdbaee30e7418cfd561a384",
+    "extensions/donor_species.npz": "6488318a4d5dd7a9b4d76379a576184dcfe9ff738b555dab1564f78a39436305",
+    "extensions/expected_results.json": "01a4acc2541530b0331b7651fa376cc447f10aa2d00f016a3b829e4af23dd715",
+    "extensions/reference_family.npz": "2ea47d1426b5128d9b8dda2dee0a2d67c2a47a5940d7a8d4407736607056a5e2"
   }
 }
