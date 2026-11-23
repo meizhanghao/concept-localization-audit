@@ -38,6 +38,8 @@ The audits run on CPU; no dataset download or GPU is needed.
 Download or clone this repository, then run from its root:
 
 ```bash
+git clone https://github.com/meizhanghao/concept-localization-audit.git
+cd concept-localization-audit
 python -m pip install -r requirements-reproduce.txt
 python run_audit.py
 ```

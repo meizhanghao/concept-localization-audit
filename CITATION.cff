@@ -3,6 +3,7 @@ message: "If you use this code or numerical audit materials, please cite this re
 type: software
 title: "Auditing Concept Localization: Crossed Controls and Concept Eligibility"
 version: 0.1.0
+repository-code: "https://github.com/meizhanghao/concept-localization-audit"
 authors:
   - family-names: Mei
     given-names: Zhanghao
