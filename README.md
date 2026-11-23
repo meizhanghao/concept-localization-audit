@@ -28,6 +28,8 @@ Separate positive image and head checks need not resolve their crossed
 interaction. A second audit examines how concept-presence eligibility and
 donor rules affect same-part label contrasts. See the
 [protocol](docs/protocol.md) for definitions, aggregation and uncertainty.
+The [worked audit card](docs/audit_card.md) shows a complete interpretation
+of the frozen native Loc-CBM result.
 
 ## Quick start
 
@@ -47,7 +49,7 @@ python run_audit.py
 Expected terminal output:
 
 ```text
-Inputs verified: 54 files
+Inputs verified: 57 files
 core: passed (maximum error ...)
 concepts: passed (maximum error ...)
 bridge: passed (maximum error ...)
@@ -80,9 +82,32 @@ python sweep_cub_geometry.py
 ```
 
 All four half-widths (16, 24, 36, 45) are reported. The original `h=45`
-operating point is retained; intervals are pointwise. See the
+operating point is retained. A follow-up adds simultaneous bands, all six
+paired width contrasts, and every anatomical/leave-one-group-out estimate:
+
+```bash
+python analyze_cub_robustness.py --input-dir data/core_audit/data --attribute-manifest data/core_audit/attribute_manifest.json --output-dir results/robustness
+```
+
+The follow-up is exploratory and reuses the same image/head draws. See the
 [protocol and reporting checklist](docs/protocol.md) and
-[full-precision width results](docs/cub_geometry_results.json).
+[complete sensitivity tables](docs/sensitivity_tables.md).
+
+## Additional published CEM
+
+The CUB CEM released with [Raman et al., ICML 2024](https://proceedings.mlr.press/v235/raman24a.html)
+is evaluated on the same 800 photos, 8,323 queries and 40 attributes. Its
+preprocessing and Gaussian head reference follow its own architecture; the
+result is not a cross-model ranking.
+
+```bash
+python audit_released_cem.py
+```
+
+The raw-image path supports both an eight-image example and the full cohort.
+See [CEM reproduction instructions](docs/released_cem.md) for the author
+checkpoint, input checks and CUDA command. Full regeneration reproduced all
+49,938 scored peaks in the reference environment.
 
 ## Selected results
 
@@ -90,6 +115,7 @@ operating point is retained; intervals are pointwise. See the
 |---|---:|---:|
 | Original CUB, native Loc-CBM, crossed ΔG | 0.039 | [−0.007, 0.084] |
 | Disjoint CUB cohort, native Loc-CBM, crossed ΔG | 0.021 | [0.006, 0.037] |
+| Same CUB cohort, released CEM, crossed ΔG | 0.039 | [−0.015, 0.087] |
 | CUB primary same-part label contrast | 0.120 | [0.108, 0.133] |
 | CUB both-present conditional label contrast | 0.003 | [−0.011, 0.019] |
 | CUB fixed-recipient donor-rule difference | 0.026 | [0.024, 0.028] |
@@ -99,6 +125,11 @@ The bridge isolates the donor-rule effect on one fixed recipient set; it does
 not decompose the original 0.120 contrast. An interval crossing zero remains
 unresolved. Positive spatial correspondence does not establish semantic
 correctness or causal faithfulness.
+
+The CEM's fixed-head image-only interval is [0.028, 0.052]; its joint
+image/head interval above remains unresolved. Native Loc-CBM's excess is
+also uneven across parts: leaving out the eye group gives 0.016
+[−0.0002, 0.0323]. These boundaries are retained in the analysis.
 
 ![Spatial agreement and image correspondence](assets/diagnostic.png)
 
@@ -179,7 +210,9 @@ This work uses derived evaluation records from
 [CUB-200-2011](https://www.vision.caltech.edu/datasets/cub_200_2011/) and
 [FunnyBirds](https://github.com/visinf/funnybirds), and builds on
 [Loc-CBM](https://github.com/VIPL-VSU/Loc-CBM) and the
-[ProtoCBM scorer](https://github.com/hqhQAQ/ProtoCBM). The released NumPy scorer
+[ProtoCBM scorer](https://github.com/hqhQAQ/ProtoCBM). The additional CEM
+uses the authors' release in [Concept-Learning](https://github.com/naveenr414/Concept-Learning).
+The released NumPy scorer
 implements the cached peak predicate independently. Dataset and model terms
 remain those of their respective owners.
 

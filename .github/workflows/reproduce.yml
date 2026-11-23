@@ -25,3 +25,7 @@ jobs:
         run: python -B run_audit.py
       - name: Audit new inputs without expected results
         run: python -B audit_peaks.py --input examples/minimal/peaks.npz --config examples/minimal/config.json --output-dir results/minimal
+      - name: Reproduce paired window and anatomical sensitivity
+        run: python -B analyze_cub_robustness.py --input-dir data/core_audit/data --attribute-manifest data/core_audit/attribute_manifest.json --output-dir results/robustness
+      - name: Reproduce released CEM audit
+        run: python -B audit_released_cem.py

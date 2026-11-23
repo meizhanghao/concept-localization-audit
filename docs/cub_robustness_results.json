@@ -1,0 +1,1098 @@
+{
+  "protocol": {
+    "scope": "Exploratory after all four point estimates were known; no preregistration or independent confirmation.",
+    "fixed": "800 photos, 8323 queries, 40 inherited attributes, own-box/bilinear/row-major, five Gaussian heads, 200 donors, 3000 common image/head draws.",
+    "widths": [
+      16,
+      24,
+      36,
+      45
+    ],
+    "width_pairs": [
+      [
+        16,
+        24
+      ],
+      [
+        16,
+        36
+      ],
+      [
+        16,
+        45
+      ],
+      [
+        24,
+        36
+      ],
+      [
+        24,
+        45
+      ],
+      [
+        36,
+        45
+      ]
+    ],
+    "multiplicity": "Separate fixed families: four width values and all six wider-minus-narrower differences; centered-bootstrap maximum absolute standardized deviation, 95% quantile.",
+    "anatomical_groups": "Exact official keypoint sets from attribute prefixes, determined without outcome grouping. Attribute-macro means within every group and every leave-one-group-out subset; all reported.",
+    "group_intervals": "Pointwise joint image/head intervals for description, not simultaneous per-part hypothesis tests.",
+    "inputs_sha256": {
+      "new_CUB_context.npz": "dd1e53e7f591eef4760f291011bcd990c14207f1417be5a1ca8fe822162d7c24",
+      "new_CUB_native_LocCBM.npz": "f1f47975052afcd5b6a21bf85a5a15029834f622e5f88f20f36dfa60d97282d3",
+      "attribute_manifest.json": "10bcd559ffb7d2b2f621115e2a2d56ace25dfe228287153f8dffd32274874af2"
+    }
+  },
+  "width_results": {
+    "16": {
+      "delta_G": 0.006064183277229627,
+      "pointwise_ci95": [
+        -0.001283456062728783,
+        0.013540526782737263
+      ],
+      "S": 0.0629400305513001,
+      "G": 0.03277519370589506,
+      "G_random": 0.026711010428665426
+    },
+    "24": {
+      "delta_G": 0.010842444939363339,
+      "pointwise_ci95": [
+        0.0004336636986550088,
+        0.021574357796741533
+      ],
+      "S": 0.12397507367185215,
+      "G": 0.06064082011403228,
+      "G_random": 0.04979837517466894
+    },
+    "36": {
+      "delta_G": 0.025554620014917158,
+      "pointwise_ci95": [
+        0.011391453905325819,
+        0.040262373723446834
+      ],
+      "S": 0.23542582634721163,
+      "G": 0.1073619886969986,
+      "G_random": 0.08180736868208147
+    },
+    "45": {
+      "delta_G": 0.021381843507741888,
+      "pointwise_ci95": [
+        0.005979257288886965,
+        0.03700741839434499
+      ],
+      "S": 0.3072109151314401,
+      "G": 0.12274162710417547,
+      "G_random": 0.10135978359643356
+    }
+  },
+  "four_width_simultaneous_band": {
+    "critical": 2.4006517748643454,
+    "standard_errors": [
+      0.0036990194350599586,
+      0.005498627936528127,
+      0.0073136005218557435,
+      0.007938683310840123
+    ],
+    "ci95": [
+      [
+        -0.0028158742948047703,
+        0.014944240849264025
+      ],
+      [
+        -0.0023578459757815813,
+        0.02404273585450826
+      ],
+      [
+        0.007997211941475364,
+        0.043112028088358956
+      ],
+      [
+        0.0023238293274875886,
+        0.040439857687996184
+      ]
+    ],
+    "empirical_centered_coverage": 0.95
+  },
+  "paired_width_comparisons": [
+    {
+      "wider": 24,
+      "narrower": 16,
+      "delta_difference": 0.004778261662133711,
+      "pointwise_ci95": [
+        -0.002590030356230463,
+        0.012214673044659062
+      ],
+      "six_comparison_simultaneous_ci95": [
+        -0.004769819848483268,
+        0.01432634317275069
+      ]
+    },
+    {
+      "wider": 36,
+      "narrower": 16,
+      "delta_difference": 0.01949043673768753,
+      "pointwise_ci95": [
+        0.006971022043117779,
+        0.03174605177562012
+      ],
+      "six_comparison_simultaneous_ci95": [
+        0.0035031024813247068,
+        0.03547777099405035
+      ]
+    },
+    {
+      "wider": 45,
+      "narrower": 16,
+      "delta_difference": 0.01531766023051226,
+      "pointwise_ci95": [
+        0.001077810476598176,
+        0.029656738398924815
+      ],
+      "six_comparison_simultaneous_ci95": [
+        -0.00285361005254107,
+        0.03348893051356559
+      ]
+    },
+    {
+      "wider": 36,
+      "narrower": 24,
+      "delta_difference": 0.01471217507555382,
+      "pointwise_ci95": [
+        0.004501468636913781,
+        0.025176110562927984
+      ],
+      "six_comparison_simultaneous_ci95": [
+        0.0015747209708359081,
+        0.02784962918027173
+      ]
+    },
+    {
+      "wider": 45,
+      "narrower": 24,
+      "delta_difference": 0.01053939856837855,
+      "pointwise_ci95": [
+        -0.0025114542621909033,
+        0.023138287300451487
+      ],
+      "six_comparison_simultaneous_ci95": [
+        -0.005868903318902009,
+        0.026947700455659106
+      ]
+    },
+    {
+      "wider": 45,
+      "narrower": 36,
+      "delta_difference": -0.00417277650717527,
+      "pointwise_ci95": [
+        -0.012214175721364542,
+        0.0036511037644540744
+      ],
+      "six_comparison_simultaneous_ci95": [
+        -0.01444695563385553,
+        0.0061014026195049895
+      ]
+    }
+  ],
+  "six_pair_band_details": {
+    "critical": 2.5081517066475656,
+    "standard_errors": [
+      0.003806819773026845,
+      0.0063741496234020634,
+      0.007244884842847617,
+      0.0052379025040226275,
+      0.006541989403508669,
+      0.004096314867816702
+    ],
+    "ci95": [
+      [
+        -0.004769819848483268,
+        0.01432634317275069
+      ],
+      [
+        0.0035031024813247068,
+        0.03547777099405035
+      ],
+      [
+        -0.00285361005254107,
+        0.03348893051356559
+      ],
+      [
+        0.0015747209708359081,
+        0.02784962918027173
+      ],
+      [
+        -0.005868903318902009,
+        0.026947700455659106
+      ],
+      [
+        -0.01444695563385553,
+        0.0061014026195049895
+      ]
+    ],
+    "empirical_centered_coverage": 0.95
+  },
+  "parts": [
+    {
+      "part": "back",
+      "attribute_groups": [
+        5,
+        6,
+        7,
+        30,
+        31
+      ],
+      "attributes": 5,
+      "queries": 798,
+      "S": 0.24079953160767914,
+      "G": 0.04255211012774648,
+      "G_random": 0.013740598313717997,
+      "delta_G": 0.02881151181402849,
+      "pointwise_ci95": [
+        -0.012032401614200527,
+        0.06893824370644974
+      ],
+      "macro_contribution": 0.003601438976753561,
+      "leave_out_delta_G": 0.02032046232112952,
+      "leave_out_pointwise_ci95": [
+        0.0037370915980171303,
+        0.037690742958201955
+      ]
+    },
+    {
+      "part": "beak",
+      "attribute_groups": [
+        0,
+        1,
+        19,
+        20,
+        36,
+        37
+      ],
+      "attributes": 6,
+      "queries": 1778,
+      "S": 0.24772739669272778,
+      "G": 0.11857452291913777,
+      "G_random": 0.1302318631228453,
+      "delta_G": -0.01165734020370754,
+      "pointwise_ci95": [
+        -0.047061301981996255,
+        0.024458290545462266
+      ],
+      "macro_contribution": -0.0017486010305561312,
+      "leave_out_delta_G": 0.02721228769211532,
+      "leave_out_pointwise_ci95": [
+        0.009601430309207435,
+        0.045124518703603046
+      ]
+    },
+    {
+      "part": "belly",
+      "attribute_groups": [
+        27,
+        28,
+        29,
+        32
+      ],
+      "attributes": 4,
+      "queries": 942,
+      "S": 0.3060709334874784,
+      "G": 0.0928990610799788,
+      "G_random": 0.06052355328441369,
+      "delta_G": 0.03237550779556511,
+      "pointwise_ci95": [
+        -0.016303071429291868,
+        0.08229788690081018
+      ],
+      "macro_contribution": 0.003237550779556511,
+      "leave_out_delta_G": 0.020160325253539307,
+      "leave_out_pointwise_ci95": [
+        0.0025248496292326764,
+        0.03806933115480289
+      ]
+    },
+    {
+      "part": "breast",
+      "attribute_groups": [
+        2,
+        3,
+        4,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "attributes": 8,
+      "queries": 1452,
+      "S": 0.3163100831934935,
+      "G": 0.13860294968952305,
+      "G_random": 0.12569760636523558,
+      "delta_G": 0.012905343324287487,
+      "pointwise_ci95": [
+        -0.029901916506073635,
+        0.056958901792911944
+      ],
+      "macro_contribution": 0.0025810686648574973,
+      "leave_out_delta_G": 0.023500968553605492,
+      "leave_out_pointwise_ci95": [
+        0.008333703993797282,
+        0.03950805478881863
+      ]
+    },
+    {
+      "part": "crown",
+      "attribute_groups": [
+        38,
+        39
+      ],
+      "attributes": 2,
+      "queries": 407,
+      "S": 0.26340288924558586,
+      "G": 0.12377053237025148,
+      "G_random": 0.08071107544141251,
+      "delta_G": 0.04305945692883896,
+      "pointwise_ci95": [
+        -0.009707715920072824,
+        0.09814523059716417
+      ],
+      "macro_contribution": 0.002152972846441948,
+      "leave_out_delta_G": 0.02024091648557889,
+      "leave_out_pointwise_ci95": [
+        0.004599107038543191,
+        0.036340686210677715
+      ]
+    },
+    {
+      "part": "eye",
+      "attribute_groups": [
+        18
+      ],
+      "attributes": 1,
+      "queries": 660,
+      "S": 0.6727272727272727,
+      "G": 0.4150984848484849,
+      "G_random": 0.19004545454545457,
+      "delta_G": 0.2250530303030303,
+      "pointwise_ci95": [
+        0.1051795220462573,
+        0.33623517316315976
+      ],
+      "macro_contribution": 0.005626325757575758,
+      "leave_out_delta_G": 0.01615950538478578,
+      "leave_out_pointwise_ci95": [
+        -0.00024168329741239815,
+        0.03230303058640324
+      ]
+    },
+    {
+      "part": "forehead",
+      "attribute_groups": [
+        21,
+        22,
+        23
+      ],
+      "attributes": 3,
+      "queries": 533,
+      "S": 0.25993633982141345,
+      "G": 0.12009211008140618,
+      "G_random": 0.1496749293447133,
+      "delta_G": -0.02958281926330711,
+      "pointwise_ci95": [
+        -0.09157441328755243,
+        0.03358817768961782
+      ],
+      "macro_contribution": -0.002218711444748033,
+      "leave_out_delta_G": 0.02551411346215127,
+      "leave_out_pointwise_ci95": [
+        0.008338825078669043,
+        0.04290348440673617
+      ]
+    },
+    {
+      "part": "leg",
+      "attribute_groups": [
+        33,
+        34,
+        35
+      ],
+      "attributes": 3,
+      "queries": 479,
+      "S": 0.30204063389904096,
+      "G": 0.023536755566622825,
+      "G_random": 0.016158692381037513,
+      "delta_G": 0.007378063185585309,
+      "pointwise_ci95": [
+        -0.046559225039775116,
+        0.06313272084079638
+      ],
+      "macro_contribution": 0.0005533547389188982,
+      "leave_out_delta_G": 0.022517285155484314,
+      "leave_out_pointwise_ci95": [
+        0.006840269560693929,
+        0.03836742074131684
+      ]
+    },
+    {
+      "part": "nape",
+      "attribute_groups": [
+        24,
+        25,
+        26
+      ],
+      "attributes": 3,
+      "queries": 507,
+      "S": 0.28247787641500216,
+      "G": 0.09278968577995524,
+      "G_random": 0.08950682609140692,
+      "delta_G": 0.0032828596885483194,
+      "pointwise_ci95": [
+        -0.04684071302550626,
+        0.05091981814059137
+      ],
+      "macro_contribution": 0.00024621447664112395,
+      "leave_out_delta_G": 0.0228493286822711,
+      "leave_out_pointwise_ci95": [
+        0.0064770356343843115,
+        0.03948549720839427
+      ]
+    },
+    {
+      "part": "throat",
+      "attribute_groups": [
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "attributes": 5,
+      "queries": 767,
+      "S": 0.422082513188033,
+      "G": 0.2266284700608839,
+      "G_random": 0.16782663212247784,
+      "delta_G": 0.05880183793840606,
+      "pointwise_ci95": [
+        -0.004735942318211176,
+        0.11961476623924618
+      ],
+      "macro_contribution": 0.007350229742300757,
+      "leave_out_delta_G": 0.016036130017647008,
+      "leave_out_pointwise_ci95": [
+        0.0006259451992715796,
+        0.031585027904528
+      ]
+    }
+  ],
+  "attributes": [
+    {
+      "group_id": 0,
+      "original_attribute_id_0based": 6,
+      "name": "has_bill_shape::all-purpose",
+      "part": "beak",
+      "official_keypoints_0based": [
+        1
+      ],
+      "queries": 308,
+      "delta_G": -0.018948051948051936,
+      "pointwise_ci95": [
+        -0.12005296052631581,
+        0.07689976808905385
+      ]
+    },
+    {
+      "group_id": 1,
+      "original_attribute_id_0based": 7,
+      "name": "has_bill_shape::cone",
+      "part": "beak",
+      "official_keypoints_0based": [
+        1
+      ],
+      "queries": 186,
+      "delta_G": 0.0205483870967742,
+      "pointwise_ci95": [
+        -0.08867575596780422,
+        0.11874632445589921
+      ]
+    },
+    {
+      "group_id": 2,
+      "original_attribute_id_0based": 54,
+      "name": "has_breast_pattern::solid",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ],
+      "queries": 408,
+      "delta_G": 0.010732843137254894,
+      "pointwise_ci95": [
+        -0.05372594729936442,
+        0.07472793595679013
+      ]
+    },
+    {
+      "group_id": 3,
+      "original_attribute_id_0based": 56,
+      "name": "has_breast_pattern::striped",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ],
+      "queries": 81,
+      "delta_G": -0.013654320987654345,
+      "pointwise_ci95": [
+        -0.13856701063446286,
+        0.11229475324675332
+      ]
+    },
+    {
+      "group_id": 4,
+      "original_attribute_id_0based": 57,
+      "name": "has_breast_pattern::multi-colored",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ],
+      "queries": 162,
+      "delta_G": -0.0305061728395062,
+      "pointwise_ci95": [
+        -0.11908485247208926,
+        0.05472474346242969
+      ]
+    },
+    {
+      "group_id": 5,
+      "original_attribute_id_0based": 59,
+      "name": "has_back_color::brown",
+      "part": "back",
+      "official_keypoints_0based": [
+        0
+      ],
+      "queries": 132,
+      "delta_G": 0.1057348484848485,
+      "pointwise_ci95": [
+        0.005454164989939643,
+        0.1999720147219193
+      ]
+    },
+    {
+      "group_id": 6,
+      "original_attribute_id_0based": 63,
+      "name": "has_back_color::grey",
+      "part": "back",
+      "official_keypoints_0based": [
+        0
+      ],
+      "queries": 152,
+      "delta_G": 0.07201315789473686,
+      "pointwise_ci95": [
+        -0.009431815478631788,
+        0.15661471148611872
+      ]
+    },
+    {
+      "group_id": 7,
+      "original_attribute_id_0based": 69,
+      "name": "has_back_color::black",
+      "part": "back",
+      "official_keypoints_0based": [
+        0
+      ],
+      "queries": 189,
+      "delta_G": 0.021153439153439146,
+      "pointwise_ci95": [
+        -0.06422666666666667,
+        0.10177030386740331
+      ]
+    },
+    {
+      "group_id": 8,
+      "original_attribute_id_0based": 110,
+      "name": "has_breast_color::grey",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ],
+      "queries": 133,
+      "delta_G": 0.0006315789473684275,
+      "pointwise_ci95": [
+        -0.10635450794305755,
+        0.10948437500000005
+      ]
+    },
+    {
+      "group_id": 9,
+      "original_attribute_id_0based": 111,
+      "name": "has_breast_color::yellow",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ],
+      "queries": 95,
+      "delta_G": 0.1470105263157894,
+      "pointwise_ci95": [
+        0.02501033249158254,
+        0.26671110101744167
+      ]
+    },
+    {
+      "group_id": 10,
+      "original_attribute_id_0based": 116,
+      "name": "has_breast_color::black",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ],
+      "queries": 164,
+      "delta_G": 0.057548780487804874,
+      "pointwise_ci95": [
+        -0.04179727418354692,
+        0.15446224883606957
+      ]
+    },
+    {
+      "group_id": 11,
+      "original_attribute_id_0based": 117,
+      "name": "has_breast_color::white",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ],
+      "queries": 275,
+      "delta_G": -0.019072727272727297,
+      "pointwise_ci95": [
+        -0.08695087527603974,
+        0.05065812509474961
+      ]
+    },
+    {
+      "group_id": 12,
+      "original_attribute_id_0based": 119,
+      "name": "has_breast_color::buff",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ],
+      "queries": 134,
+      "delta_G": -0.04944776119402987,
+      "pointwise_ci95": [
+        -0.14415127201565567,
+        0.04978287902959626
+      ]
+    },
+    {
+      "group_id": 13,
+      "original_attribute_id_0based": 125,
+      "name": "has_throat_color::grey",
+      "part": "throat",
+      "official_keypoints_0based": [
+        14
+      ],
+      "queries": 129,
+      "delta_G": -0.0446046511627907,
+      "pointwise_ci95": [
+        -0.16792591133004928,
+        0.06887586619263103
+      ]
+    },
+    {
+      "group_id": 14,
+      "original_attribute_id_0based": 126,
+      "name": "has_throat_color::yellow",
+      "part": "throat",
+      "official_keypoints_0based": [
+        14
+      ],
+      "queries": 86,
+      "delta_G": 0.10298837209302328,
+      "pointwise_ci95": [
+        -0.029262637903861324,
+        0.2350556708673092
+      ]
+    },
+    {
+      "group_id": 15,
+      "original_attribute_id_0based": 131,
+      "name": "has_throat_color::black",
+      "part": "throat",
+      "official_keypoints_0based": [
+        14
+      ],
+      "queries": 173,
+      "delta_G": 0.017017341040462403,
+      "pointwise_ci95": [
+        -0.11244743589743593,
+        0.14546197320659532
+      ]
+    },
+    {
+      "group_id": 16,
+      "original_attribute_id_0based": 132,
+      "name": "has_throat_color::white",
+      "part": "throat",
+      "official_keypoints_0based": [
+        14
+      ],
+      "queries": 273,
+      "delta_G": 0.08023076923076927,
+      "pointwise_ci95": [
+        -0.022315340821367928,
+        0.18673817315211821
+      ]
+    },
+    {
+      "group_id": 17,
+      "original_attribute_id_0based": 134,
+      "name": "has_throat_color::buff",
+      "part": "throat",
+      "official_keypoints_0based": [
+        14
+      ],
+      "queries": 106,
+      "delta_G": 0.13837735849056604,
+      "pointwise_ci95": [
+        0.015022569444444476,
+        0.26278991526984713
+      ]
+    },
+    {
+      "group_id": 18,
+      "original_attribute_id_0based": 145,
+      "name": "has_eye_color::black",
+      "part": "eye",
+      "official_keypoints_0based": [
+        6,
+        10
+      ],
+      "queries": 660,
+      "delta_G": 0.2250530303030303,
+      "pointwise_ci95": [
+        0.1051795220462573,
+        0.33623517316315976
+      ]
+    },
+    {
+      "group_id": 19,
+      "original_attribute_id_0based": 149,
+      "name": "has_bill_length::about_the_same_as_head",
+      "part": "beak",
+      "official_keypoints_0based": [
+        1
+      ],
+      "queries": 271,
+      "delta_G": -0.020416974169741725,
+      "pointwise_ci95": [
+        -0.09525527457465137,
+        0.05105941935995977
+      ]
+    },
+    {
+      "group_id": 20,
+      "original_attribute_id_0based": 151,
+      "name": "has_bill_length::shorter_than_head",
+      "part": "beak",
+      "official_keypoints_0based": [
+        1
+      ],
+      "queries": 441,
+      "delta_G": 0.0786530612244898,
+      "pointwise_ci95": [
+        0.011110201465201428,
+        0.14086997769300402
+      ]
+    },
+    {
+      "group_id": 21,
+      "original_attribute_id_0based": 153,
+      "name": "has_forehead_color::brown",
+      "part": "forehead",
+      "official_keypoints_0based": [
+        5
+      ],
+      "queries": 131,
+      "delta_G": -0.10025190839694653,
+      "pointwise_ci95": [
+        -0.22331238532110095,
+        0.016036927279135436
+      ]
+    },
+    {
+      "group_id": 22,
+      "original_attribute_id_0based": 157,
+      "name": "has_forehead_color::grey",
+      "part": "forehead",
+      "official_keypoints_0based": [
+        5
+      ],
+      "queries": 131,
+      "delta_G": -0.061618320610687005,
+      "pointwise_ci95": [
+        -0.16159587165133943,
+        0.04142321785966572
+      ]
+    },
+    {
+      "group_id": 23,
+      "original_attribute_id_0based": 163,
+      "name": "has_forehead_color::black",
+      "part": "forehead",
+      "official_keypoints_0based": [
+        5
+      ],
+      "queries": 271,
+      "delta_G": 0.07312177121771221,
+      "pointwise_ci95": [
+        -0.017472421650502862,
+        0.16137272848656958
+      ]
+    },
+    {
+      "group_id": 24,
+      "original_attribute_id_0based": 183,
+      "name": "has_nape_color::brown",
+      "part": "nape",
+      "official_keypoints_0based": [
+        9
+      ],
+      "queries": 132,
+      "delta_G": 0.051712121212121195,
+      "pointwise_ci95": [
+        -0.045506048387096765,
+        0.14603679255793228
+      ]
+    },
+    {
+      "group_id": 25,
+      "original_attribute_id_0based": 187,
+      "name": "has_nape_color::grey",
+      "part": "nape",
+      "official_keypoints_0based": [
+        9
+      ],
+      "queries": 167,
+      "delta_G": -0.061844311377245484,
+      "pointwise_ci95": [
+        -0.1539348948915009,
+        0.03073301900584798
+      ]
+    },
+    {
+      "group_id": 26,
+      "original_attribute_id_0based": 193,
+      "name": "has_nape_color::black",
+      "part": "nape",
+      "official_keypoints_0based": [
+        9
+      ],
+      "queries": 208,
+      "delta_G": 0.019980769230769246,
+      "pointwise_ci95": [
+        -0.058282407559476314,
+        0.10150469462632647
+      ]
+    },
+    {
+      "group_id": 27,
+      "original_attribute_id_0based": 202,
+      "name": "has_belly_color::grey",
+      "part": "belly",
+      "official_keypoints_0based": [
+        2
+      ],
+      "queries": 123,
+      "delta_G": -0.018731707317073187,
+      "pointwise_ci95": [
+        -0.14981262838468723,
+        0.10315597367113766
+      ]
+    },
+    {
+      "group_id": 28,
+      "original_attribute_id_0based": 203,
+      "name": "has_belly_color::yellow",
+      "part": "belly",
+      "official_keypoints_0based": [
+        2
+      ],
+      "queries": 98,
+      "delta_G": 0.04980612244897959,
+      "pointwise_ci95": [
+        -0.05765198075834749,
+        0.15545392156862747
+      ]
+    },
+    {
+      "group_id": 29,
+      "original_attribute_id_0based": 209,
+      "name": "has_belly_color::white",
+      "part": "belly",
+      "official_keypoints_0based": [
+        2
+      ],
+      "queries": 287,
+      "delta_G": 0.03173867595818816,
+      "pointwise_ci95": [
+        -0.04253091697080292,
+        0.10715544217687073
+      ]
+    },
+    {
+      "group_id": 30,
+      "original_attribute_id_0based": 236,
+      "name": "has_back_pattern::solid",
+      "part": "back",
+      "official_keypoints_0based": [
+        0
+      ],
+      "queries": 229,
+      "delta_G": -0.0355938864628821,
+      "pointwise_ci95": [
+        -0.10976797464748611,
+        0.03499383850644472
+      ]
+    },
+    {
+      "group_id": 31,
+      "original_attribute_id_0based": 238,
+      "name": "has_back_pattern::striped",
+      "part": "back",
+      "official_keypoints_0based": [
+        0
+      ],
+      "queries": 96,
+      "delta_G": -0.019249999999999986,
+      "pointwise_ci95": [
+        -0.1208291791604198,
+        0.0924354887218045
+      ]
+    },
+    {
+      "group_id": 32,
+      "original_attribute_id_0based": 244,
+      "name": "has_belly_pattern::solid",
+      "part": "belly",
+      "official_keypoints_0based": [
+        2
+      ],
+      "queries": 434,
+      "delta_G": 0.06668894009216589,
+      "pointwise_ci95": [
+        -0.00928886815953782,
+        0.14171808660303453
+      ]
+    },
+    {
+      "group_id": 33,
+      "original_attribute_id_0based": 268,
+      "name": "has_leg_color::grey",
+      "part": "leg",
+      "official_keypoints_0based": [
+        7,
+        11
+      ],
+      "queries": 198,
+      "delta_G": 0.013272727272727273,
+      "pointwise_ci95": [
+        -0.057396338250790296,
+        0.08498230533585836
+      ]
+    },
+    {
+      "group_id": 34,
+      "original_attribute_id_0based": 274,
+      "name": "has_leg_color::black",
+      "part": "leg",
+      "official_keypoints_0based": [
+        7,
+        11
+      ],
+      "queries": 168,
+      "delta_G": -0.01898809523809524,
+      "pointwise_ci95": [
+        -0.10550259038800705,
+        0.06691872093023257
+      ]
+    },
+    {
+      "group_id": 35,
+      "original_attribute_id_0based": 277,
+      "name": "has_leg_color::buff",
+      "part": "leg",
+      "official_keypoints_0based": [
+        7,
+        11
+      ],
+      "queries": 113,
+      "delta_G": 0.027849557522123897,
+      "pointwise_ci95": [
+        -0.07653505928853754,
+        0.13470396638655469
+      ]
+    },
+    {
+      "group_id": 36,
+      "original_attribute_id_0based": 283,
+      "name": "has_bill_color::grey",
+      "part": "beak",
+      "official_keypoints_0based": [
+        1
+      ],
+      "queries": 217,
+      "delta_G": -0.10629032258064516,
+      "pointwise_ci95": [
+        -0.1960148760727552,
+        -0.017568348214285663
+      ]
+    },
+    {
+      "group_id": 37,
+      "original_attribute_id_0based": 289,
+      "name": "has_bill_color::black",
+      "part": "beak",
+      "official_keypoints_0based": [
+        1
+      ],
+      "queries": 355,
+      "delta_G": -0.023490140845070423,
+      "pointwise_ci95": [
+        -0.09967265804597703,
+        0.0499767821067821
+      ]
+    },
+    {
+      "group_id": 38,
+      "original_attribute_id_0based": 298,
+      "name": "has_crown_color::grey",
+      "part": "crown",
+      "official_keypoints_0based": [
+        4
+      ],
+      "queries": 140,
+      "delta_G": 0.01824999999999999,
+      "pointwise_ci95": [
+        -0.07314739130434784,
+        0.11504845437575004
+      ]
+    },
+    {
+      "group_id": 39,
+      "original_attribute_id_0based": 304,
+      "name": "has_crown_color::black",
+      "part": "crown",
+      "official_keypoints_0based": [
+        4
+      ],
+      "queries": 267,
+      "delta_G": 0.06786891385767793,
+      "pointwise_ci95": [
+        0.0072339584757348165,
+        0.13081110824891884
+      ]
+    }
+  ],
+  "primary_cells": {
+    "trained_own": 0.3072109151314401,
+    "trained_donor": 0.18446928802726464,
+    "reference_own": 0.27081879472600134,
+    "reference_donor": 0.1694590111295678
+  }
+}

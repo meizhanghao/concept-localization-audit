@@ -64,7 +64,7 @@ An individual audit replaces its own JSON and the invocation's verification
 report; other result files in the same output directory are retained. Use a
 fresh `--output-dir` to keep separate runs.
 
-Every run first checks all 54 scientific input files against SHA-256
+Every run first checks all 57 scientific input files against SHA-256
 fingerprints. Each analysis then compares computed numbers with the expected
 reference fields at absolute tolerance 1e-12. The expected files are regression
 targets, not inputs used to set the estimates. Corrupt inputs, missing files,
@@ -90,3 +90,20 @@ including a hand-computed positive control, mask/keypoint equivalence,
 multiple concepts per macro group and rejection of invalid donor/bootstrap
 designs. Twelve unit tests run in total. The optional
 [raw-image example](regeneration.md) needs separate PyTorch/image dependencies.
+
+## Follow-up commands
+
+The complete numerical runner above reproduces the original four audit modules.
+Additional commands reproduce the follow-ups from the same frozen inputs:
+
+```bash
+python sweep_cub_geometry.py --output-dir results/geometry
+python analyze_cub_robustness.py --input-dir data/core_audit/data --attribute-manifest data/core_audit/attribute_manifest.json --output-dir results/robustness
+python audit_released_cem.py --output-dir results/released_cem
+```
+
+These compute the four-width sweep, paired/simultaneous width and anatomical
+analyses, and the released-CEM crossed audit, respectively. Reports under
+`docs/` provide the reference outputs. The CEM's separate
+[raw regeneration command](released_cem.md) executes its author checkpoint on
+CUB photos, rather than rescoring stored peaks.

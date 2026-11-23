@@ -1,0 +1,11 @@
+{
+  "images": 800,
+  "queries": 8323,
+  "heads": 6,
+  "peak_coordinates_checked": 49938,
+  "peak_mismatches": 0,
+  "checkpoint_sha256": "386a366087713da40a56c150c09d9f832a5a05faa748c04cb7490a996934d212",
+  "torch": "2.13.0+cu132",
+  "device": "NVIDIA GeForce RTX 4060 Ti",
+  "scope": "Raw CUDA map example, not independent model training or hardware-invariant tie certification."
+}

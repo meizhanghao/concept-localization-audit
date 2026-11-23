@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "autograd_maps_checked": 144,
+  "maximum_absolute_cam_error": 2.5331974029541016e-07,
+  "maximum_cam_scale": 0.3218563199043274,
+  "maximum_error_over_maximum_scale": 7.870584625174056e-07,
+  "scored_peak_mismatches": 0,
+  "scope": "Analytic Grad-CAM chain rule versus autograd at the same final feature layer for every head; no independence claim for the two computations."
+}

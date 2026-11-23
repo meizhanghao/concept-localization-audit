@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "maximum_independent_score_or_interval_error": 5.551115123125783e-17,
+  "all_3000_joint_and_fixed_head_intervals_rebuilt": true,
+  "source_forward_probability_and_species_errors": {
+    "concept_probability_max_error": 0.0,
+    "species_logit_max_error": 0.0
+  },
+  "attribute_order": "All5794 author112-vectors exactly match training-majority reconstruction from4796 author training IDs and original312 instance labels/certainties.",
+  "autograd_map_checks": 144,
+  "autograd_scored_peak_mismatches": 0,
+  "independent_center_crop_convention_max_error": 0.0,
+  "conclusion": "Positive image pairing; trained-minus-five-random-head joint interval remains unresolved. No semantic failure or cross-model ranking inferred."
+}

@@ -58,16 +58,19 @@ recomputes hits for both donor rules, rather than substituting expected scores.
 
 ## Integrity and provenance
 
-`checksums.json` covers all 54 input files. The runner verifies every SHA-256
+`checksums.json` covers all 57 input files. The runner verifies every SHA-256
 fingerprint before analysis. Expected-result files are checked inputs, but
 their values are read only for comparison after scoring.
 
-The original 51 inputs remain byte-identical to the preceding release.
-Three extension files add five shared channel-permutation peak banks, saved
+The preceding 54 inputs remain byte-identical. Their three extension files
+contain five shared channel-permutation peak banks, saved
 head draws, permutation indices, 800 species labels and regression targets;
 they reuse original core geometry and resampling arrays. See
 [extension protocols](extensions.md). New-input demos under `examples/` are
-separate from these 54 frozen regression inputs.
+separate from these frozen inputs. Three further files provide the fixed
+attribute/keypoint manifest, frozen CUB image IDs and released-CEM peak/head
+bank. The paired width and anatomical analyses reuse the existing geometry,
+donors and image/head draws; they introduce no new outcome filtering.
 
 Source projects:
 
@@ -75,6 +78,7 @@ Source projects:
 - [FunnyBirds](https://github.com/visinf/funnybirds)
 - [Loc-CBM](https://github.com/VIPL-VSU/Loc-CBM)
 - [ProtoCBM](https://github.com/hqhQAQ/ProtoCBM)
+- [Concept-Learning / released CEM](https://github.com/naveenr414/Concept-Learning)
 
 Dataset and model terms remain those of their original providers. The numerical
 caches and included paper figures do not provide a license to redistribute the

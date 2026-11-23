@@ -1,0 +1,369 @@
+{
+  "source": "Existing frozen40 population and official ProtoCBM part mapping; no result-based grouping.",
+  "attributes": [
+    {
+      "group_id": 0,
+      "original_attribute_id_0based": 6,
+      "name": "has_bill_shape::all-purpose",
+      "part": "beak",
+      "official_keypoints_0based": [
+        1
+      ]
+    },
+    {
+      "group_id": 1,
+      "original_attribute_id_0based": 7,
+      "name": "has_bill_shape::cone",
+      "part": "beak",
+      "official_keypoints_0based": [
+        1
+      ]
+    },
+    {
+      "group_id": 2,
+      "original_attribute_id_0based": 54,
+      "name": "has_breast_pattern::solid",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ]
+    },
+    {
+      "group_id": 3,
+      "original_attribute_id_0based": 56,
+      "name": "has_breast_pattern::striped",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ]
+    },
+    {
+      "group_id": 4,
+      "original_attribute_id_0based": 57,
+      "name": "has_breast_pattern::multi-colored",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ]
+    },
+    {
+      "group_id": 5,
+      "original_attribute_id_0based": 59,
+      "name": "has_back_color::brown",
+      "part": "back",
+      "official_keypoints_0based": [
+        0
+      ]
+    },
+    {
+      "group_id": 6,
+      "original_attribute_id_0based": 63,
+      "name": "has_back_color::grey",
+      "part": "back",
+      "official_keypoints_0based": [
+        0
+      ]
+    },
+    {
+      "group_id": 7,
+      "original_attribute_id_0based": 69,
+      "name": "has_back_color::black",
+      "part": "back",
+      "official_keypoints_0based": [
+        0
+      ]
+    },
+    {
+      "group_id": 8,
+      "original_attribute_id_0based": 110,
+      "name": "has_breast_color::grey",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ]
+    },
+    {
+      "group_id": 9,
+      "original_attribute_id_0based": 111,
+      "name": "has_breast_color::yellow",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ]
+    },
+    {
+      "group_id": 10,
+      "original_attribute_id_0based": 116,
+      "name": "has_breast_color::black",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ]
+    },
+    {
+      "group_id": 11,
+      "original_attribute_id_0based": 117,
+      "name": "has_breast_color::white",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ]
+    },
+    {
+      "group_id": 12,
+      "original_attribute_id_0based": 119,
+      "name": "has_breast_color::buff",
+      "part": "breast",
+      "official_keypoints_0based": [
+        3
+      ]
+    },
+    {
+      "group_id": 13,
+      "original_attribute_id_0based": 125,
+      "name": "has_throat_color::grey",
+      "part": "throat",
+      "official_keypoints_0based": [
+        14
+      ]
+    },
+    {
+      "group_id": 14,
+      "original_attribute_id_0based": 126,
+      "name": "has_throat_color::yellow",
+      "part": "throat",
+      "official_keypoints_0based": [
+        14
+      ]
+    },
+    {
+      "group_id": 15,
+      "original_attribute_id_0based": 131,
+      "name": "has_throat_color::black",
+      "part": "throat",
+      "official_keypoints_0based": [
+        14
+      ]
+    },
+    {
+      "group_id": 16,
+      "original_attribute_id_0based": 132,
+      "name": "has_throat_color::white",
+      "part": "throat",
+      "official_keypoints_0based": [
+        14
+      ]
+    },
+    {
+      "group_id": 17,
+      "original_attribute_id_0based": 134,
+      "name": "has_throat_color::buff",
+      "part": "throat",
+      "official_keypoints_0based": [
+        14
+      ]
+    },
+    {
+      "group_id": 18,
+      "original_attribute_id_0based": 145,
+      "name": "has_eye_color::black",
+      "part": "eye",
+      "official_keypoints_0based": [
+        6,
+        10
+      ]
+    },
+    {
+      "group_id": 19,
+      "original_attribute_id_0based": 149,
+      "name": "has_bill_length::about_the_same_as_head",
+      "part": "beak",
+      "official_keypoints_0based": [
+        1
+      ]
+    },
+    {
+      "group_id": 20,
+      "original_attribute_id_0based": 151,
+      "name": "has_bill_length::shorter_than_head",
+      "part": "beak",
+      "official_keypoints_0based": [
+        1
+      ]
+    },
+    {
+      "group_id": 21,
+      "original_attribute_id_0based": 153,
+      "name": "has_forehead_color::brown",
+      "part": "forehead",
+      "official_keypoints_0based": [
+        5
+      ]
+    },
+    {
+      "group_id": 22,
+      "original_attribute_id_0based": 157,
+      "name": "has_forehead_color::grey",
+      "part": "forehead",
+      "official_keypoints_0based": [
+        5
+      ]
+    },
+    {
+      "group_id": 23,
+      "original_attribute_id_0based": 163,
+      "name": "has_forehead_color::black",
+      "part": "forehead",
+      "official_keypoints_0based": [
+        5
+      ]
+    },
+    {
+      "group_id": 24,
+      "original_attribute_id_0based": 183,
+      "name": "has_nape_color::brown",
+      "part": "nape",
+      "official_keypoints_0based": [
+        9
+      ]
+    },
+    {
+      "group_id": 25,
+      "original_attribute_id_0based": 187,
+      "name": "has_nape_color::grey",
+      "part": "nape",
+      "official_keypoints_0based": [
+        9
+      ]
+    },
+    {
+      "group_id": 26,
+      "original_attribute_id_0based": 193,
+      "name": "has_nape_color::black",
+      "part": "nape",
+      "official_keypoints_0based": [
+        9
+      ]
+    },
+    {
+      "group_id": 27,
+      "original_attribute_id_0based": 202,
+      "name": "has_belly_color::grey",
+      "part": "belly",
+      "official_keypoints_0based": [
+        2
+      ]
+    },
+    {
+      "group_id": 28,
+      "original_attribute_id_0based": 203,
+      "name": "has_belly_color::yellow",
+      "part": "belly",
+      "official_keypoints_0based": [
+        2
+      ]
+    },
+    {
+      "group_id": 29,
+      "original_attribute_id_0based": 209,
+      "name": "has_belly_color::white",
+      "part": "belly",
+      "official_keypoints_0based": [
+        2
+      ]
+    },
+    {
+      "group_id": 30,
+      "original_attribute_id_0based": 236,
+      "name": "has_back_pattern::solid",
+      "part": "back",
+      "official_keypoints_0based": [
+        0
+      ]
+    },
+    {
+      "group_id": 31,
+      "original_attribute_id_0based": 238,
+      "name": "has_back_pattern::striped",
+      "part": "back",
+      "official_keypoints_0based": [
+        0
+      ]
+    },
+    {
+      "group_id": 32,
+      "original_attribute_id_0based": 244,
+      "name": "has_belly_pattern::solid",
+      "part": "belly",
+      "official_keypoints_0based": [
+        2
+      ]
+    },
+    {
+      "group_id": 33,
+      "original_attribute_id_0based": 268,
+      "name": "has_leg_color::grey",
+      "part": "leg",
+      "official_keypoints_0based": [
+        7,
+        11
+      ]
+    },
+    {
+      "group_id": 34,
+      "original_attribute_id_0based": 274,
+      "name": "has_leg_color::black",
+      "part": "leg",
+      "official_keypoints_0based": [
+        7,
+        11
+      ]
+    },
+    {
+      "group_id": 35,
+      "original_attribute_id_0based": 277,
+      "name": "has_leg_color::buff",
+      "part": "leg",
+      "official_keypoints_0based": [
+        7,
+        11
+      ]
+    },
+    {
+      "group_id": 36,
+      "original_attribute_id_0based": 283,
+      "name": "has_bill_color::grey",
+      "part": "beak",
+      "official_keypoints_0based": [
+        1
+      ]
+    },
+    {
+      "group_id": 37,
+      "original_attribute_id_0based": 289,
+      "name": "has_bill_color::black",
+      "part": "beak",
+      "official_keypoints_0based": [
+        1
+      ]
+    },
+    {
+      "group_id": 38,
+      "original_attribute_id_0based": 298,
+      "name": "has_crown_color::grey",
+      "part": "crown",
+      "official_keypoints_0based": [
+        4
+      ]
+    },
+    {
+      "group_id": 39,
+      "original_attribute_id_0based": 304,
+      "name": "has_crown_color::black",
+      "part": "crown",
+      "official_keypoints_0based": [
+        4
+      ]
+    }
+  ]
+}

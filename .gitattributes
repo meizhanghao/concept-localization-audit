@@ -6,4 +6,7 @@
 *.json text eol=lf
 *.txt text eol=lf
 *.npz binary
+*.npy binary
 *.png binary
+# Frozen scientific inputs are fingerprinted as exact bytes.
+data/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

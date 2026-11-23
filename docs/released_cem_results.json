@@ -1,0 +1,104 @@
+{
+  "S": 0.2734279537839805,
+  "G": 0.11164304899561342,
+  "G_ci95": [
+    0.09883916897758874,
+    0.12393272583496497
+  ],
+  "chance": 0.14451473334584242,
+  "cells": {
+    "trained_own": 0.2734279537839805,
+    "trained_donor": 0.16178490478836682,
+    "reference_own": 0.22666772458843454,
+    "reference_donor": 0.1544575285567585
+  },
+  "coverage": {
+    "images": 800,
+    "queries": 8323,
+    "macro_groups": 40,
+    "group_counts": {
+      "0": 308,
+      "1": 186,
+      "2": 408,
+      "3": 81,
+      "4": 162,
+      "5": 132,
+      "6": 152,
+      "7": 189,
+      "8": 133,
+      "9": 95,
+      "10": 164,
+      "11": 275,
+      "12": 134,
+      "13": 129,
+      "14": 86,
+      "15": 173,
+      "16": 273,
+      "17": 106,
+      "18": 660,
+      "19": 271,
+      "20": 441,
+      "21": 131,
+      "22": 131,
+      "23": 271,
+      "24": 132,
+      "25": 167,
+      "26": 208,
+      "27": 123,
+      "28": 98,
+      "29": 287,
+      "30": 229,
+      "31": 96,
+      "32": 434,
+      "33": 198,
+      "34": 168,
+      "35": 113,
+      "36": 217,
+      "37": 355,
+      "38": 140,
+      "39": 267
+    },
+    "bootstrap_draws": 3000,
+    "bootstrap_proposals": 3000,
+    "bootstrap_retained_fraction": 1.0,
+    "reference_heads": 5
+  },
+  "protocol": {
+    "geometry": {
+      "type": "keypoints",
+      "side": 224,
+      "half_width": 45
+    },
+    "eligibility": "Exactly existing800 photos/8323 queries/40 attributes; no CEM outcome filtering."
+  },
+  "scope": "One additional published CEM, architecture-specific Gaussian head reference and CenterCrop299 map adapter; not a cross-model ranking or independent cohort.",
+  "G_random": 0.07221019603167633,
+  "delta_G": 0.03943285296393709,
+  "image_head_ci95": [
+    -0.015305291116665209,
+    0.0873174748708557
+  ],
+  "fixed_head_image_ci95": [
+    0.027629647562288046,
+    0.05157297527639586
+  ],
+  "individual_reference_G": [
+    0.025921818201783357,
+    0.00011161300480939904,
+    0.07805483416749016,
+    0.09082320256336252,
+    0.16613951222093626
+  ],
+  "decision": "positive G; excess unresolved",
+  "spatial_requirement": "not specified",
+  "model": "Author-released CEM / Raman et al. ICML2024",
+  "crop_visible_keypoint_macro_fraction": 0.9635841104184193,
+  "zero_map_queries_per_head": [
+    211,
+    102,
+    200,
+    27,
+    24,
+    1
+  ]
+}

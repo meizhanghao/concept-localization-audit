@@ -1,0 +1,12 @@
+{
+  "test_images": 5794,
+  "species_accuracy": 0.7884017949603037,
+  "concept_accuracy_class112": 0.9643781744661966,
+  "concept_macro_auc_class112": 0.987045503323491,
+  "source_forward_check": {
+    "concept_probability_max_error": 0.0,
+    "species_logit_max_error": 0.0
+  },
+  "attribute_order_matches_all_author_class_labels": true,
+  "scope": "One author-released CEM checkpoint, author CenterCrop299 normalization; not comparable to instance-attribute AUROC or312-attribute models."
+}

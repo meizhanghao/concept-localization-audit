@@ -100,6 +100,37 @@ interval crosses zero; at 24 its lower bound is close to zero. Neither the
 largest excess nor significance is used to select a width. The primary `h=45`
 result is unchanged. This does not test every adapter or explanation method.
 
+### Paired differences and simultaneous bands
+
+`analyze_cub_robustness.py` reuses the same draws to compare widths directly.
+It reports all six wider-minus-narrower differences rather than comparing
+whether two separate intervals cross zero. Approximate 95% simultaneous bands
+use the common-bootstrap maximum absolute centered deviation, divided by each
+contrast's bootstrap standard deviation. The four width estimates and the six
+paired differences are separate fixed families. These are exploratory bands,
+not selective inference or a finite-sample coverage guarantee. They do not
+undo the earlier choice of widths or change the primary `h=45` result.
+
+### Anatomical influence
+
+The same script reports all ten anatomical groups specified by the scorer's
+attribute-prefix/keypoint mapping, plus every leave-one-group-out estimate.
+The [attribute manifest](../data/core_audit/attribute_manifest.json) fixes this
+mapping. Each part retains equal attribute weights; removing a part renormalizes
+over the remaining attributes. Group intervals are descriptive and pointwise.
+All groups remain in the main estimate. Eye and throat supply about 61% of
+the signed macro excess, and omitting eye leaves a zero-crossing interval;
+the overall result does not establish robustness for every part.
+
+### Additional author-released CEM
+
+The [CEM follow-up](released_cem.md) fixes the same photos, queries, windows
+and donors. Its concept-logit Grad-CAM and five architecture-specific Gaussian
+head references are regenerated from the author's checkpoint, without training.
+Positive pairing survives, but the joint image/head excess is unresolved.
+This is neither proof of model failure nor a cross-model trustworthiness rank.
+The raw-image path and full-cohort verification are separate from CPU rescoring.
+
 ## Practitioner checklist
 
 1. Declare recipient and concept eligibility, attribute selection and macro weights.
@@ -108,6 +139,9 @@ result is unchanged. This does not test every adapter or explanation method.
 4. Match backbone and explainer; describe reference-weight construction and bank size.
 5. Report S, G, G_rand and delta_G, chance/prior controls and paired intervals.
 6. Report retained resamples, selection/follow-up status and unresolved results; do not infer semantic or causal correctness from spatial correspondence.
+
+The [worked audit card](audit_card.md) applies these rules to the frozen native
+Loc-CBM result, with the four primitive scores and the supported claim.
 
 ## Threats to validity
 
