@@ -70,7 +70,21 @@ for individual audits and output fields.
 | `bridge` | CUB donor-rule comparison holding 133 ordered pairs, 7,081 recipient records, maps and macro weights fixed. Own/donor hits are recomputed from native peaks and keypoints. |
 | `extensions` | Shared channel-permutation references and fixed-common-support same-species donors on native CUB maps. |
 
-Selected reference results:
+## Window sensitivity
+
+The exploratory native CUB window sweep uses the same released peaks,
+queries, donors, five Gaussian heads and paired image/head draws:
+
+```bash
+python sweep_cub_geometry.py
+```
+
+All four half-widths (16, 24, 36, 45) are reported. The original `h=45`
+operating point is retained; intervals are pointwise. See the
+[protocol and reporting checklist](docs/protocol.md) and
+[full-precision width results](docs/cub_geometry_results.json).
+
+## Selected results
 
 | Analysis | Estimate | 95% interval |
 |---|---:|---:|

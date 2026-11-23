@@ -1,0 +1,397 @@
+{
+  "protocol": {
+    "scope": "Exploratory follow-up after h=45 outcomes; no confirmatory or multiplicity-adjusted claim.",
+    "half_widths": [
+      16,
+      24,
+      36,
+      45
+    ],
+    "side": 224,
+    "fixed": "800 recipient photos, 40 inherited attributes, 8323 queries, native own-box/bilinear/row-major peaks, five Gaussian heads, 200 donors, 3000 paired image/head resamples.",
+    "selection": "Report every width; h=45 remains primary. No new peak, query, head, donor or adapter selection.",
+    "inputs": {
+      "data\\core_audit\\data\\new_CUB_context.npz": "dd1e53e7f591eef4760f291011bcd990c14207f1417be5a1ca8fe822162d7c24",
+      "data\\core_audit\\data\\new_CUB_native_LocCBM.npz": "f1f47975052afcd5b6a21bf85a5a15029834f622e5f88f20f36dfa60d97282d3"
+    }
+  },
+  "results": {
+    "16": {
+      "S": 0.0629400305513001,
+      "G": 0.03277519370589507,
+      "G_ci95": [
+        0.02679127277080197,
+        0.03880283264183409
+      ],
+      "chance": 0.02223712528382831,
+      "cells": {
+        "trained_own": 0.0629400305513001,
+        "trained_donor": 0.03016483684540505,
+        "reference_own": 0.05323017468958835,
+        "reference_donor": 0.026519164260922972
+      },
+      "coverage": {
+        "images": 800,
+        "queries": 8323,
+        "macro_groups": 40,
+        "group_counts": {
+          "0": 308,
+          "1": 186,
+          "2": 408,
+          "3": 81,
+          "4": 162,
+          "5": 132,
+          "6": 152,
+          "7": 189,
+          "8": 133,
+          "9": 95,
+          "10": 164,
+          "11": 275,
+          "12": 134,
+          "13": 129,
+          "14": 86,
+          "15": 173,
+          "16": 273,
+          "17": 106,
+          "18": 660,
+          "19": 271,
+          "20": 441,
+          "21": 131,
+          "22": 131,
+          "23": 271,
+          "24": 132,
+          "25": 167,
+          "26": 208,
+          "27": 123,
+          "28": 98,
+          "29": 287,
+          "30": 229,
+          "31": 96,
+          "32": 434,
+          "33": 198,
+          "34": 168,
+          "35": 113,
+          "36": 217,
+          "37": 355,
+          "38": 140,
+          "39": 267
+        },
+        "bootstrap_draws": 3000,
+        "bootstrap_proposals": 3000,
+        "bootstrap_retained_fraction": 1.0,
+        "reference_heads": 5
+      },
+      "protocol": {
+        "geometry": {
+          "type": "keypoints",
+          "side": 224,
+          "half_width": 16
+        },
+        "eligibility": "Fixed 40 inherited attributes; all 8323 eligible queries on 800 disjoint photos."
+      },
+      "scope": "Spatial correspondence conditional on supplied maps, eligibility and donors; no semantic or causal certification.",
+      "G_random": 0.026711010428665437,
+      "delta_G": 0.006064183277229636,
+      "image_head_ci95": [
+        -0.0012834560627287845,
+        0.013540526782737261
+      ],
+      "fixed_head_image_ci95": [
+        -0.00023610857322216086,
+        0.012450174847224127
+      ],
+      "individual_reference_G": [
+        0.025741277044732083,
+        0.021611796610681622,
+        0.03183420749026224,
+        0.026038941297235704,
+        0.02832882970041556
+      ],
+      "decision": "positive G; excess unresolved",
+      "spatial_requirement": "not specified"
+    },
+    "24": {
+      "S": 0.12397507367185215,
+      "G": 0.060640820114032275,
+      "G_ci95": [
+        0.05234553781323033,
+        0.06909290467673372
+      ],
+      "chance": 0.04716980192671572,
+      "cells": {
+        "trained_own": 0.12397507367185215,
+        "trained_donor": 0.06333425355781987,
+        "reference_own": 0.1060500078512415,
+        "reference_donor": 0.05625163267657253
+      },
+      "coverage": {
+        "images": 800,
+        "queries": 8323,
+        "macro_groups": 40,
+        "group_counts": {
+          "0": 308,
+          "1": 186,
+          "2": 408,
+          "3": 81,
+          "4": 162,
+          "5": 132,
+          "6": 152,
+          "7": 189,
+          "8": 133,
+          "9": 95,
+          "10": 164,
+          "11": 275,
+          "12": 134,
+          "13": 129,
+          "14": 86,
+          "15": 173,
+          "16": 273,
+          "17": 106,
+          "18": 660,
+          "19": 271,
+          "20": 441,
+          "21": 131,
+          "22": 131,
+          "23": 271,
+          "24": 132,
+          "25": 167,
+          "26": 208,
+          "27": 123,
+          "28": 98,
+          "29": 287,
+          "30": 229,
+          "31": 96,
+          "32": 434,
+          "33": 198,
+          "34": 168,
+          "35": 113,
+          "36": 217,
+          "37": 355,
+          "38": 140,
+          "39": 267
+        },
+        "bootstrap_draws": 3000,
+        "bootstrap_proposals": 3000,
+        "bootstrap_retained_fraction": 1.0,
+        "reference_heads": 5
+      },
+      "protocol": {
+        "geometry": {
+          "type": "keypoints",
+          "side": 224,
+          "half_width": 24
+        },
+        "eligibility": "Fixed 40 inherited attributes; all 8323 eligible queries on 800 disjoint photos."
+      },
+      "scope": "Spatial correspondence conditional on supplied maps, eligibility and donors; no semantic or causal certification.",
+      "G_random": 0.04979837517466895,
+      "delta_G": 0.010842444939363323,
+      "image_head_ci95": [
+        0.0004336636986550074,
+        0.021574357796741547
+      ],
+      "fixed_head_image_ci95": [
+        0.0020175766354840795,
+        0.019708162805650475
+      ],
+      "individual_reference_G": [
+        0.045570184171256405,
+        0.03982634101174246,
+        0.059677534799039304,
+        0.05092480449457984,
+        0.052993011396726755
+      ],
+      "decision": "excess correspondence resolved",
+      "spatial_requirement": "not specified"
+    },
+    "36": {
+      "S": 0.2354258263472117,
+      "G": 0.10736198869699863,
+      "G_ci95": [
+        0.09651333301737106,
+        0.11891628050478723
+      ],
+      "chance": 0.09813451983554325,
+      "cells": {
+        "trained_own": 0.2354258263472117,
+        "trained_donor": 0.128063837650213,
+        "reference_own": 0.19763543360400002,
+        "reference_donor": 0.11582806492191863
+      },
+      "coverage": {
+        "images": 800,
+        "queries": 8323,
+        "macro_groups": 40,
+        "group_counts": {
+          "0": 308,
+          "1": 186,
+          "2": 408,
+          "3": 81,
+          "4": 162,
+          "5": 132,
+          "6": 152,
+          "7": 189,
+          "8": 133,
+          "9": 95,
+          "10": 164,
+          "11": 275,
+          "12": 134,
+          "13": 129,
+          "14": 86,
+          "15": 173,
+          "16": 273,
+          "17": 106,
+          "18": 660,
+          "19": 271,
+          "20": 441,
+          "21": 131,
+          "22": 131,
+          "23": 271,
+          "24": 132,
+          "25": 167,
+          "26": 208,
+          "27": 123,
+          "28": 98,
+          "29": 287,
+          "30": 229,
+          "31": 96,
+          "32": 434,
+          "33": 198,
+          "34": 168,
+          "35": 113,
+          "36": 217,
+          "37": 355,
+          "38": 140,
+          "39": 267
+        },
+        "bootstrap_draws": 3000,
+        "bootstrap_proposals": 3000,
+        "bootstrap_retained_fraction": 1.0,
+        "reference_heads": 5
+      },
+      "protocol": {
+        "geometry": {
+          "type": "keypoints",
+          "side": 224,
+          "half_width": 36
+        },
+        "eligibility": "Fixed 40 inherited attributes; all 8323 eligible queries on 800 disjoint photos."
+      },
+      "scope": "Spatial correspondence conditional on supplied maps, eligibility and donors; no semantic or causal certification.",
+      "G_random": 0.08180736868208147,
+      "delta_G": 0.025554620014917165,
+      "image_head_ci95": [
+        0.011391453905325822,
+        0.040262373723446834
+      ],
+      "fixed_head_image_ci95": [
+        0.014100138785034525,
+        0.037450922440600505
+      ],
+      "individual_reference_G": [
+        0.0764143112090572,
+        0.0709928821081547,
+        0.0920107749186823,
+        0.09115997493879822,
+        0.07845890023571489
+      ],
+      "decision": "excess correspondence resolved",
+      "spatial_requirement": "not specified"
+    },
+    "45": {
+      "S": 0.30721091513144017,
+      "G": 0.12274162710417545,
+      "G_ci95": [
+        0.10962663199489552,
+        0.1359601709577208
+      ],
+      "chance": 0.14451473334584242,
+      "cells": {
+        "trained_own": 0.30721091513144017,
+        "trained_donor": 0.1844692880272647,
+        "reference_own": 0.2708187947260014,
+        "reference_donor": 0.16945901112956802
+      },
+      "coverage": {
+        "images": 800,
+        "queries": 8323,
+        "macro_groups": 40,
+        "group_counts": {
+          "0": 308,
+          "1": 186,
+          "2": 408,
+          "3": 81,
+          "4": 162,
+          "5": 132,
+          "6": 152,
+          "7": 189,
+          "8": 133,
+          "9": 95,
+          "10": 164,
+          "11": 275,
+          "12": 134,
+          "13": 129,
+          "14": 86,
+          "15": 173,
+          "16": 273,
+          "17": 106,
+          "18": 660,
+          "19": 271,
+          "20": 441,
+          "21": 131,
+          "22": 131,
+          "23": 271,
+          "24": 132,
+          "25": 167,
+          "26": 208,
+          "27": 123,
+          "28": 98,
+          "29": 287,
+          "30": 229,
+          "31": 96,
+          "32": 434,
+          "33": 198,
+          "34": 168,
+          "35": 113,
+          "36": 217,
+          "37": 355,
+          "38": 140,
+          "39": 267
+        },
+        "bootstrap_draws": 3000,
+        "bootstrap_proposals": 3000,
+        "bootstrap_retained_fraction": 1.0,
+        "reference_heads": 5
+      },
+      "protocol": {
+        "geometry": {
+          "type": "keypoints",
+          "side": 224,
+          "half_width": 45
+        },
+        "eligibility": "Fixed 40 inherited attributes; all 8323 eligible queries on 800 disjoint photos."
+      },
+      "scope": "Spatial correspondence conditional on supplied maps, eligibility and donors; no semantic or causal certification.",
+      "G_random": 0.10135978359643358,
+      "delta_G": 0.021381843507741874,
+      "image_head_ci95": [
+        0.005979257288886938,
+        0.03700741839434499
+      ],
+      "fixed_head_image_ci95": [
+        0.007890988110508177,
+        0.03464333667093576
+      ],
+      "individual_reference_G": [
+        0.09239837026802514,
+        0.0965056066203916,
+        0.10785629192620234,
+        0.11184143871280434,
+        0.09819721045474453
+      ],
+      "decision": "excess correspondence resolved",
+      "spatial_requirement": "not specified"
+    }
+  },
+  "elapsed_seconds": 5.341780399903655
+}
