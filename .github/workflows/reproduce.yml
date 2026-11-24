@@ -29,3 +29,7 @@ jobs:
         run: python -B analyze_cub_robustness.py --input-dir data/core_audit/data --attribute-manifest data/core_audit/attribute_manifest.json --output-dir results/robustness
       - name: Reproduce released CEM audit
         run: python -B audit_released_cem.py
+      - name: Independently verify paired window and anatomical results
+        run: python -B verify_cub_robustness.py
+      - name: Independently verify released CEM results
+        run: python -B verify_released_cem.py

@@ -92,6 +92,8 @@ python analyze_cub_robustness.py --input-dir data/core_audit/data --attribute-ma
 The follow-up is exploratory and reuses the same image/head draws. See the
 [protocol and reporting checklist](docs/protocol.md) and
 [complete sensitivity tables](docs/sensitivity_tables.md).
+Portable independent checkers are included in the
+[reproduction instructions](docs/reproduction.md#independent-numerical-checks).
 
 ## Additional published CEM
 

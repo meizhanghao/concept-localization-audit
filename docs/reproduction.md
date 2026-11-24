@@ -107,3 +107,20 @@ analyses, and the released-CEM crossed audit, respectively. Reports under
 `docs/` provide the reference outputs. The CEM's separate
 [raw regeneration command](released_cem.md) executes its author checkpoint on
 CUB photos, rather than rescoring stored peaks.
+
+## Independent numerical checks
+
+After generating the follow-up results above, run:
+
+```bash
+python verify_cub_robustness.py --results-dir results/robustness
+python verify_released_cem.py --results-dir results/released_cem
+```
+
+These portable versions of the local verification scripts independently
+reconstruct scalar attribute means, paired intervals and simultaneous bands.
+The CEM check uses clipped rectangles and all 3,000 scalar image/head draws.
+They use NumPy only, accept a custom results directory and write
+`independent_verification.json` there. Numerical mismatches fail the command
+at absolute tolerance 1e-12. Neither command certifies statistical coverage or
+repeats raw-image inference, source-forward, label or training checks.
