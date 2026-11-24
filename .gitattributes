@@ -13,3 +13,5 @@ data/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # The exploratory extension has its own exact-byte input/source manifest.
 experiments/frontier/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 experiments/renderer_validity/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Figure source and frozen maps retain exact-byte provenance checksums.
+experiments/figures/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

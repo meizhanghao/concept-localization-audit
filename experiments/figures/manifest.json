@@ -1,0 +1,10 @@
+{
+  "files": {
+    "data/maps.npz": "5d81e98e3e572c9c4fd5405e69673557415a7af7ff23becf4ce7b708afb5333c",
+    "data/provenance.json": "e2961034f211bc94b107fed5f2667e27c4b52f69a5f33047fee430b4c76ac455",
+    "README.md": "d955f21d4f34b42cb133d7b7bc340c01d246a8850ca6142fe3643ced2fe1f900",
+    "render.py": "1bf0889092206bb44a3334e449d7808c6dc4172660450c69a9a11e1f528fd80b",
+    "source/upgrade_examples.py": "314d7fcd782e63d7149de990b46bfe939f159c1663f80dda2649caa2d2dba9bc"
+  },
+  "scope": "Figure 3 replot; source datasets supplied separately."
+}

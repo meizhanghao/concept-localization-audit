@@ -1,0 +1,131 @@
+{
+  "cases": [
+    {
+      "dataset": "CUB",
+      "recipient_image_id": 3,
+      "donor_image_id": 1743,
+      "attribute_id_0based": 54,
+      "concept": "has_breast_pattern::solid",
+      "reference_seed": 2026111921,
+      "peaks_xy": [
+        [
+          191,
+          34
+        ],
+        [
+          156,
+          70
+        ],
+        [
+          142,
+          142
+        ],
+        [
+          126,
+          101
+        ]
+      ],
+      "hits": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "zero_maps": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "source_paths": [
+        "001.Black_footed_Albatross/Black_Footed_Albatross_0002_55.jpg",
+        "031.Black_billed_Cuckoo/Black_Billed_Cuckoo_0083_795315.jpg"
+      ],
+      "cached_peaks_match": true,
+      "resized_rgb_sha256": [
+        "861cd18cb6c46bfb1376c35cf1ae899dc267232f0c6d0a1fb761d00c11a5fa29",
+        "9c55f5538e848395641162d95401186e4edd9db020c9e9d3fda293053a50abd3"
+      ],
+      "crop_boxes_xyxy": [
+        [
+          14,
+          112,
+          402,
+          298
+        ],
+        [
+          80,
+          55,
+          367,
+          319
+        ]
+      ]
+    },
+    {
+      "dataset": "FunnyBirds",
+      "recipient_test_index": 0,
+      "donor_test_index": 493,
+      "part": "beak",
+      "query": 4,
+      "alternative": 1,
+      "reference_generator_seed": 821,
+      "reference_head": 0,
+      "peaks_xy": [
+        [
+          47,
+          48
+        ],
+        [
+          79,
+          48
+        ],
+        [
+          111,
+          79
+        ],
+        [
+          111,
+          47
+        ]
+      ],
+      "hits": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "cached_peaks_match": true,
+      "source_paths": [
+        "FunnyBirds/test/0/000000.png",
+        "FunnyBirds/test/49/000493.png"
+      ],
+      "resized_rgb_sha256": [
+        "215fba2e4688bcae6ee9833a0f0d5ce19ef6d898098af0f6204a2824face31d8",
+        "7a19e06875a5656707512573c1e747eb9172dfcfa91c53ea97cc1d18474b2bc5"
+      ]
+    }
+  ],
+  "all_eight_peak_checks_passed": true,
+  "display_only_individual_reference": true,
+  "selection_rule": "CUB first stored eligible query; FB first audit image and first nonempty part in declared part order. Use donor schedule0 and original Gaussian reference head0.",
+  "source_sha256": "314d7fcd782e63d7149de990b46bfe939f159c1663f80dda2649caa2d2dba9bc",
+  "display": {
+    "normalization": "Independent per-map min/max for display only; no cross-panel intensity comparison.",
+    "colormap": "magma",
+    "alpha": "0.65 * scaled_map",
+    "cub_acceptance": "Unchanged keypoint predicate at h=45 in own-box frame.",
+    "fb_acceptance": "Chebyshev dilation r=24 of recipient beak mask.",
+    "donor_overlay": "Donor maps keep source coordinates and overlay recipient RGB."
+  },
+  "research_inputs": {
+    "main_python/concept_null_audit/artifacts/cub_frozen_replication_2026-11-20/population.npz": "e2f3524dd8bdb3265433b33a8a8f4b39c748e4e3da26d8a06bb3a302226d04a1",
+    "main_python/concept_null_audit/artifacts/cub_frozen_replication_2026-11-20/native_peaks.npz": "f73749c63c830f318b6836ee1eefca6cb712f4d2790a81258f881c6679fca5f6",
+    "main_python/concept_null_audit/artifacts/frozen_adapter_review_2026-11-21/native_maps_before_projection.npz": "dc78063327662864dc8ee6a00498668f90803ba733b85f744acd0764f93e9172",
+    "main_python/concept_null_audit/artifacts/controlled_audit_2026-11-19/stage2_population.npz": "908f4fa38838fb27491b0678bc340c2afe4a5e7470a118e91a745e7ef1989731",
+    "main_python/concept_null_audit/artifacts/controlled_audit_2026-11-19/stage2_query_results.npz": "777ea924a76f89e2a5960a66200d941c33031dfd8d3de251bce387a62ea36660",
+    "main_python/concept_null_audit/artifacts/controlled_audit_2026-11-19/stage4_random_peaks.npz": "54f486883e8e687dba1e755160af11217539eece21dab072e13f098943703e7f",
+    "main_python/concept_null_audit/artifacts/controlled_audit_2026-11-19/peaks_resnet18_seed0.npz": "f01d911925058a1b12a665d518df6b224ba9aea95562ee1023b176fc4d927f7d",
+    "main_python/concept_null_audit/artifacts/funnybirds_2026-11-15/model.pt": "9d04e6031cebbfe6e4ff0b0a320aecd1bdddd28f1c819b7ffe81f03e4782d837"
+  },
+  "scope": "Portable frozen-map replot; no source RGB redistribution, new model results, or full training/inference regeneration."
+}

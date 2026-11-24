@@ -227,6 +227,9 @@ Cyan boundaries mark recipient acceptance regions; white crosses mark scored
 peaks. Cases use fixed array order, without score-based selection. Each shows
 one donor and one reference head, not population-average G.*
 
+[Figure provenance and replot instructions](docs/figures.md) describe the source
+images, preprocessing, independent color scaling and executable Figure 3 renderer.
+
 The [sensitivity report](docs/extensions.md) explains reference-family dependence
 and what the same-species donor comparison does and does not establish.
 
