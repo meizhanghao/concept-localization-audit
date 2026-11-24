@@ -8,13 +8,14 @@
     "data/inputs.npz": "9d90eba779504b61327ebc14957e550a2361fe2bf140cc0063849e31ea550bed",
     "data/protocol.json": "57aff7749f5a83ef78d4f7a5ddfc484d44ed2800c23393584ad8c5a75abcb9cf",
     "data/provenance.json": "fd27409f920e4dcff1680c56e2303fe55b66c885bb00d3baf5926881a85a80a8",
-    "README.md": "8cb6693b571618deb9ee43847bb890c86c94c5bdbf2d44e0876d667cbda3c681",
+    "README.md": "e682780a108c04ca93990d333e5b2742088de002d4984a1959ab8844fe42a187",
     "renderer_statistics.py": "6346a7090a69b83b1aa0452767212ec9b5a4797494907c3592de3c4dcfb5bf89",
     "reproduce.py": "e27b727719845cd9ad4ecea849c879129c8fb67f4e9df7f52f8d38f68cc428e9",
+    "results.md": "7df4aa8109c6585fa229b3ba6d234043f437c3534c71d089c0b57fbdda4e9266",
     "source/common.py": "f11e0c1e8cbb84a4b7ce1d2ac0edbaad9c605bf915f9ee81b48b6df8465fe542",
     "source/funnybirds.py": "82d3b136ed27c19112b3482c070accaaa6cbe7582abcc4ea0bdc369766242923",
     "source/models.py": "c98bc2590858d4aeb9f46b2f7c5e970b0febdd800a5748b3dfd479d2d9d17a84",
-    "source/renderer_delivery.py": "5340f41d019f235358c4e7098fa232b7e07016bf658155567bc9b92f463c601b",
+    "source/renderer_delivery.py": "48b88c2df7255a0f188ac607ca076c0a8d7d17dc809d86fb744f9d9145e5eed2",
     "source/renderer_validity.py": "81abb37e8ff90a494cf6f8a9fac4a64d50daba72d92a60e4d4e09906a1b916d8"
   }
 }

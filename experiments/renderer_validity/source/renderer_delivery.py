@@ -16,6 +16,76 @@ def ci(record):
             f"[{record['ci95'][0]:.4f}, {record['ci95'][1]:.4f}]")
 
 
+def result_tables(result):
+    """Human-readable tables from the frozen full-precision JSON, not new fits."""
+    follow = result['cohorts']['complement300']['analyses']
+    lines = ['# Renderer-response results accompanying Section 6.3', '',
+             'These tables format `data/expected.json`; they add no experiment,',
+             'change no input and make no independent-confirmation claim. All',
+             'comparisons are exploratory and conditional on fixed models, heads',
+             'and donor schedules. The 300-image cohort previously supplied layout',
+             'calibration. Visible means at least one decoded recipient part pixel;',
+             'donors are unchanged and all test parts are annotated present.', '',
+             '## Complementary 300 images: gradient association differences', '',
+             'Each cell is rho(delta_g) minus rho(s), averaged over all five part',
+             'correlations, with a paired image-cluster 95% percentile interval.',
+             'All 3,000 draws are defined for these gradient contrasts. Intervals',
+             'are pointwise, not multiplicity-adjusted.', '',
+             '| Model | All recipients | Visible recipients |',
+             '|---|---|---|']
+    for model, _, _ in MODELS:
+        cells = [follow[support]['models'][model]['gradient']['concept_margin']['deltaG_minus_S']
+                 for support in ['all', 'visible']]
+        lines.append(f"| {model} | {number(cells[0]['estimate'])} {ci(cells[0])} | {number(cells[1]['estimate'])} {ci(cells[1])} |")
+    lines += ['', 'The visible R18 seed 1 interval is positive pointwise; the other two',
+              'visible intervals cross zero. A universal zero-effect claim does not',
+              'follow. Comparing recipient populations is not a causal decomposition.', '',
+              '## Complementary 300 images: CAM point estimates', '',
+              '| Model | rho(s) | rho(delta_g) | Defined bootstrap draws |',
+              '|---|---:|---:|---:|']
+    for model, _, _ in MODELS:
+        cells = follow['all']['models'][model]['cam']['concept_margin']
+        lines.append(f"| {model} | {number(cells['S']['estimate'])} | {number(cells['deltaG']['estimate'])} | {cells['deltaG_minus_S']['valid_bootstrap_fraction']:.2%} |")
+    lines += ['', 'No unconditional CAM interval is claimed. A constant part score makes',
+              'the fixed-five-part statistic undefined in that draw; we do not average',
+              'a smaller set of parts. Conditional defined-draw diagnostics in the JSON',
+              'are not unconditional confidence intervals.', '',
+              '## Part-selection utility and oracle regret', '',
+              'Only R18 seed 0 has the frozen species readout used here. Choose the',
+              'highest-scoring part, averaging exact ties. Utility is the signed',
+              'true-class/original-best-rival logit-margin drop after deleting that',
+              'part, minus the response from uniform selection among eligible parts.',
+              'Regret is the largest eligible deletion response minus the selected',
+              'response. Both are in readout logit-margin units; no normalization,',
+              'human utility or semantic ACE is implied. Concept-map and class-task',
+              'targets differ. All utility/regret draws are defined.', '']
+    for cohort, entry in result['cohorts'].items():
+        for support in ['all', 'visible']:
+            values = entry['analyses'][support]['models']['resnet18_seed0']
+            lines += [f'### {cohort}, {support} recipients', '',
+                      '| Explainer / selector | Selected minus uniform [95% interval] | Oracle regret [95% interval] | Mean ties |',
+                      '|---|---|---|---:|']
+            for method in ['cam', 'gradient']:
+                for score in ['S', 'G', 'deltaG']:
+                    item = values[method]['class_margin_selection'][score]
+                    utility, regret = item['selected_minus_uniform'], item['regret']
+                    lines.append(f"| {method} / {score} | {number(utility['estimate'])} {ci(utility)} | {number(regret['estimate'])} {ci(regret)} | {item['mean_tie_count']:.4f} |")
+            uniform = values['cam']['class_margin_selection']['S']['uniform_regret']
+            lines += ['', f'Uniform-selection oracle regret: {uniform:.4f}.', '',
+                      '| Explainer | Paired selected-response difference: delta_g minus s [95% interval] |',
+                      '|---|---|']
+            for method in ['cam', 'gradient']:
+                paired = values[method]['selection_deltaG_minus_S']
+                lines.append(f"| {method} | {number(paired['estimate'])} {ci(paired)} |")
+            lines.append('')
+    lines += ['A positive s-selector advantage and an unresolved delta_g advantage',
+              'do not themselves establish a difference between selectors: use the',
+              'paired selector contrasts above. In the complementary all-recipient',
+              'cohort both paired contrasts are unresolved. These checks validate',
+              'neither spatial score as a universal response ranker.', '']
+    return '\n'.join(lines)
+
+
 def plot(result):
     import matplotlib
     matplotlib.use('Agg')
@@ -72,11 +142,12 @@ def main():
                               'test_masks.npy', 'metadata.npz', 'parts.json', 'readouts.pt', 'prepared.json']},
                   'sources': {name: digest(base/name) for name in ['renderer_validity.py', 'renderer_statistics.py']}}
     (data/'provenance.json').write_text(json.dumps(provenance, indent=2)+'\n', encoding='utf-8')
+    result = json.loads((RUN/'results.json').read_text(encoding='utf-8'))
+    (bundle/'results.md').write_text(result_tables(result), encoding='utf-8')
     manifest = {p.relative_to(bundle).as_posix(): digest(p) for p in sorted(bundle.rglob('*'))
                 if p.is_file() and p.name != 'manifest.json'}
     (bundle/'manifest.json').write_text(json.dumps({'scope': 'Exploratory renderer criterion follow-up, separate from base/frontier inputs.',
                                                    'files': manifest}, indent=2)+'\n', encoding='utf-8')
-    result = json.loads((RUN/'results.json').read_text(encoding='utf-8'))
     plot(result)
     follow = result['cohorts']['complement300']
     lines = ['# 渲染干预效度扩展：结果与论文取舍', '',
@@ -91,7 +162,7 @@ def main():
              '每个解释器使用三个 row-norm matched Gaussian 头、200 个 exact query/alternative 供体排列。r=24；可见性只限制 recipient，不改变 donor。300 图中各部位可见查询数：'+str(follow['visible_queries_by_part'])+'。像素完全不变的删除数：'+str(follow['exactly_unchanged_deletions_by_part'])+'。这些部位均标为存在；不可见不等于不存在。', '',
              '原图和五个删除变体在同一前向批次计算；所有像素完全不变的变体的 logit 最大差为 0。原 200 图的三个训练模型峰值和 s0 三个随机头峰值与既有缓存逐点一致。', '',
              '## 300 图的主结果', '',
-             '| 模型 / 方法 | 全部查询 ρ(S) | 全部查询 ρ(δg) | 差 δg−S | 可见查询差 δg−S | CAM 有定义 bootstrap 比例 |',
+             '| 模型 / 方法 | 全部查询 ρ(S) | 全部查询 ρ(δg) | 差 δg−S | 可见查询差 δg−S | 宏平均有定义 bootstrap 比例 |',
              '|---|---:|---:|---:|---:|---:|']
     for model, _, _ in MODELS:
         for method in ['cam', 'gradient']:
@@ -105,7 +176,7 @@ def main():
         a = follow['analyses']['all']['models'][model]['gradient']['concept_margin']['deltaG_minus_S']
         v = follow['analyses']['visible']['models'][model]['gradient']['concept_margin']['deltaG_minus_S']
         lines.append(f"| {model} | {number(a['estimate'])} {ci(a)} | {number(v['estimate'])} {ci(v)} |")
-    lines += ['', '这些为探索性 pointwise 区间，不是所有次要分析的同时覆盖保证。', '',
+    lines += ['', 'R18 s1 的可见查询区间为正，其他两个可见查询区间跨零。因此不能声称“可见性条件下普遍为零”。这些为探索性 pointwise 区间，不是所有次要分析的同时覆盖保证。', '',
               '## 发现并修正的统计缺口', '',
               '旧 frontier_criterion.py 用 nanmean 平均抽样中仍有定义的部位。CAM 在部分部位命中恒定时，这会改变“固定五部位平均”这个统计量。新分析不静默删部位：该抽样的宏平均记为无定义，并报告有定义比例。原 200 图 R18 s1 CAM 的点估计也因一个部位恒定而无定义。', '',
               '因此 CAM 的 defined-draw 区间只是条件诊断，不称为无条件 95% CI；原计划六比较的 simultaneous 推断不具备完整定义，已撤销相应确认性结论。data/analysis_amendment.json 如实记录发现问题后的修正。旧 frontier 文件用于历史重算保留，但正文不再使用其可变部位数 CAM 区间。', '',
@@ -117,7 +188,7 @@ def main():
         for score in ['S', 'G', 'deltaG']:
             item = values['class_margin_selection'][score]
             lines.append(f"| {method} / {score} | {number(item['selected_minus_uniform']['estimate'])} | {ci(item['selected_minus_uniform'])} | {number(item['regret']['estimate'])} |")
-    lines += ['', '所有效用均为事后诊断，不是人类研究或新算法；不以挑出一种分数的正结果作为门槛。完整可见性条件结果、各部位结果、配对 δg−S 选择差值在 results.json 中。', '',
+    lines += ['', '所有效用均为事后诊断，不是人类研究或新算法；不以挑出一种分数的正结果作为门槛。完整可见性条件结果、各部位结果、配对 δg−S 选择差值在 results.json 中。随稿数值包的 renderer_validity/results.md 同时列出 S/G/δg 的全部效用、regret 区间和配对选择比较；主文只给 δg 相对 uniform 的摘要，不称全部 regret 已进入正文。', '',
               '## 与既有工作的关系和论文取舍', '',
               '- A：部件删除已有 FunnyBirds，模型干预与语义因果的区分已有 Cheng et al., Linking Model Intervention to Causal Interpretation in Model Explanation（本地论文已核读摘要）。这里的价值是审查 crossed score 与独立指定响应是否一致，并给出可见性/统计退化边界，不主张新 ACE 方法。',
               '- B：explanation supervision、mask supervision、有限预算压力测试已有相关工作。单种子不能改称训练方法；保留 caution。',

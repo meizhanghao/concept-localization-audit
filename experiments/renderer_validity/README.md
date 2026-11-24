@@ -3,6 +3,11 @@
 An exploratory follow-up to the crossed concept-localization audit. This is a
 criterion check, not a new attribution method or a semantic-causality claim.
 
+The [accompanying results tables](results.md) give every model's all/visible
+gradient contrast, labelled CAM estimates, and full part-selection utility,
+oracle regret and paired-selector intervals. In particular, the R18 seed 1
+visible gradient interval is positive pointwise; no common null is claimed.
+
 ## Reproduce the numerical analysis
 
 Python 3.10+ and NumPy are sufficient; the compressed arrays are included.
