@@ -98,7 +98,8 @@ def training(context,raw):
         vp=raw[label+'__validation_p']
         pred=np.stack([vp[:,lo:hi].argmax(1) for lo,hi in zip(offsets[:-1],offsets[1:])],1)
         delta=(g[0]-g[1:].mean(0)).reshape(n,5)
-        values[label]={'deltaG':delta,'probability_drop':response,'class_margin_drop':class_response}
+        values[label]={'S':s[0].reshape(n,5),'deltaG':delta,
+                       'probability_drop':response,'class_margin_drop':class_response}
         rows[label]={'S':float(s[0].mean()),'G':float(g[0].mean()),'deltaG':float(delta.mean()),
             'validation_concept_accuracy':float((pred==raw['validation_labels']).mean()),
             'probability_drop':float(response.mean()),'class_margin_drop':float(class_response.mean())}
@@ -109,6 +110,79 @@ def training(context,raw):
     changes['deltaG']['paired_image_head_ci95']=ci(boots['5.0']-boots['0.0'])
     return {'conditions':rows,'regularized_minus_ce':changes,
         'scope':'One fixed encoder/training seed; three held-out heads. Response endpoints selected after primary training outcomes. No equivalence, semantic causality or new learning-method claim.'}
+
+
+def average_ranks(values):
+    """Average tied ranks along the last axis, using NumPy only."""
+    values = np.asarray(values, dtype=float)
+    if not np.isfinite(values).all():
+        raise ValueError('Ranks require finite observations')
+    order = np.argsort(values, axis=-1, kind='stable')
+    ordered = np.take_along_axis(values, order, axis=-1)
+    positions = np.arange(values.shape[-1])
+    first = np.concatenate([np.ones_like(ordered[..., :1], dtype=bool),
+                            ordered[..., 1:] != ordered[..., :-1]], axis=-1)
+    last = np.concatenate([ordered[..., :-1] != ordered[..., 1:],
+                           np.ones_like(ordered[..., :1], dtype=bool)], axis=-1)
+    starts = np.maximum.accumulate(np.where(first, positions, 0), axis=-1)
+    ends = np.minimum.accumulate(
+        np.where(last, positions, values.shape[-1] - 1)[..., ::-1],
+        axis=-1)[..., ::-1]
+    ranks = np.empty_like(values)
+    np.put_along_axis(ranks, order, 1 + (starts + ends) / 2, axis=-1)
+    return ranks
+
+
+def rank_correlation_from_ranks(x, y):
+    """Pearson correlation of ranks; constant observations remain undefined."""
+    x = x - x.mean(axis=-1, keepdims=True)
+    y = y - y.mean(axis=-1, keepdims=True)
+    scale = np.sqrt(np.sum(x * x, axis=-1) * np.sum(y * y, axis=-1))
+    return np.divide(np.sum(x * y, axis=-1), scale,
+                     out=np.full_like(scale, np.nan), where=scale > 0)
+
+
+def criterion(context, reference, cached):
+    """Within-part query association, conditional on fixed heads and donors.
+
+    Recompute S and delta g from peaks. Only deletion responses are frozen;
+    neither expected correlations nor their intervals are loaded.
+    """
+    weights = context['weights'].astype(int)
+    if not np.array_equal(weights, cached['weights']):
+        raise ValueError('Criterion and geometry must share image draws')
+    n = weights.shape[1]
+    draws = np.stack([np.repeat(np.arange(n), row) for row in weights])
+    response = cached['concept_response']
+    if response.shape != (n, 5):
+        raise ValueError('Expected five part responses per audit image')
+    point_y = average_ranks(response.T)
+    boot_y = average_ranks(response[draws].transpose(0, 2, 1))
+    points, boots = {}, {}
+    for method, name in enumerate(['cam', 'gradient']):
+        s, trained_gain = gains(context, reference['trained'][method])
+        _, random_gain = gains(context, reference['random'][0, method])
+        scores = {'S': s[0].reshape(n, 5),
+                  'deltaG': (trained_gain[0] - random_gain.mean(0)).reshape(n, 5)}
+        for score, value in scores.items():
+            key = name + '_' + score
+            if not np.allclose(value, cached[key], rtol=0, atol=1e-14):
+                raise ValueError(f'Peak-derived score differs from criterion cache: {key}')
+            per_part = rank_correlation_from_ranks(average_ranks(value.T), point_y)
+            boot = rank_correlation_from_ranks(
+                average_ranks(value[draws].transpose(0, 2, 1)), boot_y)
+            boots[key] = np.nanmean(boot, axis=-1)
+            points[key] = {'macro_spearman': float(np.nanmean(per_part)),
+                           'per_part_rho': per_part.tolist(),
+                           'ci95': ci(boots[key])}
+    differences = {}
+    for name in ['cam', 'gradient']:
+        differences[name] = {
+            'change': points[name + '_deltaG']['macro_spearman']
+                      - points[name + '_S']['macro_spearman'],
+            'ci95': ci(boots[name + '_deltaG'] - boots[name + '_S'])}
+    return {'primary': {**points, 'deltaG_minus_S': differences},
+            'scope': 'Exploratory original R18 seed0, 200 images; mean of five within-part Spearman correlations with signed queried-concept-margin drops. Paired image-cluster intervals fix heads and donors. Per-query association, not an explainer ranking or causal certificate.'}
 
 
 def main():
@@ -122,7 +196,11 @@ def main():
     assert np.all(context['weights'].sum(1)==200)
     reference=dict(np.load(BASE/'data/reference_inputs.npz',allow_pickle=False))
     raw=dict(np.load(BASE/'data/training_inference.npz',allow_pickle=False))
-    result={'reference_order':reference_order(context,reference),'training':training(context,raw)}
+    response=dict(np.load(BASE/'data/criterion_inputs.npz',allow_pickle=False))
+    if not np.array_equal(response['ids'], raw['ids']):
+        raise ValueError('Criterion and training checks use different audit images')
+    result={'reference_order':reference_order(context,reference),'training':training(context,raw),
+            'criterion':criterion(context,reference,response)}
     text=json.dumps(result,indent=2)
     print(text)
     if args.out:

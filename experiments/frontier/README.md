@@ -1,6 +1,7 @@
 # Exploratory extensions: numerical supplement
 
-Finite-reference comparisons and a head-only optimization stress test for
+Finite-reference comparisons, a head-only optimization stress test, and
+within-part deletion-response associations for
 **Auditing Concept Localization: Crossed Controls and Concept Eligibility**.
 
 The base paper snapshot is `342aeb6cb5af87f37277051d156ec339248cda71`.
@@ -30,7 +31,7 @@ out of the main PDF are retained as `width_details.tex` and
 
 ## What the tests establish
 
-- Four declared reference banks: three Gaussian direction banks and one
+- Four declared reference banks in two families: three Gaussian banks and one
   shared channel-permutation bank; three heads per bank. The methods share
   image weights and head indices within a bank. All paired CAM-minus-gradient
   intervals cross zero. Point sign changes are not resolved reversals.
@@ -49,6 +50,14 @@ out of the main PDF are retained as `width_details.tex` and
   response increases remain unresolved. Response endpoints were inspected
   **after** primary training outcomes. Conditional intervals omit training
   variation and establish neither equivalence nor semantic causal effects.
+- Spatial agreement also rises in the same optimization probe. Separately,
+  on the original R18 seed0 and 200 images, per-query S has stronger within-part
+  association with signed queried-concept-margin deletion responses than
+  per-query delta g. Correlations average the five part-specific Spearman
+  coefficients; paired image-cluster intervals hold heads and donors fixed.
+  These observations do not compare explainer-level faithfulness or certify S
+  as causal evidence. The script recomputes scores from peaks and tied ranks
+  with NumPy, using frozen deletion responses, not expected correlations.
 
 ## Regeneration scope
 

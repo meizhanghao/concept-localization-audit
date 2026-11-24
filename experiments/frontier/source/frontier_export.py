@@ -23,7 +23,7 @@ def main():
     head_indices=np.load(DEST/'reference_order_draws.npz')['head_indices']
     np.savez_compressed(data/'reference_inputs.npz',random=random,trained=trained,head_indices=head_indices,
         bank_names=np.array(['gaussian_821','gaussian_2026111909','gaussian_2026111910','channel']))
-    for name in ['training_lambda_0.0.npz','training_lambda_5.0.npz','training_inference.npz','protocol.json']:
+    for name in ['training_lambda_0.0.npz','training_lambda_5.0.npz','training_inference.npz','criterion_inputs.npz','protocol.json']:
         shutil.copyfile(DEST/name,data/name)
     source=dest/'source';source.mkdir(exist_ok=True)
     modules=['frontier_protocol.py','frontier_criterion.py','frontier_references.py',

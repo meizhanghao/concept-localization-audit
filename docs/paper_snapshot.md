@@ -27,8 +27,8 @@ these two later verification commands and from the 12 paired identity
 contrasts reported by the core audit.
 
 The later `experiments/frontier/` directory adds exploratory finite-reference
-comparisons and a frozen-encoder, head-only optimization stress test. Its
-20-file SHA-256 manifest is separate from the 57-file base manifest; none of
+comparisons, a frozen-encoder head-only optimization stress test, and within-part
+deletion-response associations. Its 21-file SHA-256 manifest is separate from the 57-file base manifest; none of
 the base inputs is replaced. The source modules are preserved for inspection,
 and `reproduce.py` independently recomputes the new results from frozen arrays.
 Unlike the two earlier verification utilities, this extension adds scientific
@@ -58,6 +58,9 @@ python experiments/frontier/reproduce.py --out results/frontier.json
 
 `main` can advance; citing it alone does not identify the paper's inputs or
 code version. Follow the version-specific README for follow-up commands.
-The extension covers one encoder/training seed. Deletion-response endpoints
-were examined after the primary optimization outcomes. No result here
+The optimization extension covers one encoder/training seed. Deletion-response endpoints
+were examined after the primary optimization outcomes. The association analysis
+uses the original R18 seed0 and 200 audit images, averaging five within-part
+Spearman coefficients with paired image-cluster intervals. It does not compare
+explainers' faithfulness. No result here
 certifies semantic or causal grounding or constitutes full training regeneration.

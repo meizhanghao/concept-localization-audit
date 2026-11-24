@@ -11,7 +11,8 @@ College of Computer, Electronics and Information, Guangxi University
 The original base snapshot is [commit `342aeb6`](https://github.com/meizhanghao/concept-localization-audit/tree/342aeb6cb5af87f37277051d156ec339248cda71),
 also tagged `paper-v1`. Later revisions add independent checkers and the
 [exploratory numerical extension](experiments/frontier/): finite-reference
-method comparisons and a frozen-encoder, head-only optimization stress test.
+method comparisons, a frozen-encoder head-only optimization stress test, and
+within-part associations with deletion responses.
 The base snapshot's 57 numerical inputs remain unchanged; the extension has
 its own input/source manifest. See [version scope and reproduction commands](docs/paper_snapshot.md).
 
@@ -79,8 +80,10 @@ python experiments/frontier/reproduce.py --out results/frontier.json
 ```
 
 It verifies its own SHA-256 manifest and recomputes the reference-bank
-comparisons and head-only stress-test table from frozen arrays, without
-reading expected-result files. It does not regenerate encoder training.
+comparisons, head-only stress-test table (including S), and within-part
+deletion-response associations from frozen arrays, without reading
+expected-result files. The association analysis concerns query-level scores,
+not a ranking of explainers by faithfulness. It does not regenerate encoder training.
 
 ## Included analyses
 

@@ -33,5 +33,5 @@ jobs:
         run: python -B verify_cub_robustness.py
       - name: Independently verify released CEM results
         run: python -B verify_released_cem.py
-      - name: Reproduce exploratory reference-bank and head-pilot results
+      - name: Reproduce exploratory bank, head-pilot and response-association results
         run: python -B experiments/frontier/reproduce.py --out results/frontier.json
