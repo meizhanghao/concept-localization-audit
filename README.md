@@ -6,6 +6,14 @@ Crossed Controls and Concept Eligibility**.
 **Zhanghao Mei · Zuqiang Meng · Xuwei Tang**  
 College of Computer, Electronics and Information, Guangxi University
 
+## Paper version
+
+The manuscript cites the fixed [paper snapshot `342aeb6`](https://github.com/meizhanghao/concept-localization-audit/tree/342aeb6cb5af87f37277051d156ec339248cda71),
+also tagged `paper-v1`. Current `main` additionally contains portable independent
+checkers added in `69037b1`; the 57 scientific inputs and reported estimates
+are unchanged. The CEM and window analysis scripts already belong to the
+paper snapshot. See [version scope and reproduction commands](docs/paper_snapshot.md).
+
 ## Overview
 
 A concept map can hit the expected part without showing evidence specific to
