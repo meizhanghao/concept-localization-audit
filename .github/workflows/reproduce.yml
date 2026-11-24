@@ -35,3 +35,5 @@ jobs:
         run: python -B verify_released_cem.py
       - name: Reproduce exploratory bank, head-pilot and response-association results
         run: python -B experiments/frontier/reproduce.py --out results/frontier.json
+      - name: Reproduce strict renderer-response and visibility follow-up
+        run: python -B experiments/renderer_validity/reproduce.py --out results/renderer_validity.json

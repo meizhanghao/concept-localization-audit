@@ -79,3 +79,12 @@ above is the portable reproduction route for the new table and comparisons.
 `data/protocol.json` is the historical gate recorded before the new outcomes.
 Its manuscript hash identifies the earlier paper. Regenerating that gate after
 editing the manuscript should not overwrite its recorded history.
+
+## Historical criterion intervals
+
+The criterion bootstrap in this extension uses `nanmean` over whichever parts
+have nonconstant scores in a draw. It reproduces that historical procedure;
+it is not an unconditional interval for a fixed five-part mean. The later
+`experiments/renderer_validity/` extension retains undefined parts, reports
+valid-draw fractions, and supplies the strict criterion check used in the
+current manuscript. No source inputs or historical numbers are replaced here.

@@ -1,0 +1,37 @@
+{
+  "status": "Exploratory follow-up; original 200-image outcomes and all-model aggregate quality known. Plan written before this follow-up inference.",
+  "cohorts": {
+    "original200": "First four images/class, unchanged; implementation check and descriptive replication.",
+    "complement300": "Remaining six images/class; previously used for layout calibration, not independent confirmation."
+  },
+  "models": [
+    "resnet18_seed0",
+    "resnet18_seed1",
+    "resnet50_seed2"
+  ],
+  "intervention": "Official same-scene render removing exactly the queried part; fixed camera, scene and remaining parts. Includes occlusion/shadow changes. No invented recolor/scale counterfactuals.",
+  "outcome": "Signed decrease of the original ground-truth concept-minus-fixed-alternative logit margin. No correctness filter. A model outcome under this operation, not natural-world semantic ACE.",
+  "secondary_outcome": "Own-part concept-margin response minus the mean of the other four part-deletion responses.",
+  "scores": "Per-query S, G and deltaG at existing mask dilation r24; same contrast target, trained and three row-norm-matched Gaussian CUDA head draws seed821; fixed heads.",
+  "donors": "200 same-(query,alternative) derangements inside each cohort. Original schedule reused exactly. Complement schedule seed2026112405, never align images or use outcome values.",
+  "support": "Primary: all queries. Sensitivity: recipients with at least one decoded visible part pixel at160px. Donors unchanged in sensitivity. All 500 ground-truth parts are present; empty masks can be occluded/thin and are not absent concepts.",
+  "primary_analysis": "Equal-part mean of five within-part Spearman correlations; paired image-cluster bootstrap,3000 draws, fixed heads/donors. Compare deltaG minus S for each of3models x2explainers, with approximate simultaneous max-standardized intervals over six comparisons, separately for each cohort/support. No omnibus familywise claim over secondary analyses.",
+  "secondary_utility": "Only original R18s0 has a frozen class readout. Rank five parts by each score, average ties, measure true-class/original-best-rival logit-margin deletion response, uniform choice and oracle regret. No training selector or human-utility claim; map target and utility outcome differ.",
+  "zero_variance": "A constant score/outcome yields undefined correlation; do not silently average fewer parts. Report valid bootstrap fraction.",
+  "bootstrap_seeds": {
+    "original200": "Reuse published exact image counts.",
+    "complement300": 2026112406
+  },
+  "limits": [
+    "No new training seeds; three already selected checkpoints.",
+    "No CUB inpainting/ACE claim.",
+    "No new explanation metric or priority claim.",
+    "CI crossing zero does not imply equivalence or absence.",
+    "Support analyses change recipient populations, not a decomposition of the original association."
+  ],
+  "inputs": {
+    "model.pt": "9d04e6031cebbfe6e4ff0b0a320aecd1bdddd28f1c819b7ffe81f03e4782d837",
+    "seed1_model.pt": "39e15c4cfa65e7d97b96c8089d76cfe6dd51c9412c11e2bf4f8ca67047f8d5f2",
+    "r50_model.pt": "324cafa7220dc4ab394ae7ffd1374fc62077a5186b5b5921b3d6e1fc9dbfde6f"
+  }
+}

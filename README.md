@@ -13,8 +13,13 @@ also tagged `paper-v1`. Later revisions add independent checkers and the
 [exploratory numerical extension](experiments/frontier/): finite-reference
 method comparisons, a frozen-encoder head-only optimization stress test, and
 within-part associations with deletion responses.
+The [renderer-response follow-up](experiments/renderer_validity/) checks three
+existing models on a complementary 300-image cohort, reports visibility
+sensitivity and part-selection regret, and explicitly handles undefined
+correlation statistics. It does not establish a universal causal ranker.
 The base snapshot's 57 numerical inputs remain unchanged; the extension has
-its own input/source manifest. See [version scope and reproduction commands](docs/paper_snapshot.md).
+its own input/source manifest. Both later extensions have separate manifests.
+See [version scope and reproduction commands](docs/paper_snapshot.md).
 
 ## Overview
 
@@ -77,13 +82,18 @@ The later exploratory extension runs separately, also with NumPy on CPU:
 
 ```bash
 python experiments/frontier/reproduce.py --out results/frontier.json
+python experiments/renderer_validity/reproduce.py --out results/renderer_validity.json
 ```
 
-It verifies its own SHA-256 manifest and recomputes the reference-bank
+The frontier command verifies its SHA-256 manifest and recomputes the reference-bank
 comparisons, head-only stress-test table (including S), and within-part
 deletion-response associations from frozen arrays, without reading
 expected-result files. The association analysis concerns query-level scores,
 not a ranking of explainers by faithfulness. It does not regenerate encoder training.
+The renderer command recomputes the analysis before comparing its results with
+the archived expected values. This strict follow-up supersedes the available-part bootstrap
+for the fixed-five-part criterion check. It additionally recomputes visibility
+sensitivity and part-selection regret; its README explains undefined draws.
 
 ## Included analyses
 

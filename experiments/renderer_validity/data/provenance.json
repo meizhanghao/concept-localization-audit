@@ -1,0 +1,20 @@
+{
+  "checkpoints": {
+    "model.pt": "9d04e6031cebbfe6e4ff0b0a320aecd1bdddd28f1c819b7ffe81f03e4782d837",
+    "seed1_model.pt": "39e15c4cfa65e7d97b96c8089d76cfe6dd51c9412c11e2bf4f8ca67047f8d5f2",
+    "r50_model.pt": "324cafa7220dc4ab394ae7ffd1374fc62077a5186b5b5921b3d6e1fc9dbfde6f"
+  },
+  "caches": {
+    "test_rgb.npy": "dc2e98e169131365e1855187eb392e9b13cb893d6fff82d2e835c41f08add7bb",
+    "deleted_rgb.npy": "645b0155661b091e33fd45a6fd3d310c57366b4aba65b7db3cfbee5b468cefa1",
+    "test_masks.npy": "cdb6442af655f04bdb6940680d954ddc12760714428a337a1d68bf86c4bbbb47",
+    "metadata.npz": "ff62c54c6edcd62d16c0320ebd11157dac6531cecd44f7e43099b91b63d63894",
+    "parts.json": "6b462e00bc1d5478268556a1fa15727cb27ed30c50e78163700a3e53c1ce1ea1",
+    "readouts.pt": "5f4111e3f80b029477fd950a00825e29c3cc773fef728f262fe2d19d96686585",
+    "prepared.json": "a42dd70e6c733eb13a4f7ab467b1b91201361ba81b93cfa86a550c63f7fff838"
+  },
+  "sources": {
+    "renderer_validity.py": "81abb37e8ff90a494cf6f8a9fac4a64d50daba72d92a60e4d4e09906a1b916d8",
+    "renderer_statistics.py": "6346a7090a69b83b1aa0452767212ec9b5a4797494907c3592de3c4dcfb5bf89"
+  }
+}

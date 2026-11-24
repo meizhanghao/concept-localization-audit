@@ -147,7 +147,7 @@ Loc-CBM result, with the four primitive scores and the supported claim.
 
 | Type | What remains unresolved |
 |---|---|
-| Construct | A part segmenter may pass without explaining the classifier. No decision-utility or causal criterion is tested; co-present attributes may share spatial evidence. |
+| Construct | A part segmenter may pass without explaining the classifier. The base audit has no decision criterion; the later renderer follow-up adds conditional response/selection checks, not natural-world ACE or human utility. Co-present attributes may share evidence. |
 | Internal | The random reference retains backbone structure. Species-constrained donors do not match pose/background. Bird-box warping can bias correspondence in either direction. |
 | External | Two datasets and 40 inherited CUB attributes limit generalization. A disjoint cohort in an explored dataset is not independent confirmation. The width sweep uses one native adapter. |
 | Statistical | Three/five-head banks provide finite support. Intervals omit training uncertainty; exploratory pointwise intervals are not multiplicity-adjusted. Crossing zero establishes neither absence nor equivalence. |

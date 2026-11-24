@@ -54,6 +54,7 @@ Use a later revision containing the extension for its portable numerical check:
 
 ```bash
 python experiments/frontier/reproduce.py --out results/frontier.json
+python experiments/renderer_validity/reproduce.py --out results/renderer_validity.json
 ```
 
 `main` can advance; citing it alone does not identify the paper's inputs or
@@ -61,6 +62,21 @@ code version. Follow the version-specific README for follow-up commands.
 The optimization extension covers one encoder/training seed. Deletion-response endpoints
 were examined after the primary optimization outcomes. The association analysis
 uses the original R18 seed0 and 200 audit images, averaging five within-part
-Spearman coefficients with paired image-cluster intervals. It does not compare
-explainers' faithfulness. No result here
+Spearman coefficients with paired image-cluster intervals. Its historical
+bootstrap used `nanmean` over the nonconstant parts available in each draw.
+That changes the number of parts in degenerate draws; it must not be described
+as an unconditional interval for the fixed five-part mean.
+
+The later `experiments/renderer_validity/` follow-up uses raw logits from
+paired original/deletion batches for all three existing FunnyBirds models.
+It checks the original 200 images and their complementary 300 images (the
+latter had previously supplied geometry calibration). It keeps constant-part
+statistics undefined, labels conditional defined-draw bands, and withholds
+the simultaneous claim when the declared statistic is undefined. It also
+reports visibility sensitivity, explicit part-selection ties and oracle regret.
+The manuscript uses this strict follow-up instead of the historical available-part
+correlation intervals. It is exploratory, not independent confirmation.
+Its manifest is separate from both base and frontier manifests.
+
+These query-level associations do not compare explainers' universal faithfulness. No result here
 certifies semantic or causal grounding or constitutes full training regeneration.

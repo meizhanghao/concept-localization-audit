@@ -1,0 +1,27 @@
+{
+  "same_scene_full_render_exact": true,
+  "all_test_parts_annotated_present": true,
+  "support_is_visibility_not_presence": true,
+  "checkpoints": {
+    "resnet18_seed0": "9d04e6031cebbfe6e4ff0b0a320aecd1bdddd28f1c819b7ffe81f03e4782d837",
+    "resnet18_seed1": "39e15c4cfa65e7d97b96c8089d76cfe6dd51c9412c11e2bf4f8ca67047f8d5f2",
+    "resnet50_seed2": "324cafa7220dc4ab394ae7ffd1374fc62077a5186b5b5921b3d6e1fc9dbfde6f"
+  },
+  "historical_matches": {
+    "resnet18_seed0": {
+      "cam": 0,
+      "gradient": 0
+    },
+    "resnet18_seed1": {
+      "cam": 0,
+      "gradient": 0
+    },
+    "resnet50_seed2": {
+      "cam": 0,
+      "gradient": 0
+    }
+  },
+  "maximum_noop_logit_error": 0.0,
+  "response_contract": "Original and five deletions in one forward batch; float64 contrast subtraction from float32 logits.",
+  "inputs_sha256": "9d90eba779504b61327ebc14957e550a2361fe2bf140cc0063849e31ea550bed"
+}

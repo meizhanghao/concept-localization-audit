@@ -182,7 +182,7 @@ def criterion(context, reference, cached):
                       - points[name + '_S']['macro_spearman'],
             'ci95': ci(boots[name + '_deltaG'] - boots[name + '_S'])}
     return {'primary': {**points, 'deltaG_minus_S': differences},
-            'scope': 'Exploratory original R18 seed0, 200 images; mean of five within-part Spearman correlations with signed queried-concept-margin drops. Paired image-cluster intervals fix heads and donors. Per-query association, not an explainer ranking or causal certificate.'}
+            'scope': 'Historical exploratory R18 seed0,200 images. Point statistic averages five part Spearman coefficients, but bootstrap nanmean averages only defined parts in degenerate draws. These are not unconditional fixed-five-part confidence intervals. Superseded by renderer_validity for the current manuscript; fixed heads/donors, no causal or explainer-ranking certificate.'}
 
 
 def main():

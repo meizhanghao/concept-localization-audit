@@ -1,0 +1,5 @@
+{
+  "original_point_max_error": 0.00010096752309793344,
+  "response_rounding": "Original/deletions evaluated in one shared batch, with no-op output equality; float64 contrasts from float32 logits. Historical subtraction used separate batches and float32.",
+  "status": "passed"
+}

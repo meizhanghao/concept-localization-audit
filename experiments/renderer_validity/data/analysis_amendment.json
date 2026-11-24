@@ -1,0 +1,7 @@
+{
+  "timing": "After the first follow-up analysis exposed constant hit scores; not a preregistered amendment.",
+  "reason": "The historical criterion code used nanmean over parts in bootstrap samples. Some CAM draws have a constant part and no Spearman coefficient. Averaging only the remaining parts silently changes the statistic.",
+  "decision": "Keep the declared five-part mean undefined whenever a part is undefined; report all per-part results and valid-draw fractions. Conditional defined-draw intervals are labelled as such. Withhold an unconditional simultaneous six-comparison claim when comparisons/draws are undefined. Evaluate original and all five deletions in the same forward batch to rule out batch-shape numerical effects on no-op response ranks; require exact output equality for exactly identical renders.",
+  "not_changed": ["Image cohorts", "Model checkpoints", "Maps and references", "Geometry", "Donor schedules", "Response outcomes", "Visibility support rule"],
+  "manuscript_rule": "Use the nondegenerate gradient comparison as an explicitly scoped example. CAM point estimates may be described with the degeneracy limitation, but no unconditional CAM confidence claim. Do not claim S is universally a superior causal proxy."
+}
