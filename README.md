@@ -8,11 +8,12 @@ College of Computer, Electronics and Information, Guangxi University
 
 ## Paper version
 
-The manuscript cites the fixed [paper snapshot `342aeb6`](https://github.com/meizhanghao/concept-localization-audit/tree/342aeb6cb5af87f37277051d156ec339248cda71),
-also tagged `paper-v1`. Current `main` additionally contains portable independent
-checkers added in `69037b1`; the 57 scientific inputs and reported estimates
-are unchanged. The CEM and window analysis scripts already belong to the
-paper snapshot. See [version scope and reproduction commands](docs/paper_snapshot.md).
+The original base snapshot is [commit `342aeb6`](https://github.com/meizhanghao/concept-localization-audit/tree/342aeb6cb5af87f37277051d156ec339248cda71),
+also tagged `paper-v1`. Later revisions add independent checkers and the
+[exploratory numerical extension](experiments/frontier/): finite-reference
+method comparisons and a frozen-encoder, head-only optimization stress test.
+The base snapshot's 57 numerical inputs remain unchanged; the extension has
+its own input/source manifest. See [version scope and reproduction commands](docs/paper_snapshot.md).
 
 ## Overview
 
@@ -70,6 +71,16 @@ SHA-256 hashes before scoring and exits with a nonzero status on failure.
 Outputs include full-precision JSON reports, a CSV of the core scores, and a
 combined verification report. See [reproduction instructions](docs/reproduction.md)
 for individual audits and output fields.
+
+The later exploratory extension runs separately, also with NumPy on CPU:
+
+```bash
+python experiments/frontier/reproduce.py --out results/frontier.json
+```
+
+It verifies its own SHA-256 manifest and recomputes the reference-bank
+comparisons and head-only stress-test table from frozen arrays, without
+reading expected-result files. It does not regenerate encoder training.
 
 ## Included analyses
 
@@ -178,8 +189,10 @@ determine above-reference evidence.*
 This repository reproduces cached numerical audits. Core own/donor scores and
 the donor bridge are recomputed from peaks and target geometry; concept-label
 intervals use frozen per-query scores and resampling draws. Source-model
-training, classification-quality experiments and upper-envelope optimization
-are outside this package. An optional [eight-image Loc-CBM example](docs/regeneration.md)
+training and the base classification-quality experiments are outside this
+package. The exploratory extension includes executed head-pilot source and
+inference records; its portable command checks numerical results rather than
+rerunning training. An optional [eight-image Loc-CBM example](docs/regeneration.md)
 regenerates native maps and peaks from user-provided original images and the
 released checkpoint; it does not regenerate the entire experiment.
 
@@ -215,6 +228,10 @@ is provided in [CITATION.cff](CITATION.cff); publication details will be added
 when available.
 
 ## Acknowledgments
+
+This work was supported by the National Natural Science Foundation of China
+(Grant No. 62266004) and the Guangxi Natural Science Foundation
+(Contract No. 2026GXNSFHA00640245).
 
 This work uses derived evaluation records from
 [CUB-200-2011](https://www.vision.caltech.edu/datasets/cub_200_2011/) and

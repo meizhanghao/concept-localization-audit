@@ -1,0 +1,36 @@
+{
+  "status": "exploratory, existing results already known; not preregistered confirmation",
+  "paper_before_sha256": "7b30507920ad31ffb43922289db8f761324f416c970bc1b4b668fc8db1a163f9",
+  "population": "Existing 200 FunnyBirds images, first four/class, all five queries; no correct-only filter.",
+  "criterion": {
+    "primary": "Within-part Spearman between per-query S/G/deltaG and signed queried-concept-margin response to official same-scene part deletion; average the five part correlations.",
+    "secondary": "Own-part response minus average other-part response; part-wise estimates and image-cluster bootstrap.",
+    "decision_probe": "Within-image top-one part selection for frozen CBM true-class-vs-original-best-foil margin response. Average ties; compare to uniform-part choice and oracle. No human utility claim.",
+    "scope": "Model response to the declared renderer operation, not semantic do(c), population ACE, or a causal-grounding certificate. Correlation/noncorrelation cannot alone establish/falsify all uses of localization.",
+    "models": "Initial gate R18 seed0; replicate final criterion on existing R18 seed1 and R50 if raw inference is needed for a paper result."
+  },
+  "training": {
+    "pilot": "Frozen original R18 backbone, update concept head only. 2000 stratified original training images, 1000 disjoint validation images, original 200 audit images. Original masks give additional localization supervision.",
+    "conditions": "CE-only and CE+soft own-minus-donor spatial surrogate; same initial head, fixed epochs and train seed. lambda 5, ten epochs, no test selection.",
+    "warning": "Peak hit is nondifferentiable. With a fixed reference, its subtraction supplies no gradient; donor/reference hinges are not independent mechanisms when both active. Verify this numerically.",
+    "gate": "Training is a feasibility/gaming probe, not a new method claim; expansion requires held-out hard metrics, concept/class quality and independent deletion response together. One pilot is not a publishable training result."
+  },
+  "reference_order": {
+    "families": "Three existing 3-head Gaussian banks, plus a new fixed 3-head shared-channel-permutation bank on the same R18 backbone for CAM and input gradients.",
+    "seeds": [
+      2026112401,
+      2026112402,
+      2026112403
+    ],
+    "comparison": "CAM-minus-gradient paired excess on identical queries/donors and geometry; head index resampling paired within a family. Report all finite-family differences and approximate simultaneous bands, never select a family.",
+    "algebra_gate": "A common reference subtracted from A and B cancels. The fraction of reference-specific positive differences is not stochastic dominance. Finite-family minima/maxima are sensitivity envelopes, not sharp identification bounds over all references."
+  },
+  "interactions": {
+    "pilot": "All ten part pairs on the existing 200 images, official both-deleted renders; class-margin second difference f(x)-f(x_without_a)-f(x_without_b)+f(x_without_ab).",
+    "controls": "Compare full encoder deletion interaction with exact zero latent-concept interaction for the frozen additive class-logit readout. Probability interactions and raw-image interactions need not be latent-concept interactions.",
+    "scope": "This tests a precondition for a composition-localization claim; union masks/hits alone do not measure evidence interactions. No first-interaction-explainer claim."
+  },
+  "human_and_benchmark": "No fabricated human study. Existing released models form a feasibility inventory; no 10-20-model benchmark claim without matching interfaces and completing evaluations.",
+  "inference": "3000 existing paired image draws where available; fixed models and donor schedules; head draws as explicitly stated. Exploratory descriptive intervals, no training-population or selective-inference guarantee.",
+  "paper_gate": "Add at most one compact result that supplies a distinct supported judgment, with precedent cited. Do not replace the main story or exceed 14 official LNCS pages."
+}
