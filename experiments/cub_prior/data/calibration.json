@@ -1,0 +1,112 @@
+{
+  "beak": {
+    "center_xy_in_box": [
+      0.5002565979957581,
+      0.19996322691440582
+    ],
+    "visible_training_points": 4774,
+    "scored_peak_xy": [
+      112,
+      44
+    ]
+  },
+  "breast": {
+    "center_xy_in_box": [
+      0.5029791593551636,
+      0.4474659264087677
+    ],
+    "visible_training_points": 4450,
+    "scored_peak_xy": [
+      112,
+      100
+    ]
+  },
+  "forehead": {
+    "center_xy_in_box": [
+      0.5003588199615479,
+      0.13793323934078217
+    ],
+    "visible_training_points": 4709,
+    "scored_peak_xy": [
+      112,
+      31
+    ]
+  },
+  "nape": {
+    "center_xy_in_box": [
+      0.49890774488449097,
+      0.21616409718990326
+    ],
+    "visible_training_points": 4598,
+    "scored_peak_xy": [
+      111,
+      48
+    ]
+  },
+  "throat": {
+    "center_xy_in_box": [
+      0.5007258653640747,
+      0.27656126022338867
+    ],
+    "visible_training_points": 4727,
+    "scored_peak_xy": [
+      112,
+      61
+    ]
+  },
+  "eye": {
+    "center_xy_in_box": [
+      0.49939462542533875,
+      0.17200976610183716
+    ],
+    "visible_training_points": 4862,
+    "scored_peak_xy": [
+      111,
+      38
+    ]
+  },
+  "belly": {
+    "center_xy_in_box": [
+      0.5069261193275452,
+      0.5852143168449402
+    ],
+    "visible_training_points": 4190,
+    "scored_peak_xy": [
+      113,
+      131
+    ]
+  },
+  "back": {
+    "center_xy_in_box": [
+      0.5022395253181458,
+      0.29542797803878784
+    ],
+    "visible_training_points": 3697,
+    "scored_peak_xy": [
+      112,
+      66
+    ]
+  },
+  "leg": {
+    "center_xy_in_box": [
+      0.5034400820732117,
+      0.7471168041229248
+    ],
+    "visible_training_points": 6892,
+    "scored_peak_xy": [
+      112,
+      167
+    ]
+  },
+  "crown": {
+    "center_xy_in_box": [
+      0.4963013827800751,
+      0.10516443103551865
+    ],
+    "visible_training_points": 4706,
+    "scored_peak_xy": [
+      111,
+      23
+    ]
+  }
+}

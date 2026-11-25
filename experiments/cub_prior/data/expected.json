@@ -1,0 +1,80 @@
+{
+  "images": 800,
+  "queries": 8323,
+  "attributes": 40,
+  "training_images": 4794,
+  "calibration_audit_overlap": 0,
+  "prior_S": {
+    "mean": 0.3596138656338384,
+    "ci95": [
+      0.34521165572728896,
+      0.3737938283310564
+    ]
+  },
+  "prior_G": {
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ]
+  },
+  "exact_uniform_peak_chance": 0.14451473334584247,
+  "methods": {
+    "native_LocCBM": {
+      "model_S": {
+        "mean": 0.3072109151314401,
+        "ci95": [
+          0.29447772902579133,
+          0.32009136829782725
+        ]
+      },
+      "model_minus_prior": {
+        "mean": -0.05240295050239829,
+        "ci95": [
+          -0.07220448515384797,
+          -0.03189551271522895
+        ]
+      }
+    },
+    "adapted_cam": {
+      "model_S": {
+        "mean": 0.3839197261617117,
+        "ci95": [
+          0.36950979188642974,
+          0.3981052386812809
+        ]
+      },
+      "model_minus_prior": {
+        "mean": 0.024305860527873348,
+        "ci95": [
+          0.0033599275656359595,
+          0.04408472269794082
+        ]
+      }
+    },
+    "adapted_gradient": {
+      "model_S": {
+        "mean": 0.4609292648066873,
+        "ci95": [
+          0.44631145818905876,
+          0.4747820020356209
+        ]
+      },
+      "model_minus_prior": {
+        "mean": 0.10131539917284897,
+        "ci95": [
+          0.08079987964730746,
+          0.12066160705983302
+        ]
+      }
+    }
+  },
+  "scope": "Exploratory fixed-prior check on a known cohort; paired intervals condition on training calibration and fixed model/heads/donors.",
+  "prior_minus_chance": {
+    "mean": 0.2150991322879959,
+    "ci95": [
+      0.20106931125679547,
+      0.22879273422451873
+    ]
+  }
+}

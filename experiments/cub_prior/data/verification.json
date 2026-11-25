@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "train_images": 4794,
+  "train_test_overlap": 0,
+  "official_train_test_split_consistent": true,
+  "historical_center_max_error": 0.0,
+  "independent_float64_center_max_error": 1.1438105684269395e-06,
+  "unchanged_official_scorer_max_error": 4.730527358720593e-08,
+  "prior_query_G_exact_zero": true,
+  "protocol_inputs_unchanged_except_declared_diagnostic_amendment": true
+}

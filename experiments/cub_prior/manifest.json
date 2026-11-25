@@ -1,0 +1,15 @@
+{
+  "files": {
+    "cub_prior_statistics.py": "ef9bc521a27b7d212d66b741a5671e1fcf3dcad685f819fac2fbc665c05503c2",
+    "data/calibration.json": "13598e20262e6c527922a7932e8dfa7fbf0d64a5b6b001da915638c6fb11b6dc",
+    "data/expected.json": "e036c65eeed5b87ea7061f5f08783d5c41377b8e87979e2b66ec39ef0769f038",
+    "data/implementation_amendment.json": "1fbb95b03308d6658877e105703a5e10233444bb405e62c42373691d77827248",
+    "data/inputs.npz": "6deecc613d84161083bfad67a9fbde0bc412c0398560826883097efd91a1c791",
+    "data/protocol.json": "543a892e781fd5387fb19d95e9bd240e03f97fa8a9dc0d91c565e5bcbdd7e325",
+    "data/verification.json": "1847e81d0668683a2cfc9043df726848c02640f62a41a9c5bdea037371ad24f4",
+    "README.md": "69e435c4a007bf408ca21c01977fc88e95f1d7f1125daf4c45d5206f82afb563",
+    "reproduce.py": "c2eca519dc280d485cb7d5bc0267adfc9e2e3ed47c09478f9427d1b0a3ca2523",
+    "source/cub_position_prior.py": "dcf0b08e53b2fc0dd3619d63fade936eea6c054d723d5ac94e2b6668f9fd8278"
+  },
+  "scope": "Exploratory training-calibrated layout control; frozen score inputs, no raw RGB or checkpoint."
+}

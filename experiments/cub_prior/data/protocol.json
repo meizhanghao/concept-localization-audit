@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-25",
+  "status": "Frozen before new prior outcomes; exploratory follow-up in a known cohort.",
+  "prior": "Reuse historical training-only family means from 4794 split0 images. Point-weighted mean of visible keypoints in each own bird-box normalized frame. No concept-presence/class/correctness filtering. Gaussian56 sigma=.035 at cell centers, then unchanged CUDA bicubic224 peak extraction. Identical peak for every image of a given concept/part.",
+  "historical_relation": "This is the pre-existing C3 training_part_layout56 rule applied to the frozen 800-photo cohort, not a new method or a discovery claim. Verify family means against historical provenance.",
+  "population": "Existing 800 test photos,40 inherited attributes,8323 queries; no new eligibility, filtering, donors, heads, window or model.",
+  "annotation_use": "Training keypoints estimate centers. Test keypoints ONLY score peaks. The shared own-bird-box evaluation frame still uses test box annotations; not an annotation-free image-space prior.",
+  "scorer": "Unchanged ProtoCBM keypoint function at h45. Check all40 prior per-attribute scores against independent NumPy membership.",
+  "uncertainty": "Reuse existing3000 image-cluster weights; fixed training calibration. Primary paired contrast native_LocCBM S minus prior S. Other two model contrasts descriptive, not multiplicity-adjusted.",
+  "outputs": [
+    "prior S and G",
+    "exact uniform-peak chance",
+    "native S minus prior paired95% interval",
+    "all3 existing model/prior contrasts",
+    "per-part centers/counts",
+    "source/scorer/split consistency checks"
+  ],
+  "inclusion_gate": "Integrity and scorer checks must pass. Include if it completes the missing chance/prior/reference card and changes or constrains interpretation of S. No requirement that prior wins or that a paired interval exclude zero. Do not infer semantic/causal validity, universal chance, or independent confirmation.",
+  "inputs": {
+    "D:\\new_cun_ccf\\main_python\\dataset\\CUB_200_2011\\parts\\part_locs.txt": "5be41e1e1e9165ff19632da203e30384fe8a359347c545ffc12ab99155b0415f",
+    "D:\\new_cun_ccf\\main_python\\dataset\\CUB_200_2011\\bounding_boxes.txt": "c19d9f096c15564793408e5ba054b8d715a6805819d98f037c977f369ef4abd3",
+    "D:\\new_cun_ccf\\main_python\\dataset\\CUB_200_2011\\train_test_split.txt": "8bbbfcc09b4d3c9c6e3e40c9874bd863eb6658f4f456e472df1b33d3403d2600",
+    "D:\\new_cun_ccf\\main_python\\concept_null_audit\\artifacts\\sample_manifest.json": "68ef77a0bdabefdc6555424a92db61aa219249af5faf81fc0f2df6e74f271ec8",
+    "D:\\new_cun_ccf\\临时\\可替换部件参照初步验证_2026-11-14\\metadata.npz": "5f80f82063d53499299ff565f450d37c4c96c01a0018573f725ed84c362924c1",
+    "D:\\new_cun_ccf\\main_python\\concept_null_audit\\artifacts\\identity_controls_2026-11-16\\C3_provenance.json": "aed2993fef7b378adc2f36ba050867064f66880a7acb7a6955e4b859d312201a",
+    "D:\\new_cun_ccf\\main_python\\concept_null_audit\\artifacts\\cub_frozen_replication_2026-11-20\\population.npz": "e2f3524dd8bdb3265433b33a8a8f4b39c748e4e3da26d8a06bb3a302226d04a1",
+    "D:\\new_cun_ccf\\main_python\\concept_null_audit\\artifacts\\cub_frozen_replication_2026-11-20\\query_scores.npz": "31924206ac494e611622a7b38daad100ea05217191c7b26468e502ba7de36f38",
+    "D:\\new_cun_ccf\\main_python\\concept_null_audit\\artifacts\\cub_frozen_replication_2026-11-20\\bootstrap_draws.npz": "45d7d9b0133dd276e447679c17521d94fc52750589272a91f8beaa32f406a322",
+    "D:\\new_cun_ccf\\main_python\\concept_null_audit\\external_sources\\ProtoCBM_util_eval_concept_trustworthiness.py": "0756c37b34cfac8cd1db7e5f5d5c657351eb4c37aaf9514df2702e8e2211505e",
+    "D:\\new_cun_ccf\\main_python\\concept_null_audit\\cub_position_prior.py": "aa09c2e760739833726e4edb343777dae1409acc246d7e4baf5ecdf3e5ff3ee3",
+    "D:\\new_cun_ccf\\main_python\\concept_null_audit\\cub_prior_statistics.py": "ef9bc521a27b7d212d66b741a5671e1fcf3dcad685f819fac2fbc665c05503c2"
+  }
+}

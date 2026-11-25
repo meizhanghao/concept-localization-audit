@@ -1,0 +1,7 @@
+{
+  "date": "2026-11-25",
+  "stage": "After a diagnostic assertion failed, before any prior score was printed or results.json written.",
+  "change": "Independent float64 check tolerance1e-6 ->5e-6. Historical float32 center differs by1.1438105684269395e-6 owing summation rounding. The actual historical centers/maps/peaks are unchanged; no scientific selection or rule changed.",
+  "original_source_sha256": "aa09c2e760739833726e4edb343777dae1409acc246d7e4baf5ecdf3e5ff3ee3",
+  "amended_source_sha256": "dcf0b08e53b2fc0dd3619d63fade936eea6c054d723d5ac94e2b6668f9fd8278"
+}

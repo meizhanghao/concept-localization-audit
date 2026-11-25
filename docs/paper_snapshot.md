@@ -55,6 +55,7 @@ Use a later revision containing the extension for its portable numerical check:
 ```bash
 python experiments/frontier/reproduce.py --out results/frontier.json
 python experiments/renderer_validity/reproduce.py --out results/renderer_validity.json
+python experiments/cub_prior/reproduce.py --out results/cub_prior.json
 ```
 
 `main` can advance; citing it alone does not identify the paper's inputs or
@@ -77,6 +78,21 @@ reports visibility sensitivity, explicit part-selection ties and oracle regret.
 The manuscript uses this strict follow-up instead of the historical available-part
 correlation intervals. It is exploratory, not independent confirmation.
 Its manifest is separate from both base and frontier manifests.
+
+The later `experiments/cub_prior/` control reuses an existing training-mean
+position rule on the frozen CUB cohort. Its ten centers use 4,794 training
+images disjoint from the 800 audit photos. The separate manifest includes
+the pre-evaluation protocol, a floating-point diagnostic amendment and
+official-scorer checks. The portable command recomputes training centers,
+scores and paired intervals from derived numerical arrays; verified frozen
+scorer peaks are supplied. It does not regenerate the original datasets.
+The manuscript uses this control to contextualize agreement, rather than
+claiming a new explainer, a new adequacy threshold or causal grounding.
+
+`experiments/figures/` contains the programmatic Figure 3 renderer and its
+provenance manifest. Image files and model checkpoints must be obtained from
+their original sources. The current test suite has 20 tests; this later count
+must not be attributed to the 12-test base snapshot.
 
 These query-level associations do not compare explainers' universal faithfulness. No result here
 certifies semantic or causal grounding or constitutes full training regeneration.

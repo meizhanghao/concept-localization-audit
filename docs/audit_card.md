@@ -27,6 +27,26 @@ There is a small positive excess correspondence above this declared Gaussian
 reference. A spatial-adequacy requirement was not specified, so this card does
 not label S as adequate. The reference accounts for most of the raw pairing gain.
 
+## Chance and independently calibrated position prior
+
+Exact uniform-peak chance is 0.1445147333. The pre-existing layout rule,
+calibrated on 4,794 disjoint training images, has
+**S=0.3596138656 [0.345212,0.373794]** and **G=0 exactly** on the same audit
+recipients. No test keypoint selects its peak; test bird boxes still define
+the common scoring frame.
+
+Native model agreement minus prior agreement is
+**-0.0524029505 [-0.072204,-0.031896]**, with paired image-cluster draws,
+conditional on the fixed calibration. Thus the native model has lower agreement
+than this layout baseline while retaining a small positive correspondence excess.
+The prior is neither a randomized-head reference nor an application-set adequacy
+threshold. Adapted CAM and gradients remain above this prior in agreement.
+
+Reproduce the new control with
+`python experiments/cub_prior/reproduce.py --out results/cub_prior.json`.
+Its [protocol and interpretation](../experiments/cub_prior/) preserve the
+exploratory status and the inherited rule.
+
 ## Boundaries and next control
 
 The card does not establish concept correctness, causal decision relevance or

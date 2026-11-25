@@ -15,3 +15,4 @@ experiments/frontier/** -text whitespace=blank-at-eol,blank-at-eof,space-before-
 experiments/renderer_validity/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # Figure source and frozen maps retain exact-byte provenance checksums.
 experiments/figures/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+experiments/cub_prior/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

@@ -17,8 +17,8 @@ The [renderer-response follow-up](experiments/renderer_validity/) checks three
 existing models on a complementary 300-image cohort, reports visibility
 sensitivity and part-selection regret, and explicitly handles undefined
 correlation statistics. It does not establish a universal causal ranker.
-The base snapshot's 57 numerical inputs remain unchanged; the extension has
-its own input/source manifest. Both later extensions have separate manifests.
+The base snapshot's 57 numerical inputs remain unchanged. Later scientific
+extensions each have their own input/source manifest.
 See [version scope and reproduction commands](docs/paper_snapshot.md).
 
 ## Overview
@@ -45,6 +45,11 @@ donor rules affect same-part label contrasts. See the
 [protocol](docs/protocol.md) for definitions, aggregation and uncertainty.
 The [worked audit card](docs/audit_card.md) shows a complete interpretation
 of the frozen native Loc-CBM result.
+
+The [training-only CUB prior](experiments/cub_prior/) completes that card's
+chance/position/reference context. On identical photo queries, the fixed layout
+prior wins spatial agreement while native Loc-CBM retains small positive excess
+correspondence. No new explainer or causal-ranking claim is made.
 
 ## Quick start
 
@@ -83,6 +88,7 @@ The later exploratory extension runs separately, also with NumPy on CPU:
 ```bash
 python experiments/frontier/reproduce.py --out results/frontier.json
 python experiments/renderer_validity/reproduce.py --out results/renderer_validity.json
+python experiments/cub_prior/reproduce.py --out results/cub_prior.json
 ```
 
 The frontier command verifies its SHA-256 manifest and recomputes the reference-bank
