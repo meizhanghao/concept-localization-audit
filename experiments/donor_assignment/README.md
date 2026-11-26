@@ -16,6 +16,7 @@ python -m pip install scipy==1.15.3
 python -B -m experiments.donor_assignment.donor_assignment
 python -B -m experiments.donor_assignment.donor_calibrated
 python -B -m experiments.donor_assignment.donor_group_influence
+python -B -m experiments.donor_assignment.donor_policy_details
 ```
 
 The first command that runs an audit checks the 57 base input hashes,
@@ -52,12 +53,25 @@ weight between 2.4% and 3.7%. The influence command independently recomputes
 the attribute optima. The paper's numerical supplement gives the full tables
 and witnesses.
 
-Render the English paper figure from the calibrated results:
+The policy details command recovers the 200 archived schedule scores for
+each case and checks their means and extrema. Each plotted schedule is a
+point from the original policy before the annotation constraint applies.
+On 6,522 CUB Loc-CBM queries with a same-species donor, both assignment
+classes use the same recipients, calibration and uniform same-species
+baseline. Restricting donors to the same species narrows the attainable
+range from [−.604, .525] to [−.035, .115]. The zero-crossing weight rises
+from 6.3% to 53.9% on that support.
+
+Render the paper figure and the detailed supplement from these outputs:
 
 ```bash
 python -m pip install matplotlib==3.10.9
-python -B -m experiments.donor_assignment.plot_donor_sensitivity --paper
+python -B -m experiments.donor_assignment.plot_donor_sensitivity --paper --supplement
 ```
+
+The supplementary PDF shows magnified schedule distributions, the six-query
+counterexample, the 40 attribute omission results and the species ranges.
+Figure 4's CUB cap is the range over single-attribute omissions.
 
 The solver certifies each endpoint with a feasible mixture of at most
 two permutations per stratum and a supporting line for their annotation

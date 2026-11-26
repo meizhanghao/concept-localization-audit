@@ -3,6 +3,7 @@
 Run from main_python using python -B -m concept_null_audit.donor_calibrated.
 """
 
+from fractions import Fraction
 from itertools import permutations
 import json
 import time
@@ -18,19 +19,22 @@ import numpy as np
 from scipy.optimize import linprog
 
 
-def solve_stratum(objective, annotation):
+def solve_stratum(objective, annotation, *, allowed=None, anchor_target=None):
     """Maximize integer hit cost with a fixed mean annotation-transfer hit rate.
 
     The primal mixes at most two derangements in this stratum. Query weights
     are constant here. A supporting line in the two-dimensional image of the
     assignment polytope certifies optimality without a dense linear program.
+    An optional edge mask and rational annotation hit total restrict the class.
     """
     n = len(objective)
     row = np.arange(n)
-    denominator = n - 1
-    target_numerator = int(annotation.sum() - np.trace(annotation))
+    target = (Fraction(int(annotation.sum() - np.trace(annotation)), n - 1)
+              if anchor_target is None else anchor_target)
+    target_numerator, denominator = target.numerator, target.denominator
+
     def vertex(cost):
-        columns = matched_assignment(-cost)
+        columns = matched_assignment(-cost if allowed is None else np.where(allowed, -cost, np.inf))
         return (
             int(annotation[row, columns].sum()),
             int(objective[row, columns].sum()),
@@ -50,7 +54,7 @@ def solve_stratum(objective, annotation):
     else:
         low, high = central, vertex(objective + multiplier * annotation)
     if not low[0] * denominator <= target_numerator <= high[0] * denominator or low[0] >= high[0]:
-        raise AssertionError("The uniform annotation rate must be feasible.")
+        raise AssertionError("The declared annotation hit total must be feasible.")
     examined = 2
     for _ in range(n + 1):
         delta_hits = high[0] - low[0]
@@ -164,7 +168,7 @@ def integer_contrast(hits):
     return hits[0].astype(np.int16) * heads - hits[1:].sum(axis=0), heads
 
 
-def verify_mixture(solution, cost, annotation):
+def verify_mixture(solution, cost, annotation, *, allowed=None, anchor_target=None):
     """Recompute the objective and calibration directly from the two permutations."""
     row = np.arange(len(cost))
     a, b = (vertex[2] for vertex in solution["witness"])
@@ -172,17 +176,20 @@ def verify_mixture(solution, cost, annotation):
         np.testing.assert_array_equal(np.sort(permutation), row)
         if np.any(permutation == row):
             raise AssertionError("A witness assigned a query to itself.")
+        if allowed is not None and not allowed[row, permutation].all():
+            raise AssertionError("A witness used an ineligible donor edge.")
     mix = solution["mix_high"]
     score = (1 - mix) * int(cost[row, a].sum()) + mix * int(cost[row, b].sum())
     anchor = (1 - mix) * int(annotation[row, a].sum()) + mix * int(annotation[row, b].sum())
-    original_anchor = (annotation.sum() - np.trace(annotation)) / (len(cost) - 1)
-    np.testing.assert_allclose(anchor, original_anchor, atol=EPS, rtol=0)
+    target = ((annotation.sum() - np.trace(annotation)) / (len(cost) - 1)
+              if anchor_target is None else float(anchor_target))
+    np.testing.assert_allclose(anchor, target, atol=EPS, rtol=0)
     np.testing.assert_allclose(score, solution["mean"], atol=EPS, rtol=EPS)
     return a, b, mix
 
 
-def calibrated_examples():
-    """Equal original four scores can coexist with different calibrated ranges."""
+def example_hit_matrices():
+    """Construct the common annotation matrix and the two six-query examples."""
     n = 6
     rows = np.arange(n)
     shift = (rows + 1) % n
@@ -194,8 +201,15 @@ def calibrated_examples():
     sensitive = np.eye(n, dtype=int)
     sensitive[rows, shift] = 1
     sensitive[rows[:4], (rows[:4] + 3) % n] = 1
+    return anchor, {"stable": stable, "sensitive": sensitive}
+
+
+def calibrated_examples():
+    """Equal original four scores can coexist with different calibrated ranges."""
+    anchor, matrices = example_hit_matrices()
+    n = len(anchor)
     examples = {}
-    for name, cost in (("stable", stable), ("sensitive", sensitive)):
+    for name, cost in matrices.items():
         nominal = 1 - (cost.sum() - np.trace(cost)) / (n * (n - 1))
         maximum = solve_stratum(cost, anchor)
         minimum = solve_stratum(-cost, anchor)
