@@ -1,7 +1,6 @@
-# Auditing Concept Localization
+# Auditing Concept Localization Scores
 
-Code and numerical materials accompanying **Auditing Concept Localization:
-Crossed Controls and Concept Eligibility**.
+Code and numerical materials accompanying **Auditing Concept Localization Scores**.
 
 **Zhanghao Mei · Zuqiang Meng · Xuwei Tang**  
 College of Computer, Electronics and Information, Guangxi University
@@ -17,6 +16,9 @@ The [renderer-response follow-up](experiments/renderer_validity/) checks three
 existing models on a complementary 300-image cohort, reports visibility
 sensitivity and part-selection regret, and explicitly handles undefined
 correlation statistics. It does not establish a universal causal ranker.
+The [donor assignment audit](experiments/donor_assignment/) reuses nine primary
+cases to compute attainable score ranges under balanced donor policies with
+fixed annotation-point gain.
 The base snapshot's 57 numerical inputs remain unchanged. Later scientific
 extensions each have their own input/source manifest.
 See [version scope and reproduction commands](docs/paper_snapshot.md).
@@ -109,6 +111,7 @@ sensitivity and part-selection regret; its README explains undefined draws.
 | `concepts` | Primary same-part label contrast and a both-present conditional analysis, with paired intervals and random-head-adjusted contrasts. |
 | `bridge` | CUB donor-rule comparison holding 133 ordered pairs, 7,081 recipient records, maps and macro weights fixed. Own/donor hits are recomputed from native peaks and keypoints. |
 | `extensions` | Shared channel-permutation references and fixed-common-support same-species donors on native CUB maps. |
+| [Donor assignment](experiments/donor_assignment/) | Attainable excess ranges, worst-case mixture shares and geometry-based pairings with the annotation-point control fixed. |
 
 ### Individual and crossed contrasts
 
