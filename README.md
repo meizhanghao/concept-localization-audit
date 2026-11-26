@@ -110,6 +110,17 @@ sensitivity and part-selection regret; its README explains undefined draws.
 | `bridge` | CUB donor-rule comparison holding 133 ordered pairs, 7,081 recipient records, maps and macro weights fixed. Own/donor hits are recomputed from native peaks and keypoints. |
 | `extensions` | Shared channel-permutation references and fixed-common-support same-species donors on native CUB maps. |
 
+### Individual and crossed contrasts
+
+    python compare_controls.py --output results/control_comparison.json
+
+The comparison uses nine primary display/cohort cases with Gaussian
+references. For each case it reports image-pairing gain, the head gap on
+own-image maps and the interaction, using the existing queries, windows, donor
+schedules and bootstrap draws. The own-image head gap compares trained and
+random heads on target-image maps. The nine cases share images and models,
+and their intervals are pointwise.
+
 ### Same-part hit outcomes
 
 Reproduce the hit breakdown for the released Loc-CBM on the 133 ordered pairs

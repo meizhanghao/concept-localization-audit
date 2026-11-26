@@ -5,7 +5,7 @@ from .io import check_expected, load_arrays, read_json
 from .metrics import keypoint_hit
 
 
-def score_case(case, root):
+def score_case(case, root, *, report_head_gap=False):
     """Score one frozen query population and its paired bootstrap draws."""
     arrays = load_arrays(root / case['shared'])
     arrays.update(load_arrays(root / case['file']))
@@ -42,11 +42,14 @@ def score_case(case, root):
         def donor_hit(peak):
             return keypoint_hit(peak[donors], arrays['points_xy'][None]).mean(0)
 
-    scores, gains, bootstrap = [], [], []
+    scores, gains, bootstrap, own_bootstrap = [], [], [], []
     for head_peaks in peaks:
         own = own_hit(head_peaks).astype(float)
         gain = own - donor_hit(head_peaks)
         matrix = np.zeros_like(observed)
+        if report_head_gap:
+            matrix[images, groups] = own
+            own_bootstrap.append(((weights @ matrix) / denominator).mean(1))
         matrix[images, groups] = gain
         scores.append(float(query_weights @ own))
         gains.append(gain)
@@ -62,8 +65,14 @@ def score_case(case, root):
                       fixed_head_image_ci95=np.quantile(conditional, [.025, .975]).tolist())
         if case.get('joint', False):
             indices = np.arange(len(weights))[:, None]
-            joint = bootstrap[0] - bootstrap[1:].T[indices, arrays['head_indices']].mean(1)
+            head_indices = arrays['head_indices']
+            joint = bootstrap[0] - bootstrap[1:].T[indices, head_indices].mean(1)
             result['image_head_ci95'] = np.quantile(joint, [.025, .975]).tolist()
+            if report_head_gap:
+                own_bootstrap = np.asarray(own_bootstrap)
+                joint_gap = own_bootstrap[0] - own_bootstrap[1:].T[indices, head_indices].mean(1)
+                result['head_gap_own'] = float(scores[0] - np.mean(scores[1:]))
+                result['head_gap_own_ci95'] = np.quantile(joint_gap, [.025, .975]).tolist()
     return result, bootstrap[0]
 
 
