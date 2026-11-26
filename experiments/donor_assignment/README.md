@@ -15,6 +15,7 @@ python -m pip install -r requirements-reproduce.txt
 python -m pip install scipy==1.15.3
 python -B -m experiments.donor_assignment.donor_assignment
 python -B -m experiments.donor_assignment.donor_calibrated
+python -B -m experiments.donor_assignment.donor_group_influence
 ```
 
 The first command that runs an audit checks the 57 base input hashes,
@@ -39,6 +40,24 @@ The geometry-based policy is shared by the displays on each cohort. Its
 paired pointwise bootstrap intervals condition on that policy and support
 lower excess in five cases. All five retain positive excess intervals.
 The archived schedules and the uniform policy have slightly different means.
+Fixing mean annotation agreement within each stratum permits compensating
+changes between queries. A per-query equality would restrict the class.
+Zero is unreachable for a positive lower endpoint and is reached at weight
+one for a zero lower endpoint, assuming a positive uniform score.
+
+For disjoint CUB Loc-CBM, each of the 40 attribute-level lower endpoints is
+negative. The two largest attributes contribute 6.6% of the total
+uniform-to-minimum drop. Leaving out any one attribute gives a zero-crossing
+weight between 2.4% and 3.7%. The influence command independently recomputes
+the attribute optima. The paper's numerical supplement gives the full tables
+and witnesses.
+
+Render the English paper figure from the calibrated results:
+
+```bash
+python -m pip install matplotlib==3.10.9
+python -B -m experiments.donor_assignment.plot_donor_sensitivity --paper
+```
 
 The solver certifies each endpoint with a feasible mixture of at most
 two permutations per stratum and a supporting line for their annotation
