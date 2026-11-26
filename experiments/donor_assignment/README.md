@@ -54,8 +54,9 @@ the attribute optima. The paper's numerical supplement gives the full tables
 and witnesses.
 
 The policy details command recovers the 200 archived schedule scores for
-each case and checks their means and extrema. Each plotted schedule is a
-point from the original policy before the annotation constraint applies.
+each case and checks their means and extrema. A score is the crossed excess
+over all queries with one assignment shared by the trained and reference heads.
+The archived assignments use the original policy before annotation calibration.
 On 6,522 CUB Loc-CBM queries with a same-species donor, both assignment
 classes use the same recipients, calibration and uniform same-species
 baseline. Restricting donors to the same species narrows the attainable
@@ -69,9 +70,12 @@ python -m pip install matplotlib==3.10.9
 python -B -m experiments.donor_assignment.plot_donor_sensitivity --paper --supplement
 ```
 
-The supplementary PDF shows magnified schedule distributions, the six-query
-counterexample, the 40 attribute omission results and the species ranges.
-Figure 4's CUB cap is the range over single-attribute omissions.
+Figure 4 compares the observed schedule ranges with the calibrated attainable
+ranges. Supplemental Fig. S1 (`donor_schedule_distribution.pdf`) plots the two
+empirical cumulative distributions. `donor_schedule_scores.csv` exports the
+scores with their schedule indices. `donor_diagnostics_supplement.pdf` shows the
+six-query counterexample, the attribute omission results and the species
+ranges. Figure 4's CUB cap spans the single-attribute omissions.
 
 The solver certifies each endpoint with a feasible mixture of at most
 two permutations per stratum and a supporting line for their annotation

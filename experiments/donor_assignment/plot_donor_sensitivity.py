@@ -1,6 +1,7 @@
-"""Render the donor sensitivity figure from the verified numerical output."""
+"""Render the donor sensitivity figures from the verified numerical output."""
 
 import argparse
+import csv
 import json
 from pathlib import Path
 
@@ -39,13 +40,19 @@ def case_values(results, cohort, case):
     return uniform, low, high, crossing
 
 
-def add_schedule_strip(axis, details, cohort, case, y, amplitude, color, size):
-    values = np.asarray(details["schedules"][cohort]["delta_G"][case])
-    if len(values) != 200:
-        raise ValueError(f"Expected the 200 archived schedules for {case}.")
-    jitter = np.random.default_rng(42).uniform(-amplitude, amplitude, len(values))
-    axis.scatter(values, y + jitter, color=color, s=size, alpha=.34, linewidth=0, zorder=2)
+def schedule_scores(details, cohort, case):
+    archived = details["schedules"][cohort]
+    values = np.asarray(archived["delta_G"][case], dtype=float)
+    if values.shape != (archived["schedule_count"],) or not values.size or not np.isfinite(values).all():
+        raise ValueError(f"Invalid archived schedule scores for {case}.")
     return values
+
+
+def add_observed_range(axis, details, cohort, case, height, color):
+    scores = schedule_scores(details, cohort, case)
+    endpoints = [scores.min(), scores.max()]
+    axis.hlines(height, *endpoints, color=color, linewidth=2.0)
+    axis.vlines(endpoints, height - .055, height + .055, color=color, linewidth=.8)
 
 
 def render_chinese(results, details, output):
@@ -92,7 +99,7 @@ def render_chinese(results, details, output):
         bounds.text(-.72, height + .21, label, va="center", color=color, weight="bold")
         bounds.hlines(height, low, high, color=color, linewidth=3, alpha=.70)
         bounds.vlines([low, high], height - .045, height + .045, color=color, linewidth=1.5)
-        add_schedule_strip(bounds, details, cohort, case, height + .21, .09, color, 11)
+        add_observed_range(bounds, details, cohort, case, height + .21, color)
         bounds.scatter(uniform, height, marker="D", s=55, color=color, edgecolor="white", linewidth=1.2, zorder=3)
         for position in (low, high):
             bounds.text(position, height - .15, signed(position), ha="center",
@@ -116,7 +123,7 @@ def render_chinese(results, details, output):
     for axis in (bounds, mixture):
         axis.spines[["top", "right"]].set_visible(False)
     bounds.spines["left"].set_visible(False)
-    figure.text(.085, .055, "小点为 200 次原配对；菱形为均匀配对；横线为约束范围。",
+    figure.text(.085, .055, "上方短线为 200 次原配对的极差；菱形与下方长线为均匀值与约束范围。",
                 color="#43566a", fontsize=9)
     figure.text(.57, .055, "斜线由可达下界计算。横轴显示 0–50%。",
                 color="#43566a", fontsize=9)
@@ -135,7 +142,7 @@ def render_paper(results, details, influence, output):
     })
     figure, (bounds, mixture) = plt.subplots(1, 2, figsize=(4.78, 1.50))
     figure.subplots_adjust(left=.036, right=.962, bottom=.245, top=.825, wspace=.34)
-    bounds.set_title("a   Schedules and range", loc="left", fontsize=8.5, weight="bold", pad=4)
+    bounds.set_title("a   Donor score ranges", loc="left", fontsize=8.5, weight="bold", pad=4)
     mixture.set_title("b   Worst-case mixture", loc="left", fontsize=8.5, weight="bold", pad=4)
     bounds.set(xlim=(-.73, .61), ylim=(-.52, 1.53), yticks=[],
                xlabel=r"Crossed excess $\Delta G$")
@@ -156,7 +163,7 @@ def render_paper(results, details, influence, output):
         bounds.text(-.695, height + .17, label, color=color, va="bottom")
         bounds.hlines(height, low, high, color=color, linewidth=1.5)
         bounds.vlines([low, high], height - .075, height + .075, color=color, linewidth=.8)
-        add_schedule_strip(bounds, details, cohort, case, height + .28, .12, color, 4)
+        add_observed_range(bounds, details, cohort, case, height + .27, color)
         bounds.scatter(uniform, height, marker="D", s=19, color=color, edgecolor="white", linewidth=.55, zorder=3)
         mixture.plot(shares, uniform + shares * (low - uniform), color=color,
                      linewidth=1.35, linestyle="-" if row == 0 else "--")
@@ -187,37 +194,61 @@ def clean_axes(axis):
     axis.tick_params(length=2.5, pad=3)
 
 
-def render_supplement(results, details, influence, output):
-    """Render the archived scores, analytical example and two influence checks."""
+def render_distributions(results, details, output):
+    """Plot the empirical CDF for each case, using every archived score."""
+    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9, "pdf.fonttype": 42})
+    figure, axes = plt.subplots(1, 2, sharey=True, figsize=(7.35, 3.5))
+    figure.subplots_adjust(left=.119, right=.965, bottom=.24, top=.75, wspace=.23)
+    muted = "#546375"
+    figure.text(.119, .906, "Fig. S1  Excess across archived donor schedules", fontsize=14, weight="bold")
+    figure.text(.119, .832, "Original donor policy before annotation calibration. Each panel uses its own horizontal scale.",
+                fontsize=8.6, color=muted)
+
+    csv_path = output / "donor_schedule_scores.csv"
+    csv_rows = []
+    for axis, (cohort, case, _, color), title in zip(axes, CASES, ("FunnyBirds CAM", "Disjoint CUB Loc-CBM")):
+        scores = schedule_scores(details, cohort, case)
+        csv_rows.extend((case, index, score) for index, score in enumerate(scores))
+        ordered = np.sort(scores)
+        cumulative = np.arange(1, len(scores) + 1) / len(scores)
+        q25, median, q75 = np.quantile(scores, [.25, .5, .75])
+        uniform, _, _, _ = case_values(results, cohort, case)
+        pad = max(.075 * np.ptp(scores), .0005)
+        xmin, xmax = ordered[0] - pad, ordered[-1] + pad
+        axis.axvspan(q25, q75, color=color, alpha=.10, linewidth=0)
+        axis.step(np.r_[xmin, ordered, xmax], np.r_[0, cumulative, 1], where="post", color=color, linewidth=1.2)
+        axis.scatter(ordered, cumulative, color=color, s=6, alpha=.64, linewidth=0, zorder=3)
+        axis.axvline(uniform, color=muted, linewidth=.9, linestyle="--")
+        axis.set_title(f"{title}  |  {len(scores)} schedules", loc="left", fontsize=9.8, color=color, pad=5)
+        axis.text(.975, .11, f"Median {median:.4f}\nRange {ordered[0]:.4f} to {ordered[-1]:.4f}",
+                  transform=axis.transAxes, ha="right", va="bottom", fontsize=8.3, color=muted)
+        axis.set(xlim=(xmin, xmax), ylim=(-.025, 1.025), xlabel=r"Crossed excess $\Delta G$")
+        axis.set_yticks([0, .25, .50, .75, 1])
+        axis.yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
+        axis.grid(axis="y", color="#e4e9ed", linewidth=.65)
+        clean_axes(axis)
+    axes[0].set_ylabel("Cumulative share of schedules")
+    figure.text(.119, .082, r"Each dot is one ranked score. Shading marks the middle 50%. Dashed lines mark uniform $d_0$.",
+                fontsize=8.5, color=muted)
+    figure.savefig(output / "donor_schedule_distribution.pdf", metadata=PDF_METADATA)
+    plt.close(figure)
+    with csv_path.open("w", encoding="utf-8", newline="") as stream:
+        writer = csv.writer(stream, lineterminator="\n")
+        writer.writerow(("case", "schedule_index", "delta_G"))
+        writer.writerows(csv_rows)
+
+
+def render_supplement(details, influence, output):
+    """Render the analytical example and two influence checks."""
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9, "pdf.fonttype": 42})
     ink, muted, gold = "#182939", "#546375", "#dc911e"
-    figure = plt.figure(figsize=(8.3, 10.25), layout=None)
+    figure = plt.figure(figsize=(8.3, 8.7), layout=None)
     grid = figure.add_gridspec(
-        4, 6, left=.115, right=.95, top=.865, bottom=.074,
-        height_ratios=(.83, 1.51, .91, 1.27), hspace=.82, wspace=1.33,
+        3, 6, left=.115, right=.95, top=.807, bottom=.087,
+        height_ratios=(1.51, .91, 1.27), hspace=.91, wspace=1.33,
     )
     figure.text(.115, .96, "Where donor sensitivity comes from", color=ink, fontsize=20, weight="bold")
     figure.text(.115, .93, "Peak-in-window audit · fixed cached maps, labels and head banks", color=muted, fontsize=10)
-    figure.text(.115, .9, "a   Archived schedules before annotation calibration", color=ink, fontsize=11, weight="bold")
-
-    for index, (cohort, case, _, color) in enumerate(CASES):
-        axis = figure.add_subplot(grid[0, index * 3:(index+1)*3])
-        uniform, _, _, _ = case_values(results, cohort, case)
-        scores = add_schedule_strip(axis, details, cohort, case, .48, .24, color, 15)
-        box = axis.boxplot([scores], positions=[-.18], widths=.22, vert=False, showfliers=False,
-                           whis=(0, 100), patch_artist=True, manage_ticks=False,
-                           boxprops={"facecolor": "#edf1f5", "edgecolor": color},
-                           medianprops={"color": color, "linewidth": 1.5},
-                           whiskerprops={"color": color}, capprops={"color": color})
-        box["boxes"][0].set_zorder(2)
-        axis.axvline(uniform, color=color, linestyle=":", linewidth=.8)
-        axis.scatter(uniform, -.18, marker="D", color=color, edgecolor="white", linewidth=.5, s=34, zorder=4)
-        label = ("FunnyBirds CAM", "Disjoint CUB Loc-CBM")[index]
-        axis.set_title(f"{label} · $d_0$ = {uniform:.3f}", loc="left", color=color, fontsize=10, pad=2)
-        axis.set(ylim=(-.4, .88), yticks=[])
-        clean_axes(axis)
-        axis.spines["left"].set_visible(False)
-
     example = details["counterexample"]
     row = np.arange(6)
     cmap = ListedColormap(["#ffffff", "#3e7899"])
@@ -225,7 +256,7 @@ def render_supplement(results, details, influence, output):
     titles = ("Fixed range [2/3, 2/3]", "Variable range [0, 1]", "Shared annotation hits")
     matrix_axes = []
     for index, (matrix, label) in enumerate(zip(matrices, titles)):
-        axis = figure.add_subplot(grid[1, index*2:(index+1)*2])
+        axis = figure.add_subplot(grid[0, index*2:(index+1)*2])
         matrix_axes.append(axis)
         display = np.array(matrix, dtype=float)
         display[row, row] = np.nan
@@ -246,7 +277,7 @@ def render_supplement(results, details, influence, output):
             axis.scatter(lower, row, marker="o", s=36, facecolors="none", edgecolors=gold, linewidth=1.15)
             axis.scatter(upper, row, marker="x", s=24, c="#ad3b27", linewidth=1.0)
     matrix_top = max(axis.get_position().y1 for axis in matrix_axes)
-    figure.text(.115, matrix_top+.048, "b   Identical summary scores can hide different assignment ranges",
+    figure.text(.115, matrix_top+.058, "a   Identical summary scores can hide different assignment ranges",
                 color=ink, fontsize=11, weight="bold")
     figure.text(.115, matrix_top+.028, r"Both have $(S,G,G_{\rm rand},\Delta G)=(1,2/3,0,2/3)$ and annotation gain $5/6$.",
                 color=muted, fontsize=9)
@@ -258,9 +289,9 @@ def render_supplement(results, details, influence, output):
                 color=muted, fontsize=8.2)
 
     contributions = sorted(influence["rows"], key=lambda row: row["share_of_total_drop"], reverse=True)
-    left = figure.add_subplot(grid[2, :3])
-    right = figure.add_subplot(grid[2, 3:])
-    left.set_title("c   CUB influence across 40 attributes", loc="left", color=ink, fontsize=11, weight="bold", pad=7)
+    left = figure.add_subplot(grid[1, :3])
+    right = figure.add_subplot(grid[1, 3:])
+    left.set_title("b   CUB influence across 40 attributes", loc="left", color=ink, fontsize=11, weight="bold", pad=7)
     rank = np.arange(1, len(contributions)+1)
     color = CASES[1][3]
     left.bar(rank, [r["share_of_total_drop"] for r in contributions], color=color, width=.79, alpha=.83)
@@ -282,8 +313,8 @@ def render_supplement(results, details, influence, output):
                 color=muted, fontsize=8.2)
 
     species = details["species"]["same_support"]
-    axis = figure.add_subplot(grid[3, :])
-    axis.set_title("d   Same-species restriction on identical CUB queries", loc="left", color=ink,
+    axis = figure.add_subplot(grid[2, :])
+    axis.set_title("c   Same-species restriction on identical CUB queries", loc="left", color=ink,
                    fontsize=11, weight="bold", pad=15)
     baseline = species["uniform_excess"]
     axis.axvline(0, color=muted, linewidth=.8, linestyle="--")
@@ -313,7 +344,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--results-dir", type=Path, default=default_results)
     parser.add_argument("--paper", action="store_true", help="Render the manuscript's English PDF.")
-    parser.add_argument("--supplement", action="store_true", help="Render the detailed supplementary PDF.")
+    parser.add_argument("--supplement", action="store_true", help="Render the supplemental PDFs and export plotted scores.")
     args = parser.parse_args()
     results = json.loads((args.results_dir / "calibrated_results.json").read_text(encoding="utf-8"))
     details = json.loads((args.results_dir / "donor_policy_details.json").read_text(encoding="utf-8"))
@@ -321,7 +352,8 @@ def main():
     if args.paper:
         render_paper(results, details, influence, args.results_dir)
     if args.supplement:
-        render_supplement(results, details, influence, args.results_dir)
+        render_distributions(results, details, args.results_dir)
+        render_supplement(details, influence, args.results_dir)
     if not (args.paper or args.supplement):
         render_chinese(results, details, args.results_dir)
 
