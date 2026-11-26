@@ -110,6 +110,19 @@ sensitivity and part-selection regret; its README explains undefined draws.
 | `bridge` | CUB donor-rule comparison holding 133 ordered pairs, 7,081 recipient records, maps and macro weights fixed. Own/donor hits are recomputed from native peaks and keypoints. |
 | `extensions` | Shared channel-permutation references and fixed-common-support same-species donors on native CUB maps. |
 
+### Same-part hit outcomes
+
+Reproduce the hit breakdown for the released Loc-CBM on the 133 ordered pairs
+with both attributes present:
+
+    python same_part_hits.py
+
+The command uses the frozen CUB peaks, h=45 hit scores, donor pools and macro
+weights from the concept audit. Peaks differ in 99.3% of pair–image comparisons.
+Scores tie in 64.1% (54.4% both miss and 9.7% both hit). Target and foil maps
+are each the only hit in 18.2% and 17.7% of comparisons, respectively. The
+rates describe the shared scoring window on this cohort.
+
 ## Window sensitivity
 
 The exploratory native CUB window sweep uses the same released peaks,
