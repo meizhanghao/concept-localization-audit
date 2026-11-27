@@ -2,9 +2,13 @@
   "files": {
     "data/maps.npz": "5d81e98e3e572c9c4fd5405e69673557415a7af7ff23becf4ce7b708afb5333c",
     "data/provenance.json": "e2961034f211bc94b107fed5f2667e27c4b52f69a5f33047fee430b4c76ac455",
-    "README.md": "d955f21d4f34b42cb133d7b7bc340c01d246a8850ca6142fe3643ced2fe1f900",
+    "README.md": "208639e0ff181d275cb2c412f0cf9daedd34819adaba55fa64ae1efc1ab87f1c",
     "render.py": "1bf0889092206bb44a3334e449d7808c6dc4172660450c69a9a11e1f528fd80b",
-    "source/upgrade_examples.py": "314d7fcd782e63d7149de990b46bfe939f159c1663f80dda2649caa2d2dba9bc"
+    "source/upgrade_examples.py": "314d7fcd782e63d7149de990b46bfe939f159c1663f80dda2649caa2d2dba9bc",
+    "render_extended.py": "1471943fba2fc0e76b3bb195c35ba5c97f8eb1905a434b5505879442990a1186",
+    "data/extended_examples.npz": "76b9cc18069ea41eb7289e3699a9e712390ca5f0e220516473699053d4c06874",
+    "data/extended_provenance.json": "31532fdb4c8257c69bcc356f2d96092fb2b82eb2935844dbefcef804814db53e",
+    "source/prepare_extended_figures.py": "9aa28fd14da84ebab90cc7e87276837e6ed4513f0f6b2438e5eb66df2877960c"
   },
-  "scope": "Figure 3 replot; source datasets supplied separately."
+  "scope": "Four-cell and extended figure re-rendering. Source dataset RGB images are supplied separately."
 }

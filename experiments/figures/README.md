@@ -1,4 +1,4 @@
-# Figure 3: four audit cells
+# Manuscript figures from cached audit inputs
 
 Replot the manuscript's illustrative CUB and FunnyBirds cases using frozen
 model-derived maps and the original dataset images. No generative image model,
@@ -42,4 +42,32 @@ meaning of breast texture or beak identity.
 `source/upgrade_examples.py` records the executed research generator; its
 relative imports require the author's full research environment. The portable
 `render.py` command instead verifies frozen maps and user-provided RGB images.
-It does **not** regenerate the model maps from trained weights.
+Full model map generation uses the research generator.
+
+## Scoring geometry, eligible concepts and calibrated donor ranges
+
+From the public repository root, render the three additional PDFs with
+
+```bash
+python -m experiments.figures.render_extended --cub-root /path/to/CUB_200_2011 --funnybirds-zip /path/to/FunnyBirds.zip --out-dir results/manuscript_figures
+```
+
+This command also uses SciPy and checks the cached RGB, map and result hashes.
+Pass `--preview-dir results/manuscript_figures/previews` to export PNG previews.
+
+| Output | Inputs |
+| --- | --- |
+| `geometry_scoring_examples.pdf` | The two recipients from the four-cell figure, each with its cached annotation, scoring window and trained/random own-image peaks |
+| `concept_eligibility_examples.pdf` | CUB image 28, its two projected Loc-CBM bill-attribute maps and the existing fixed-recipient donor-eligibility comparison |
+| `donor_calibration_ranges.pdf` | The four attainable ranges from the common-support calibration analysis on 6,522 queries |
+
+The co-present photo is the first qualifying cached record, using a shared
+window, two hits, two available nonzero maps and a minimum peak separation of
+16 pixels for readability. It illustrates one binary-score tie. The adjacent
+plot summarizes all 7,081 recipient records from 133 ordered pairs. Its
+interval belongs to the paired change in the contrast.
+
+`data/extended_provenance.json` records the picture ID, coordinates, attribute
+IDs, crop, selection rule and data hashes. The extended NPZ contains only the
+scoring annotations and two projected maps used in the figures. The local
+author workflow is recorded in `source/prepare_extended_figures.py`.

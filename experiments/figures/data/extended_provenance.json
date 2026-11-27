@@ -1,0 +1,102 @@
+{
+  "copresent_case": {
+    "dataset": "CUB",
+    "recipient_image_id": 28,
+    "source_paths": [
+      "001.Black_footed_Albatross/Black_Footed_Albatross_0005_796090.jpg"
+    ],
+    "crop_boxes_xyxy": [
+      [
+        1,
+        2,
+        500,
+        288
+      ]
+    ],
+    "resized_rgb_sha256": [
+      "9898db14ba8146f8580d56bf3d5eaf374019e9bd4d4aba68befc3075b7b7efc0"
+    ],
+    "selection": "First stored qualifying record with two nonzero cached hits, shared keypoints, both raw maps and peaks at least 16 pixels apart.",
+    "pair_index": 0,
+    "pair_image_record": 0,
+    "frozen_query_indices": [
+      10,
+      14
+    ],
+    "attribute_ids_0based": [
+      6,
+      149
+    ],
+    "concepts": [
+      "has_bill_shape::all-purpose",
+      "has_bill_length::about_the_same_as_head"
+    ],
+    "certainty_ids": [
+      3,
+      3
+    ],
+    "peaks_xy": [
+      [
+        50,
+        121
+      ],
+      [
+        97,
+        122
+      ]
+    ],
+    "hits": [
+      1,
+      1
+    ]
+  },
+  "bridge_pairs": 133,
+  "bridge_recipient_records": 7081,
+  "geometry_description": "The same recipient queries and peak caches as the four-cell figure.",
+  "author_inputs": {
+    "population": {
+      "path": "main_python/concept_null_audit/artifacts/cub_frozen_replication_2026-11-20/population.npz",
+      "sha256": "e2f3524dd8bdb3265433b33a8a8f4b39c748e4e3da26d8a06bb3a302226d04a1"
+    },
+    "original_provenance": {
+      "path": "main_python/concept_null_audit/figure_bundle/data/provenance.json",
+      "sha256": "e2961034f211bc94b107fed5f2667e27c4b52f69a5f33047fee430b4c76ac455"
+    },
+    "original_maps": {
+      "path": "main_python/concept_null_audit/figure_bundle/data/maps.npz",
+      "sha256": "5d81e98e3e572c9c4fd5405e69673557415a7af7ff23becf4ce7b708afb5333c"
+    },
+    "funnybirds_masks": {
+      "path": "main_python/concept_null_audit/artifacts/funnybirds_2026-11-15/test_masks.npy",
+      "sha256": "cdb6442af655f04bdb6940680d954ddc12760714428a337a1d68bf86c4bbbb47"
+    },
+    "presence_protocol": {
+      "path": "main_python/concept_null_audit/artifacts/concept_axis_2026-11-22/presence_matched_protocol.json",
+      "sha256": "0e31b840b0e579ae91fa9a3e4f77026dec8c1762f5e4be7d93cd9587513d74a8"
+    },
+    "presence_scores": {
+      "path": "main_python/concept_null_audit/artifacts/concept_axis_2026-11-22/presence_matched_scores.npz",
+      "sha256": "2321877aacaee4b230444c4f20fb27a85b5abbecb3448d26af3c8cdc82701d00"
+    },
+    "native_peaks": {
+      "path": "main_python/concept_null_audit/artifacts/concept_axis_2026-11-22/all_concept_peaks.npz",
+      "sha256": "63a09e3922dfb8b39470ad6abbd5824c4a365e8c7746cdf5a4e37174fd2f4251"
+    },
+    "native_maps": {
+      "path": "main_python/concept_null_audit/artifacts/frozen_adapter_review_2026-11-21/native_maps_before_projection.npz",
+      "sha256": "dc78063327662864dc8ee6a00498668f90803ba733b85f744acd0764f93e9172"
+    },
+    "donor_bridge": {
+      "path": "main_python/concept_null_audit/artifacts/concept_axis_2026-11-22/donor_bridge_results.json",
+      "sha256": "663ecb593b550fd358e59b4a0468634279b846c1fc851b220d1172f907ba0d0e"
+    },
+    "donor_calibration": {
+      "path": "main_python/concept_null_audit/artifacts/donor_assignment_2026-11-26/query_calibration.json",
+      "sha256": "29d6154ad38fee0f9e60931f9dbb714bdce928f7be445f675974cb504ce2a3f3"
+    }
+  },
+  "public_results_sha256": {
+    "donor_calibration": "29d6154ad38fee0f9e60931f9dbb714bdce928f7be445f675974cb504ce2a3f3",
+    "donor_bridge": "8ec1e084c6138680a5253ab7aebbae8262e5864b1817b407351134d1592628fd"
+  }
+}
