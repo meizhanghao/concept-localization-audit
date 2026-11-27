@@ -1,0 +1,62 @@
+{
+  "scope": "Exploratory finite-cohort sensitivity on identical recipients, maps, reference heads and weights.",
+  "baseline": "Uniform same-species nonself donors within each attribute. Attributes have equal weight.",
+  "queries": 6522,
+  "full_queries": 8323,
+  "images": 800,
+  "attributes": 40,
+  "uniform_excess": 0.04067170573793603,
+  "classes": {
+    "all_species_group_mean": {
+      "range": [
+        -0.6039462055392876,
+        0.5253237311103732
+      ],
+      "zero_reachability": {
+        "status": "zero_reachable",
+        "fraction": 0.06309428426732748
+      }
+    },
+    "all_species_per_query": {
+      "range": [
+        -0.5595822256064673,
+        0.49388602265556536
+      ],
+      "zero_reachability": {
+        "status": "zero_reachable",
+        "fraction": 0.06775749997479004
+      }
+    },
+    "same_species_group_mean": {
+      "range": [
+        -0.03483196084722449,
+        0.11532391214236108
+      ],
+      "zero_reachability": {
+        "status": "zero_reachable",
+        "fraction": 0.5386719291580687
+      }
+    },
+    "same_species_per_query": {
+      "range": [
+        0.007972699664260095,
+        0.07314468016754881
+      ],
+      "zero_reachability": {
+        "status": "sign_preserved_over_entire_family",
+        "fraction": null
+      }
+    }
+  },
+  "checks": {
+    "exact_species_blocks": 2358,
+    "max_exact_total_error": 5.684341886080802e-14,
+    "max_lp_feasibility_residual": 3.4416913763379853e-15,
+    "inputs_verified": 57
+  },
+  "inputs_sha256": {
+    "core_audit/data/new_CUB_context.npz": "dd1e53e7f591eef4760f291011bcd990c14207f1417be5a1ca8fe822162d7c24",
+    "core_audit/data/new_CUB_native_LocCBM.npz": "f1f47975052afcd5b6a21bf85a5a15029834f622e5f88f20f36dfa60d97282d3",
+    "extensions/donor_species.npz": "6488318a4d5dd7a9b4d76379a576184dcfe9ff738b555dab1564f78a39436305"
+  }
+}

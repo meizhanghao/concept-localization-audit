@@ -17,6 +17,7 @@ python -B -m experiments.donor_assignment.donor_assignment
 python -B -m experiments.donor_assignment.donor_calibrated
 python -B -m experiments.donor_assignment.donor_group_influence
 python -B -m experiments.donor_assignment.donor_policy_details
+python -B -m experiments.donor_assignment.donor_query_calibration
 ```
 
 The first command that runs an audit checks the 57 base input hashes,
@@ -42,7 +43,8 @@ paired pointwise bootstrap intervals condition on that policy and support
 lower excess in five cases. All five retain positive excess intervals.
 The archived schedules and the uniform policy have slightly different means.
 Fixing mean annotation agreement within each stratum permits compensating
-changes between queries. A per-query equality would restrict the class.
+changes between queries. Per-query calibration holds each recipient's
+expected annotation hit at the baseline value.
 Zero is unreachable for a positive lower endpoint and is reached at weight
 one for a zero lower endpoint, assuming a positive uniform score.
 
@@ -57,11 +59,25 @@ The policy details command recovers the 200 archived schedule scores for
 each case and checks their means and extrema. A score is the crossed excess
 over all queries with one assignment shared by the trained and reference heads.
 The archived assignments use the original policy before annotation calibration.
-On 6,522 CUB Loc-CBM queries with a same-species donor, both assignment
-classes use the same recipients, calibration and uniform same-species
-baseline. Restricting donors to the same species narrows the attainable
-range from [−.604, .525] to [−.035, .115]. The zero-crossing weight rises
-from 6.3% to 53.9% on that support.
+The query calibration command independently reproduces the paper's
+common-support sensitivity table from verified inputs. All four classes use
+6,522 Loc-CBM queries with a same-species donor, the same head bank, and the
+uniform same-species baseline `d0 = .0407`.
+
+| Donors | Calibration | Attainable `ΔG` | Mixture share at zero |
+|---|---|---:|---:|
+| All species | Attribute mean | [−.6039, .5253] | 6.3% |
+| All species | Per query | [−.5596, .4939] | 6.8% |
+| Same species | Attribute mean | [−.0348, .1153] | 53.9% |
+| Same species | Per query | [.0080, .0731] | Unreachable |
+
+The command needs no preceding audit outputs. It writes
+`results/donor_assignment/query_calibration.json`. The archived output
+[query_calibration_results.json](query_calibration_results.json) includes
+input hashes and solver checks. The per-query solver checks feasibility and
+nesting, and verifies the same-species endpoints with exact enumeration in
+2,358 species-by-attribute blocks. These bounds describe the declared policy
+classes on this fixed cohort.
 
 Render the paper figure and the detailed supplement from these outputs:
 
