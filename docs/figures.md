@@ -5,11 +5,13 @@ and model maps are not produced by a generative image model.
 
 | Figure | Rendering | Evidence and scope |
 | --- | --- | --- |
-| 1: crossed workflow | LaTeX/TikZ | A schematic of the declared audit. Boxes and arrows describe the procedure; they are not measured model evidence. |
-| 2: diagnostic plots | Matplotlib, with the top two panels retained from a three-panel PDF | Plots fixed audit JSON results, including spatial agreement, image-pairing gains and conditional reference intervals. Paired excess intervals determine the diagnostic conclusion. |
-| 3: four-cell examples | Pillow and Matplotlib; maps originally computed with PyTorch | Uses CUB photographs and the official FunnyBirds rendered dataset. Shows individual own/donor × trained/random hit predicates, not population gain estimates. |
+| Audit overview | Pillow and Matplotlib | Shows one CUB donor-map transfer alongside cohort-level four-cell scores and the attainable donor range. |
+| Scoring geometry | Pillow and Matplotlib | Shows the annotations, acceptance regions and scored peaks for the CUB and FunnyBirds examples. |
+| Diagnostic plots | Matplotlib | Plots spatial agreement, image-pairing gains and conditional reference intervals from archived audit results. |
+| Four-cell examples | Pillow and Matplotlib, with cached PyTorch maps | Shows own/donor × trained/random hits for one CUB query and one FunnyBirds query. |
+| Eligibility and calibrated ranges | Pillow and Matplotlib | Illustrates a co-present pair and visualizes the fixed-recipient bridge and the four calibrated policy ranges. |
 
-## Replot Figure 3
+## Replot the four-cell examples
 
 The [figure bundle](../experiments/figures/) includes frozen model maps, scored
 peaks, acceptance regions, original image identifiers, pixel checksums and the
@@ -17,7 +19,7 @@ executed research generator. The portable replot command reads separately
 obtained source datasets; no source RGB arrays are bundled.
 
 ```bash
-python experiments/figures/render.py --cub-root /path/to/CUB_200_2011 --funnybirds-zip /path/to/FunnyBirds.zip --out-dir results/figure3
+python experiments/figures/render.py --cub-root /path/to/CUB_200_2011 --funnybirds-zip /path/to/FunnyBirds.zip --out-dir results/four_cells
 ```
 
 Read the bundle README for preprocessing and scope. This command regenerates

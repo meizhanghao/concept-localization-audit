@@ -1,4 +1,4 @@
-"""Replot Figure 3 from frozen model maps and user-supplied dataset images.
+"""Replot the four-cell examples from frozen maps and dataset images.
 
 No image synthesis or model inference is performed. Source RGB pixels are read
 from CUB and the official FunnyBirds ZIP, then cropped/resized as declared in
@@ -17,6 +17,12 @@ from PIL import Image
 
 
 BASE = Path(__file__).resolve().parent
+PAPER_FONT = {
+    'font.family': 'serif',
+    'font.serif': ['Times New Roman', 'STIXGeneral'],
+    'mathtext.fontset': 'stix',
+    'pdf.fonttype': 42,
+}
 
 
 def sha256(path):
@@ -53,8 +59,7 @@ def draw(cases, images, arrays, out_dir):
     import matplotlib.pyplot as plt
     from matplotlib import patheffects
 
-    plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 6.4,
-                         'pdf.fonttype': 42})
+    plt.rcParams.update({**PAPER_FONT, 'font.size': 7.1})
     fig, axes = plt.subplots(2, 6, figsize=(4.8, 2.42))
     fig.subplots_adjust(left=.005, right=.995, top=.86, bottom=.07,
                         wspace=.035, hspace=.64)
@@ -78,7 +83,7 @@ def draw(cases, images, arrays, out_dir):
         for col, ax in enumerate(axes[row]):
             ax.imshow(rgb[1 if col == 1 else 0])
             ax.set_axis_off()
-            ax.set_title(titles[col], fontsize=6.3, pad=2)
+            ax.set_title(titles[col], fontsize=7.0, pad=2)
             if col >= 2:
                 k = col - 2
                 values = maps[k]
@@ -94,13 +99,13 @@ def draw(cases, images, arrays, out_dir):
                 point.set_path_effects([patheffects.withStroke(
                     linewidth=1.9, foreground='black')])
                 ax.text(.025, .025, f"hit={hits[k]}", transform=ax.transAxes,
-                        color='white', fontsize=6.0,
+                        color='white', fontsize=7.0,
                         bbox={'facecolor': 'black', 'alpha': .75,
                               'edgecolor': 'none', 'pad': 1})
     fig.text(.005, .012,
              'Cyan: acceptance boundary   White x: scored peak   Donor maps retain source coordinates',
-             fontsize=6.0)
-    fig.savefig(out_dir / 'four_cell_examples.pdf')
+             fontsize=7.0)
+    fig.savefig(out_dir / 'four_cell_examples.pdf', metadata={'CreationDate': None})
     fig.savefig(out_dir / 'four_cell_examples.png', dpi=300)
     plt.close(fig)
 

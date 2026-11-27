@@ -1,4 +1,4 @@
-"""Render the scoring geometry, co-present case and calibrated donor ranges."""
+"""Render the audit overview, scoring geometry, co-present case and donor ranges."""
 
 import argparse
 import json
@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 from scipy.ndimage import maximum_filter
 
-from .render import BASE, load_images, sha256
+from .render import BASE, PAPER_FONT, load_images, sha256
 
 
 CYAN = "#00d4e8"
@@ -80,6 +80,77 @@ def save(fig, out_dir, preview_dir, name):
     plt.close(fig)
 
 
+def draw_framework(rgb, case, cells, framework, out_dir, preview_dir):
+    """Illustrate the audit using a CUB query and its cohort's recorded results."""
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyArrowPatch
+
+    fig = plt.figure(figsize=(4.8, 3.65))
+    panel(fig, .018, .985, "(a) Fix one scoring window")
+    window = case["cub__window"]
+    tiles = (
+        (.042, rgb[0], "Recipient window"),
+        (.237, rgb[1], "Donor image"),
+        (.467, rgb[0], "Donor map on recipient"),
+    )
+    axes = [fig.add_axes((x, .752, .154, .203)) for x, _, _ in tiles]
+    for ax, (_, image, title) in zip(axes, tiles):
+        photo(ax, image, "")
+        ax.text(.5, -.058, title, ha="center", va="top", transform=ax.transAxes)
+    outline(axes[0], window)
+    heatmap(axes[2], case["cub__maps"][1])
+    outline(axes[2], window)
+    peak = case["cub__peaks_xy"][1]
+    hit = bool(window[peak[1], peak[0]])
+    mark(axes[2], peak, "x" if hit else "o", "white")
+    fig.add_artist(FancyArrowPatch((.400, .851), (.455, .851), transform=fig.transFigure,
+                                   arrowstyle="-|>", mutation_scale=7, color=GUIDE, linewidth=.8))
+    fig.text(.711, .883, "Fixed concept", weight="bold", fontsize=8)
+    fig.text(.711, .839, "Solid breast pattern", fontsize=7.6)
+    fig.text(.711, .786, f"Donor peak {'hits' if hit else 'misses'} ({int(hit)})", fontsize=7.6)
+
+    panel(fig, .018, .677, "(b) Compare image and head controls")
+    matrix = fig.add_axes((.035, .349, .93, .257))
+    matrix.set(xlim=(0, 1), ylim=(0, 1))
+    matrix.set_axis_off()
+    centers = (.36, .60, .85)
+    for xc, label in zip(centers, ("Own image", "Donor image", "Own − donor")):
+        matrix.text(xc, .94, label, ha="center", va="center", fontsize=7.4, weight="bold")
+    gains = {}
+    for j, (head, label, color, fill) in enumerate(
+        (("trained", "Trained", BLUE, "#edf4f9"), ("reference", "Randomized", RUST, "#fbf1ed"))
+    ):
+        y = .62 - j * .37
+        matrix.axhspan(y - .108, y + .108, color=fill, linewidth=0)
+        matrix.text(.025, y, label, ha="left", va="center", fontsize=7.6,
+                    weight="bold", color=color)
+        own, donor = cells[f"{head}_own"], cells[f"{head}_donor"]
+        gains[head] = own - donor
+        for xc, value in zip(centers, (own, donor, gains[head])):
+            matrix.text(xc, y, f"{value:.5f}", ha="center", va="center", color=color,
+                        fontsize=8.3)
+    delta = gains["trained"] - gains["reference"]
+    fig.text(.835, .334, rf"$\Delta G={delta:.5f}$", ha="center", va="center",
+             fontsize=8.8, weight="bold")
+
+    panel(fig, .018, .262, "(c) Vary the donor policy")
+    ax = fig.add_axes((.128, .126, .82, .071))
+    ax.axvline(0, color=GUIDE, linestyle=(0, (3, 2)), linewidth=.75)
+    d0 = framework["uniform_excess"]
+    lo, hi = framework["attainable_range"]
+    plot_range(ax, {"range": [lo, hi]}, .53, d0, INK)
+    for val in (lo, hi):
+        ax.annotate(f"{val:+.3f}".replace("-", "−"), (val, .53), (0, 6), ha="center",
+                    textcoords="offset points", fontsize=7.3)
+    ax.set(xlim=(-.74, .64), ylim=(0, 1.35), yticks=[])
+    ax.set_xticks([-.6, -.3, 0, .3, .6])
+    clean_axis(ax)
+    ax.spines["left"].set_visible(False)
+    fig.text(.54, .038, rf"Uniform pairing (diamond): $d_0={d0:.4f}$",
+             ha="center", color=INK, fontsize=7.3)
+    save(fig, out_dir, preview_dir, "fig_framework")
+
+
 def draw_geometry(images, original, extra, out_dir, preview_dir):
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
@@ -102,9 +173,9 @@ def draw_geometry(images, original, extra, out_dir, preview_dir):
         outline(axes[row, 1], window)
         outline(axes[row, 2], window)
         # These are the same trained/own and random/own peaks used in the four audit cells.
-        for peak in original[f"{key}__peaks_xy"][[0, 2]]:
+        for peak, color in zip(original[f"{key}__peaks_xy"][[0, 2]], ("#c1e7ff", "#ffc3a8")):
             hit = window[peak[1], peak[0]]
-            mark(axes[row, 2], peak, "x" if hit else "o", "white")
+            mark(axes[row, 2], peak, "x" if hit else "o", color)
     styles = [
         Line2D([], [], color=GOLD, linewidth=1.2, label="Annotation"),
         Line2D([], [], color=CYAN, linewidth=1.2, label="Acceptance boundary"),
@@ -146,7 +217,7 @@ def draw_concept(rgb, info, extra, bridge, out_dir, preview_dir):
     for k, (value, color) in enumerate(zip(values, (RUST, BLUE))):
         chart.scatter(k, value, color=color, s=23, zorder=3)
         chart.annotate(f"{value:+.4f}".replace("-", "−"), (k, value), (0, 5),
-                       textcoords="offset points", ha="center", color=color, fontsize=6.4)
+                       textcoords="offset points", ha="center", color=color, fontsize=7.0)
     chart.set(xlim=(-.34, 1.34), ylim=(-.032, .013), ylabel="Label contrast $I$")
     chart.set_xticks([0, 1], ["Target\nrequired", "Both\nrequired"])
     chart.set_yticks([-.03, -.02, -.01, 0, .01])
@@ -154,7 +225,7 @@ def draw_concept(rgb, info, extra, bridge, out_dir, preview_dir):
     clean_axis(chart)
     effect, (lo, hi) = bridge["donor_rule_difference"], bridge["paired_image_ci95"]
     fig.text(.79, .023, f"Paired shift +{effect:.4f}  [{lo:.4f}, {hi:.4f}]",
-             ha="center", color=INK, fontsize=6.3)
+             ha="center", color=INK, fontsize=7.0)
     save(fig, out_dir, preview_dir, "concept_eligibility_examples")
 
 
@@ -210,7 +281,7 @@ def draw_ranges(calibration, out_dir, preview_dir):
         low, high = record["range"]
         for end in (low, high):
             detail.text(end, y - .26, f"{end:+.4f}".replace("-", "−"),
-                        color=color, ha="center", fontsize=6.1)
+                        color=color, ha="center", fontsize=7.0)
     detail.set(xlim=(-.062, .142), ylim=(-.43, 1.50))
     detail.set_xticks([-.04, 0, .04, .08, .12])
     detail.set_yticks([])
@@ -241,8 +312,7 @@ def main():
     import matplotlib
     matplotlib.use("Agg")
     matplotlib.rcParams.update({
-        "font.family": "DejaVu Sans", "font.size": 6.4, "pdf.fonttype": 42,
-        "mathtext.fontset": "dejavusans", "text.color": INK, "axes.labelcolor": INK,
+        **PAPER_FONT, "font.size": 7.3, "text.color": INK, "axes.labelcolor": INK,
         "xtick.color": INK, "ytick.color": INK,
     })
     manifest = read_json(BASE / "manifest.json")
@@ -274,6 +344,12 @@ def main():
                    geometry_case["hits"], original[f"{key}__window"])
     check_hits(extra["copresent_maps"], np.array(case["peaks_xy"]), case["hits"],
                cub_window(extra["copresent_annotation_xy"]))
+    framework_source = args.audit_root / "docs/cub_robustness_results.json"
+    framework = provenance["framework"]
+    if sha256(framework_source) != framework["four_cell_source_sha256"]:
+        raise ValueError("Frozen cohort cell values do not match the figure manifest")
+    cells = read_json(framework_source)["primary_cells"]
+    draw_framework(images[0], original, cells, framework, args.out_dir, args.preview_dir)
     draw_geometry(images, original, extra, args.out_dir, args.preview_dir)
     draw_concept(images[2][0], case, extra, numeric["donor_bridge"], args.out_dir, args.preview_dir)
     draw_ranges(numeric["donor_calibration"], args.out_dir, args.preview_dir)

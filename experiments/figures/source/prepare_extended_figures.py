@@ -23,6 +23,7 @@ CONCEPT = OUT / "concept_axis_2026-11-22"
 NATIVE_MAPS = OUT / "frozen_adapter_review_2026-11-21/native_maps_before_projection.npz"
 FB_MASKS = OUT / "funnybirds_2026-11-15/test_masks.npy"
 POLICY = OUT / "donor_assignment_2026-11-26/query_calibration.json"
+FULL_POLICY = OUT / "donor_assignment_2026-11-26/calibrated_results.json"
 MIN_PEAK_SEPARATION = 16
 
 
@@ -75,6 +76,7 @@ def main():
         "native_maps": NATIVE_MAPS,
         "donor_bridge": CONCEPT / "donor_bridge_results.json",
         "donor_calibration": POLICY,
+        "full_donor_calibration": FULL_POLICY,
     }
     cases = read(files["original_provenance"])["cases"]
     with np.load(files["population"], allow_pickle=False) as archive:
@@ -152,6 +154,12 @@ def main():
             raise ValueError(f"Public results differ from canonical results: {key}")
     if pairs != read(public_directory / "data/donor_bridge/pairs.json"):
         raise ValueError("Public pair records differ from canonical records")
+    cells = public_directory / "docs/cub_robustness_results.json"
+    robustness = read(cells)
+    canonical_cells = read(OUT / "cub_strengthening_2026-11-23/results.json")["primary_cells"]
+    if robustness["primary_cells"] != canonical_cells:
+        raise ValueError("Public audit cells differ from canonical cells")
+    full_case = read(FULL_POLICY)["cohorts"]["new_CUB_context"]["cases"]["new_CUB_native_LocCBM"]
     provenance = {
         "copresent_case": record_info,
         "bridge_pairs": len(pairs),
@@ -162,6 +170,11 @@ def main():
             for key, path in files.items()
         },
         "public_results_sha256": {key: sha256(path) for key, path in public_files.items()},
+        "framework": {
+            "four_cell_source_sha256": sha256(cells),
+            "uniform_excess": full_case["uniform"],
+            "attainable_range": full_case["exact_range"],
+        },
     }
     np.savez_compressed(BASE / "data/extended_examples.npz", cub_annotation_xy=cub_points,
                         fb_part_mask=fb_mask, copresent_annotation_xy=points,

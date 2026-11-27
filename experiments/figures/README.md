@@ -5,7 +5,7 @@ model-derived maps and the original dataset images. No generative image model,
 inpainting, object removal or manual movement of peaks is involved.
 
 ```bash
-python experiments/figures/render.py --cub-root /path/to/CUB_200_2011 --funnybirds-zip /path/to/FunnyBirds.zip --out-dir results/figure3
+python experiments/figures/render.py --cub-root /path/to/CUB_200_2011 --funnybirds-zip /path/to/FunnyBirds.zip --out-dir results/four_cells
 ```
 
 Dependencies: Python 3.10+, NumPy, Pillow and Matplotlib. The checked environment
@@ -44,9 +44,9 @@ relative imports require the author's full research environment. The portable
 `render.py` command instead verifies frozen maps and user-provided RGB images.
 Full model map generation uses the research generator.
 
-## Scoring geometry, eligible concepts and calibrated donor ranges
+## Audit overview, scoring geometry, eligible concepts and donor ranges
 
-From the public repository root, render the three additional PDFs with
+From the public repository root, render the four additional PDFs with
 
 ```bash
 python -m experiments.figures.render_extended --cub-root /path/to/CUB_200_2011 --funnybirds-zip /path/to/FunnyBirds.zip --out-dir results/manuscript_figures
@@ -57,6 +57,7 @@ Pass `--preview-dir results/manuscript_figures/previews` to export PNG previews.
 
 | Output | Inputs |
 | --- | --- |
+| `fig_framework.pdf` | A donor-map transfer and the frozen CUB cohort's four hit rates and attribute-calibrated donor range. The fixed-schedule excess and the uniform-policy baseline are computed separately. |
 | `geometry_scoring_examples.pdf` | The two recipients from the four-cell figure, each with its cached annotation, scoring window and trained/random own-image peaks |
 | `concept_eligibility_examples.pdf` | CUB image 28, its two projected Loc-CBM bill-attribute maps and the existing fixed-recipient donor-eligibility comparison |
 | `donor_calibration_ranges.pdf` | The four attainable ranges from the common-support calibration analysis on 6,522 queries |

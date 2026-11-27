@@ -93,10 +93,22 @@
     "donor_calibration": {
       "path": "main_python/concept_null_audit/artifacts/donor_assignment_2026-11-26/query_calibration.json",
       "sha256": "29d6154ad38fee0f9e60931f9dbb714bdce928f7be445f675974cb504ce2a3f3"
+    },
+    "full_donor_calibration": {
+      "path": "main_python/concept_null_audit/artifacts/donor_assignment_2026-11-26/calibrated_results.json",
+      "sha256": "c41bcf1164b31958a81a355f54fdecf1a9da1030d0a0a481d7aadd847040b1ae"
     }
   },
   "public_results_sha256": {
     "donor_calibration": "29d6154ad38fee0f9e60931f9dbb714bdce928f7be445f675974cb504ce2a3f3",
     "donor_bridge": "8ec1e084c6138680a5253ab7aebbae8262e5864b1817b407351134d1592628fd"
+  },
+  "framework": {
+    "four_cell_source_sha256": "06d8c57936d108befeb12b94105d4865fead19f2d98a7e53b3a5848fe08eceb9",
+    "uniform_excess": 0.02128807509675726,
+    "attainable_range": [
+      -0.6398582848441957,
+      0.5048222433789393
+    ]
   }
 }
